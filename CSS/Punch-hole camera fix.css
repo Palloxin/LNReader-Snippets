@@ -1,0 +1,8 @@
+html::before {
+  content: "";
+  height: 30px;
+  background: var(--readerSettings-theme);
+  position: sticky;
+  top: 0;
+  display: block;
+}
