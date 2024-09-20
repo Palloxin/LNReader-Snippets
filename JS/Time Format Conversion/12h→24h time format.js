@@ -15,7 +15,7 @@ if(i ==="a") return `00${gag}`;
 else return `12${gag}`;
 })
 
-.replace(/••••(\d+)\s*(?::\s*(\d\d))?\s*([ap])m(?:\.|\b)/g, (_, a,b,c)=>{
+.replace(/••••(\d+)(?::(\d\d))?\s*([ap])m(?:\.|\b)/g, (_, a,b,c)=>{
     const h = +a;
     const m = +b || 0;
     if(c === "a")
@@ -26,7 +26,7 @@ else return `12${gag}`;
 
 .replace(/\b([2-9]|10|11) (o’clock at night|in the (?:evening|afternoon))\b/g, (_, a,b)=> `${Math.round(+a + 12)}:00 ${b.replace(/o’clock /, '')}`)
 .replace(/(?<=:\d\d|\b[AP]M)\.(?=[\.\,])/g, '')
-.replace(/°°\-°°/g, '-')//sixth spaces
+.replace(/°°\-°°/g, ' - ')//sixth spaces
 .replace(/••••(?=\d)/g, '')
 ;
 /////↑↑↑↑↑↑↑↑↑↑ – END
