@@ -1,5 +1,5 @@
 /////↓↓↓↓↓↓↓↓↓↓ 12h→24h time format
-chapter = document.querySelector('chapter');
+chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/\b(?<!:|\d-)(?=(?:[1-9]|1[012]|0\d(?=:))\b(?::[0-5]\d\b)?(?:-| ?[AaPp]\.?[mM](?=\.[^\.]|\b)))/g, '••••')//♦️
 //↓ the . of ``a/pm.`` ends a phrase and continues
