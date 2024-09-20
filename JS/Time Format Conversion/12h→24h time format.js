@@ -3,7 +3,7 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/\b(?<!:|\d-)(?=(?:[1-9]|1[012]|0\d(?=:))\b(?::[0-5]\d\b)?(?:-| ?[AaPp]\.?[mM](?=\.[^\.]|\b)))/g, '••••')//♦️
 //↓ the . of ``a/pm.`` ends a phrase and continues
-.replace(/••••([\d:\s]+[ap])\.?m(?=\.[^\.]|\b)/gi, (_)=> `••••${a.toLowerCase()}m.`)
+.replace(/••••([\d:\s]+[ap])\.?m(?=\.[^\.]|\b)/gi, (_, a)=> `••••${a.toLowerCase()}m.`)
 //↓ cases like 3-4 pm
 .replace(/••••((?!12)\d+)-(\d+)\s*([ap]\.?m\b)/gi, '••••$1 $3°°-°°••••$2 $3.')
 //↓ \d AM/PM indicates a different acronym
