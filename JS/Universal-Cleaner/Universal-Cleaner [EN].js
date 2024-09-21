@@ -236,7 +236,7 @@ return (imgs[parseInt(a)-1]);}) 
 
 
 //↓↓↓↓ — Script activation marker
-chapter = document.querySelector('chapter');
+chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/\bLorem ipsum dolor( sit amet consectetuer adipiscing[^]{1,6}?elit)?/g, '🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴')
 ;

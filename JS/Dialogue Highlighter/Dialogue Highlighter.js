@@ -1,6 +1,6 @@
 //Cleaning of quotation marks contexts
 //↓↓↓↓quotation marks => DOUBLE PRIME 
-chapter = document.querySelector('chapter');
+chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/“(?<=\bthe “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
 .replace(/“(?<=(?:\b\w+? |<p>(?!“\w+”[\.\,\<]))“)(\w+)”/g, '″$1″')

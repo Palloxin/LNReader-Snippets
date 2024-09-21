@@ -2,7 +2,7 @@
 spoooiler = document.querySelector(".nextButton");
 if(spoooiler) {spoooiler.innerText = "———Next Chapter———"}
 
-chapter = document.querySelector('chapter');
+chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 //preparatory
 .replace(/\&nbsp\;/g, '')
