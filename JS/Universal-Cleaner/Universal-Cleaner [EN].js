@@ -1,3 +1,12 @@
+//store images
+chapter = document.querySelector('#LNReader-chapter');
+chapter.innerHTML = chapter.innerHTML
+.replace(/<img\b[^>]+>/g, (match) => {
+imgs.push(match)
+return "⅞⅞⅞⅞⅞⅞⅞⅞"+imgs.length;})
+//↑↑
+
+
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 
@@ -218,6 +227,13 @@ chapter.innerHTML = chapter.innerHTML
 
 //%%%%%%%%%
 ;
+
+
+//place images
+chapter.innerHTML = chapter.innerHTML
+.replace(/⅞⅞⅞⅞⅞⅞⅞⅞(\d+)/g, (match, a) => {
+return (imgs[parseInt(a)-1]);}) 
+
 
 //↓↓↓↓ — Script activation marker
 chapter = document.querySelector('chapter');
