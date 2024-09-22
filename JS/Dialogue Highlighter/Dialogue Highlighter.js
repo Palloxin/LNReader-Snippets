@@ -38,7 +38,7 @@ chapter.innerHTML = chapter.innerHTML
 const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>[^\"“”]+)?[\"”](?<!=\")/g;
 const colorElement = (x) => {
     x.innerHTML = x.innerHTML
-		.replace(regex, `"<ww>$1$2</ww>"`)
+		.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
 		.replace(/[\u2033]/g, '\"');
 };
 (col = (parent) => {
