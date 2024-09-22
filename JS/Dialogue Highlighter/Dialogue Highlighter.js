@@ -17,7 +17,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|—)”)/g, '“')
 .replace(/“(?=<\/p>)/g, '”')
 .replace(/’(?<=(?:<p>|, )’)/g, '‘')
-.replace(/‘(?:<\/p>)/g, '’')
+.replace(/‘(?=<\/p>)/g, '’')
 .replace(/’(?<![\s\w]’)(?=\w\w\w+)/g, '’ ')
 .replace(/(?<=<p>|\: )[\"“][\"”“]/g, '“')
 .replace(/(?: ([\”’])|([\“‘]) )/g, '$1$2')
