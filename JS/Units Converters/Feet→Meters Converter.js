@@ -22,7 +22,7 @@ chapter.innerHTML = chapter.innerHTML
 	if(b === " and a half") nnn = nnn + (0.5 * fff);
 	if(nnn) nnn = nnn.toFixed(2);
 	if(nnn > unRounded) nnn = Math.round(nnn);
-	return `${a} ⋮⋮⋮feet (${nnn}m)`})
+	return `⋮⋮⋮feet (${nnn}m)`})
 
 .replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) (tall|tall|thick|long|wide|away|deep|in (?:length|height)|distance)/g, 'feet $2 $1')
 .replace(/(?:⋮⋮⋮|™™™)feet/g, 'feet')
