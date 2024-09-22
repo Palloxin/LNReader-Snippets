@@ -5,7 +5,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/\bfeet\b/g, '™™™feet')
 .replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ')
 .replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet\b/g, '⋮⋮⋮feet')
-.replace(/\b((?<!\-)(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|(?:thir|four|fif|six|seven|eigh|nine)teen|(?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:\-(?:one|two|three|four|five|six|seven|eight|nine))?\b|(?:a|one)(?<=[^a-z\-][a-z]+) (?=hundred|thousand)|\d+(?:\.\d+)?)( and a half|(hundred|thousand))? ⋮⋮⋮feet/g, (_, a,b,c) => {
+.replace(/\b((?<!\-)((?:twen(?=ty)|thir|fou?r|fif|six|seven|eigh|nine)(?:teen|ty)(?:(?<=ty)\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve))\b|(?:a|one)(?<=[^a-z\-][a-z]+) (?=hundred|thousand)|\d+(?:\.\d+)?)( and a half|(hundred|thousand))? ⋮⋮⋮feet/g, (_, a,b,c) => {
 	let multip = 1;
 	if(c === "hundred") multip = 100;
 	if(c === "thousand") multip = 1000;
