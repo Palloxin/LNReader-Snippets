@@ -9,8 +9,8 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/\bfeet\b/g, '™™™feet')
 .replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ')
 .replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet\b/g, '⋮⋮⋮feet')
-.replace(/⋮⋮⋮feet\b(?<=(?<!\-)(?:(?:twen(?=ty)|thir|fou?r|fif|six|seven|eigh|nine)(?:teen|ty)(?:(?<=ty)\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve))\b ⋮⋮⋮feet)/g, '⋮⋮⋮ↂfeet')
-.replace(/⋮⋮⋮ↂ?feet\b(?<=(?<!\-)([A-Za-z\-]+\b|\d+(?:\.\d+)?)( and a half| (hundred|thousand))? ⋮⋮⋮ↂ?feet)/g, (_, a,b,c) => {
+.replace(/⋮⋮⋮feet\b(?<=\b(?<!\-)(?:(?:twen(?=ty)|thir|fou?r|fif|six|seven|eigh|nine)(?:teen|ty)(?:(?<=ty)\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|\d+(?:\.\d+)?|(?:a|one)(?<=[^a-z\-][a-z]+)(?= (?:hundred|thousand) ⋮))\b( and a half| (hundred|thousand))? ⋮⋮⋮feet)/g, '⋮⋮⋮ↂfeet')
+.replace(/⋮⋮⋮ↂfeet\b(?<=\b(?<!\-)([\w\-]+\b(?:\.\d+)?|a)( and a half| (hundred|thousand))? ⋮⋮⋮ↂfeet)/g, (_, a,b,c) => {
 	let multip = 1;
 	if(c === "hundred") multip = 100;
 	if(c === "thousand") multip = 1000;
@@ -18,7 +18,7 @@ chapter.innerHTML = chapter.innerHTML
 	let unRounded = 4 / fff;
 	let nnn = +gioco.indexOf(a) * fff * multip;
 	if(/\d/.test(a)) nnn =  +a * fff * multip;
-	if(c) {nnn = nnn * -1; a = a + b;}
+	if(c) {nnn = Math.abs(nnn); a = a + b;}
 	if(b === " and a half") nnn = nnn + (0.5 * fff);
 	if(nnn) nnn = nnn.toFixed(2);
 	if(nnn > unRounded) nnn = Math.round(nnn);
