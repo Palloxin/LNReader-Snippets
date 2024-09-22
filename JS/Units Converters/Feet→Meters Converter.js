@@ -11,9 +11,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet\b/g, '⋮⋮⋮feet')
 .replace(/⋮⋮⋮feet\b(?<=\b(?<!\-)(?:(?:twen(?=ty)|thir|fou?r|fif|six|seven|eigh|nine)(?:teen|ty)(?:(?<=ty)\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|\d+(?:\.\d+)?|(?:a|one)(?<=[^a-z\-][a-z]+)(?= (?:hundred|thousand) ⋮))\b( and a half| (hundred|thousand))? ⋮⋮⋮feet)/g, '⋮⋮⋮ↂfeet')
 .replace(/⋮⋮⋮ↂfeet\b(?<=\b(?<!\-)([\w\-]+\b(?:\.\d+)?|a)( and a half| (hundred|thousand))? ⋮⋮⋮ↂfeet)/g, (_, a,b,c) => {
-	let multip = 1;
-	if(c === "hundred") multip = 100;
-	if(c === "thousand") multip = 1000;
+	const multip = {hundred: 100, thousand: 1000}[c] || 1;
 	let fff = 0.305;
 	let unRounded = 4 / fff;
 	let nnn = +gioco.indexOf(a) * fff * multip;
