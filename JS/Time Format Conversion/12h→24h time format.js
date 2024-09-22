@@ -24,7 +24,7 @@ else return `12${gag}`;
       return `${(h+12)%24}:${`${m}`.padStart(2,"0")}`;
 })
 
-.replace(/\b([2-9]|10|11) (o’clock at night|in the (?:evening|afternoon))\b/g, (_, a,b)=> `${Math.round(+a + 12)}:00 ${b.replace(/o’clock /, '')}`)
+.replace(/\b([2-9]|1[01]) (o’clock at night|in the (?:evening|afternoon))\b/g, (_, a,b)=> `${Math.round(+a + 12)}:00 ${b.replace(/o’clock /, '')}`)
 .replace(/(?<=:\d\d|\b[AP]M)\.(?=[\.\,])/g, '')
 .replace(/°°-°°/g, ' - ')//sixth spaces
 .replace(/••••(?=\d)/g, '')
