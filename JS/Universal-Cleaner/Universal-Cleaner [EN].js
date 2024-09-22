@@ -1,6 +1,9 @@
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 
+//store images
+.replace(/=(?<=src=)\"[^\"]+\">/g, (y) => {
+imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
 .replace(/(?<=^[^<]*(?:<input[^\>]+\>)?)[\s\n]*/, '♪')//♦start-chapter
 //↓↓— 1
@@ -209,18 +212,15 @@ chapter.innerHTML = chapter.innerHTML
 //↓ give p to tagless 
 .replace(/(?<=<\/p>)(?=[^<>]+<)/g, '<p>')
 //↑
+//place images
+.replace(/䷢䷢䷢(\d+)/g, (_, a) => {
+return (imgs[parseInt(a)-1]);})
 
 .replace(/♪/, '')
+.replace(/\bLorem ipsum dolor( sit amet consectetuer adipiscing[^]{1,6}?elit)?/g, '🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴')
 //↑ — 0
 
 //%%%%%%%%%—My JS 
 
-
 //%%%%%%%%%
-;
-
-//↓↓↓↓ — Script activation marker
-chapter = document.querySelector('chapter');
-chapter.innerHTML = chapter.innerHTML
-.replace(/\bLorem ipsum dolor( sit amet consectetuer adipiscing[^]{1,6}?elit)?/g, '🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴')
 ;

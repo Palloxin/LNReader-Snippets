@@ -1,7 +1,7 @@
 /////↓↓↓↓↓↓↓↓↓↓ 12h→24h time format
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
-.replace(/\b(?<!:|\d-)(?=(?:[1-9]|1[012]|0\d(?=:))\b(?::[0-5]\d\b)?(?:-| ?[AaPp]\.?[mM](?=\.[^\.]|\b)))/g, '••••')//♦
+.replace(/\b(?<!:|\d-)(?=(?:[1-9]|1[012]|0\d(?=:\d))\b(?::[0-5]\d\b)?(?:-| ?[AaPp]\.?[mM](?=\.[^\.]|\b)))/g, '••••')//♦
 //↓ the . of ``a/pm.`` ends a phrase and continues
 .replace(/••••([\d:\s]+[ap])\.?m\b/gi, (_, a)=> `••••${a.toLowerCase()}m.`)
 //↓ cases like 3-4 pm
@@ -24,7 +24,7 @@ else return `12${gag}`;
       return `${(h+12)%24}:${`${m}`.padStart(2,"0")}`;
 })
 
-.replace(/\b([2-9]|10|11) (o’clock at night|in the (?:evening|afternoon))\b/g, (_, a,b)=> `${Math.round(+a + 12)}:00 ${b.replace(/o’clock /, '')}`)
+.replace(/\b([2-9]|1[01]) (o’clock at night|in the (?:evening|afternoon))\b/g, (_, a,b)=> `${Math.round(+a + 12)}:00 ${b.replace(/o’clock /, '')}`)
 .replace(/(?<=:\d\d|\b[AP]M)\.(?=[\.\,])/g, '')
 .replace(/°°-°°/g, ' - ')//sixth spaces
 .replace(/••••(?=\d)/g, '')
