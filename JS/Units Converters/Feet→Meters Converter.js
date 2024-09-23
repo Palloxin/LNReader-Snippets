@@ -23,7 +23,7 @@ chapter.innerHTML = chapter.innerHTML
 	return `⋮⋮⋮feet (${nnn}m)`})
 
 .replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) ⳼(tall|thick|long|wide|away|deep|in (?:length|height)|distance)/g, 'feet $2 $1')
-.replace(/(?:⋮⋮⋮|™™™|⳼)feet/g, 'feet')
+.replace(/(?:⋮⋮⋮|™™™)feet/g, 'feet')
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
 	let feeinc = (+a * 0.305) + (+b * 0.0254);
