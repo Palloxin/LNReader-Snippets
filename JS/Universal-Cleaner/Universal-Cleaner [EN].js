@@ -69,7 +69,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\,([\"”](?=←←)|[\'’](?=\W))/g, '$1,')//comma
 .replace(/(?:←←|→→)/g, '')
 .replace(/, ?,/g, ', ')
-.replace(/\,(?<=\D\,)(?=[^\s\d\”\’\,])/g, ', ')
+.replace(/\,(?=[^\s\d\”\’\,])(?<=\D\,)/g, ', ')
 .replace(/ ?[\,\.]\,/g, ', ')
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 //↑↑↑↑↑
@@ -96,7 +96,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
 .replace(/(?:‘|’(?<=\W’)(?!s?\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
-.replace(/”(?<=[^\s\>\,]”)(?=\w)/g, '” ')
+.replace(/”(?=\w)(?<=[^\s\>\,]”)/g, '” ')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|—)”)/g, '“')
 .replace(/“(?=<\/p>)/g, '”')
 .replace(/’(?<=(?:<p>|, )’)/g, '‘')
