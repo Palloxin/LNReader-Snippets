@@ -7,7 +7,7 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/,(?=\d\d\d(?:\,|\d\d\d)* feet)/g, '')
 .replace(/\bfeet\b/g, '™™™feet')
-.replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ')
+.replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ⳼')
 .replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet\b/g, '⋮⋮⋮feet')
 .replace(/⋮⋮⋮feet\b(?<=\b(?<!\-)(?:(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|(?:twen(?=ty)|thir|fou?r|fif|six|seven|eigh|nine)t(?:een|y)(?:(?<=y)\-(?:one|two|three|four|five|six|seven|eight|nine))?|\d+(?:\.\d+)?|(?:a|one)(?= (?:hundred|thousand)))\b( and a half| (hundred|thousand))? ⋮⋮⋮feet)/g, 'ↂↂfeet')
 .replace(/ↂↂfeet\b(?<=\b(?<!\-)([\w\-]+\b(?:\.\d+)?|a)( and a half| (hundred|thousand))? ↂↂfeet)/g, (_, a,b,c) => {
@@ -22,8 +22,8 @@ chapter.innerHTML = chapter.innerHTML
 	if(nnn > unRounded) nnn = Math.round(nnn);
 	return `⋮⋮⋮feet (${nnn}m)`})
 
-.replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) (tall|thick|long|wide|away|deep|in (?:length|height)|distance)/g, 'feet $2 $1')
-.replace(/(?:⋮⋮⋮|™™™)feet/g, 'feet')
+.replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) ⳼(tall|thick|long|wide|away|deep|in (?:length|height)|distance)/g, 'feet $2 $1')
+.replace(/(?:⋮⋮⋮|™™™|⳼)feet/g, 'feet')
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
 	let feeinc = (+a * 0.305) + (+b * 0.0254);
