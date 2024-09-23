@@ -1,3 +1,4 @@
+let imgs = [];
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 
