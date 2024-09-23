@@ -214,9 +214,6 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/±(?=\d)/g, '')
 //↑↑↑↑↑↑↑ alternative separators:
 //100𝃳000//100༌000//100˙000//100𑀀000//100ॱ000//100ᱸ000//100ʹ000//100՛000
-//↓ give p to tagless 
-.replace(/(?<=<\/p>)(?=[^<>]+<)/g, '<p>')
-//↑
 //place images
 .replace(/䷢䷢䷢(\d+)/g, (_, a) => {
 return (imgs[parseInt(a)-1]);})
