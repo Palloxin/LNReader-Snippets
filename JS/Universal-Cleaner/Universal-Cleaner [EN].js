@@ -202,7 +202,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
 //↓ give p to tagless 
-.replace(/(?<=<\/p>)(?=[^<⸎]+<)/g, '<p>')
+.replace(/(?<=⸎⸎)(?=[^<⸎]+<)/g, '<p>')
 //↑
 .replace(/⸎⸎/g, '')//♦♦
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
