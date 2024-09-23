@@ -16,7 +16,7 @@ chapter.innerHTML = chapter.innerHTML
 	let unRounded = 4 / fff;
 	let nnn = +gioco.indexOf(a) * fff * multip;
 	if(/\d/.test(a)) nnn =  +a * fff * multip;
-	if(c) nnn = Math.abs(nnn); //negative value if "a hundred feet tall"
+	if(c) nnn = Math.abs(nnn);//negativ if "a hundred feet tall"
 	if(b === " and a half") nnn = nnn + (0.5 * fff);
 	if(nnn) nnn = nnn.toFixed(2);
 	if(nnn > unRounded) nnn = Math.round(nnn);
