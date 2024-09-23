@@ -22,7 +22,7 @@ chapter.innerHTML = chapter.innerHTML
 	if(nnn > unRounded) nnn = Math.round(nnn);
 	return `⋮⋮⋮feet (${nnn}m)`})
 
-.replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) (tall|tall|thick|long|wide|away|deep|in (?:length|height)|distance)/g, 'feet $2 $1')
+.replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) (tall|thick|long|wide|away|deep|in (?:length|height)|distance)/g, 'feet $2 $1')
 .replace(/(?:⋮⋮⋮|™™™)feet/g, 'feet')
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
