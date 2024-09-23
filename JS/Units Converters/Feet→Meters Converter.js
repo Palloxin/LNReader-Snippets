@@ -13,13 +13,12 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/ↂↂfeet\b(?<=\b(?<!\-)([\w\-]+\b(?:\.\d+)?|a)( and a half| (hundred|thousand))? ↂↂfeet)/g, (_, a,b,c) => {
 	const multip = {hundred: 100, thousand: 1000}[c] || 1;
 	let fff = 0.305;
-	let unRounded = 4 / fff;
 	let nnn = +gioco.indexOf(a) * fff * multip;
 	if(/\d/.test(a)) nnn =  +a * fff * multip;
 	if(c) nnn = Math.abs(nnn);//negativ if "a hundred feet tall"
 	if(b === " and a half") nnn = nnn + (0.5 * fff);
 	if(nnn) nnn = nnn.toFixed(2);
-	if(nnn > unRounded) nnn = Math.round(nnn);
+	if(nnn > 11) nnn = Math.round(nnn);
 	return `⋮⋮⋮feet (${nnn}m)`})
 
 .replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) ⳼(tall|thick|long|wide|away|deep|in (?:length|height)|distance)/g, 'feet $2 $1')
