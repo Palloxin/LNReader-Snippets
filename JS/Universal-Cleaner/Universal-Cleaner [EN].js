@@ -1,3 +1,4 @@
+let imgs = [];
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 
@@ -24,7 +25,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/<br>\s*(?=<\/?p>)/g, '')
 ///↑↑↑↑↑
 //↓↓↓ —
-.replace(/<p><\/p>(?!$)/g, '')//excessive <p>
+.replace(/<p><\/p>/g, '')//excessive <p>
 .replace(/(?:^[\s\n]*|$)/, '<p></p>')
 .replace(/<\/?div(?: id=[^>]+)?>/g, '')
 .replace(/<input type[^>]+>/g, '')
@@ -60,7 +61,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓↓ — 
 .replace(/\.(?=\d\d+)(?<=\s\.)/g, '✓+®.')//★↓
 .replace(/®(?=\.\d+%)/g, '®0')//↓
-.replace(/\s([\.\,\]\)\:\;]+)(?<=(?:[¹²³⁴⁵⁶⁷⁸⁹]|\w+)\s\1)/g, '$1')//↑↓
+.replace(/\s(?=[\.\,\]\)\:\;]+)(?<=(?:[¹²³⁴⁵⁶⁷⁸⁹]|\w+)\s)/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
 .replace(/([\.\,\:\!\?])(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
 .replace(/(?<=“\w+)\.”\.?/g, '”.')
@@ -68,7 +69,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\,([\"”](?=←←)|[\'’](?=\W))/g, '$1,')//comma
 .replace(/(?:←←|→→)/g, '')
 .replace(/, ?,/g, ', ')
-.replace(/\,(?<=\D\,)(?=[^\s\d\”\’\,])/g, ', ')
+.replace(/\,(?=[^\s\d\”\’\,])(?<=\D\,)/g, ', ')
 .replace(/ ?[\,\.]\,/g, ', ')
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 //↑↑↑↑↑
@@ -95,7 +96,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
 .replace(/(?:‘|’(?<=\W’)(?!s?\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
-.replace(/”(?<=[^\s\>\,]”)(?=\w)/g, '” ')
+.replace(/”(?=\w)(?<=[^\s\>\,]”)/g, '” ')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|—)”)/g, '“')
 .replace(/“(?=<\/p>)/g, '”')
 .replace(/’(?<=(?:<p>|, )’)/g, '‘')
@@ -132,19 +133,16 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
-.replace(/(?<=<\/?)em>/g, '♠♠>')
-.replace(/(?<=<\/?)i>/g, '♠>')
+.replace(/(?<=<\/?)(?:em|i)>/g, (l) => l === 'i>' ? '♠>' : '♠♠>')
 .replace(/\s*<(♠+)>(?<=[^<>“]\s?<♠+>)\s*/g, ' <$1>')//thin space
-.replace(/(?<=♠+(?<=<\/♠+)>)\s+/g, '  ')//thin+hair space > normal space
+.replace(/(?<=♠+(?<=\/♠+)>)\s+/g, '  ')//thin+hair space > normal space
 .replace(/(<\/♠+>\s*)([\!\?\;\.\:\,]+)/g, '$2$1')
-.replace(/([”\"]\.?)(<\/♠+>)/g, '$2$1')
-.replace(/(<♠+>)([“\"])/g, '$2$1')
+.replace(/([”\"]\.?(?=<)|<♠+>)([“\"]|<\/♠+>)/g, '$2$1')
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])/g, '$2$1$3$5$4')
 .replace(/(?<=♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, ' ')//hair space
-.replace(/♠♠(?<=<\/?♠♠)>/g, 'em>')
-.replace(/♠(?<=<\/?♠)>/g, 'i>')
+.replace(/♠+>/g, (m) => m === '♠♠>' ? 'em>' : 'i>')
 //↑↑↑↑↑↑
-.replace(/:(?<=\w\:)(?=[^\s\d\/])/g, ': ')
+.replace(/:(?=[^\s\d\/])(?<=\w\:)/g, ': ')
 ///↓↓↓↓ — three dots
 .replace(/(?:\. ?…|…\.\.)/g, '….')
 .replace(/\s?(?:\.\.\.|…|(?<!\. )\. \. \.(?! \.)) ?/g, '…')
@@ -182,24 +180,26 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓↓ \w to avoid "A grade" at the start of a phrase. Not applied to the beginning of phrases on purpose, even for B or C grade etc..
 //↑↑↑↑↑
 
-.replace(/([\,\?\!]|\.+(?!(?:com|it|net|jpg|png)\b))(?=[A-Za-z])(?<=\b\w\w+\1)/g, '$1 ')
+.replace(/([\,\?\!]+|\.+(?!(?:com|it|net|jpg|png)\b))(?=[A-Za-z])(?<=\b\w\w+[\,\?\!\.]+)/g, ' ')
 .replace(/—(?<=\w—)(?=\w)/g, ' — ')//sixth spaces
 //↓↓ — *
-.replace(/\* ?([^\s”“\*]+) ?([\*](?![a-z])) ?/g, '*$1$2 ')
+.replace(/\* ?([^\s”“\*]+) ?\*(?![a-z]) ?/g, '*$1* ')
 .replace(/\*(?<=\>\*) /g, '*')
 .replace(/\*(?<=\>\*)([^\*\<\,\?\"”“’‘]{2,18}?) \*/g, '*$1*')
 //↑↑
 //↓↓↓↓↓
-.replace(/<\/p>(?<=[^\.]\w<\/p>)(?!<p>[a-z])/g, '.</p>')//Dot missing at the end of <p>
+.replace(/(?=<\/p>(?<=[^\.]\w<\/p>)(?!<p>[a-z]))/g, '.')//Dot missing at the end of <p>
 //↑↑↑↑↑
 //↓↓↓ fix missing “ or ” on simple|short paragraphs
 .replace(/(?<=<p>[\"”“](?:[\w’]+))((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2”')
 .replace(/(?<=<p>)([\w’]+)((?:\s[\w’]+){0,2}?)(?=[\!\?\…\.]*[\"”“]<\/p>)/g, '“$1$2')
 .replace(/(?<=<p>)([A-Za-z’]+\,?)([a-zA-Z\s’]+)([\.\!\…\?]*)”/g, '“$1$2$3”')
 .replace(/“(?<=(?:<p>|\, )“)((?:\s?[A-Za-z’]+){1,6}?)([\!\…\?\.]+)(?=<\/p>)/g, '“$1$2”')
-.replace(/“(?<=\<p>“)(\w+\,(?:\s?[A-Za-z’]+){1,6}[\!\…\?\.]+)([^<>“”]+)\s?”©©\s?(?=[^<>”“]+”<\/)/g, '“$1”$2 “')
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
+//↓ give p to tagless 
+.replace(/(?<=\/p>)(?=[^<]+<)/g, '<p>')
+//↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±')
 .replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±/g, '')}`)
@@ -209,9 +209,6 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/±(?=\d)/g, '')
 //↑↑↑↑↑↑↑ alternative separators:
 //100𝃳000//100༌000//100˙000//100𑀀000//100ॱ000//100ᱸ000//100ʹ000//100՛000
-//↓ give p to tagless 
-.replace(/(?<=<\/p>)(?=[^<>]+<)/g, '<p>')
-//↑
 //place images
 .replace(/䷢䷢䷢(\d+)/g, (_, a) => {
 return (imgs[parseInt(a)-1]);})

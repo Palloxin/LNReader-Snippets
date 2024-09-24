@@ -12,7 +12,7 @@ chapter.innerHTML = chapter.innerHTML
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
 .replace(/(?:‘|’(?<=\W’)(?!s?\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
-.replace(/”(?<=[^\s\>\,]”)(?=\w)/g, '” ')
+.replace(/”(?=\w)(?<=[^\s\>\,]”)/g, '” ')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|—)”)/g, '“')
 .replace(/“(?=<\/p>)/g, '”')
 .replace(/’(?<=(?:<p>|, )’)/g, '‘')
