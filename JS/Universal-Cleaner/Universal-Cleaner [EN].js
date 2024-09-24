@@ -146,7 +146,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↓↓↓↓ — three dots
 .replace(/(?:\. ?…|…\.\.)/g, '….')
 .replace(/\s?(?:\.\.\.|…|(?<!\. )\. \. \.(?! \.)) ?/g, '…')
-.replace(/…(?<=\w…)…?\.?(\w)/g, '…⅞⅘ $1')//thin space
+.replace(/…(?<=\w…)…?\.?(\w)/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘(?:\s([TYVW]))/g, ' $1').replace(/⅞⅘/g, '')
 .replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’](\b\w+)…)…?\s\1\B/gi, '…$1')//Bo…Bobby!!
