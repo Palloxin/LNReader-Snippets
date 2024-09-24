@@ -143,15 +143,15 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↓↓↓↓ — three dots
 .replace(/(?:\. ?…|…\.\.)/g, '….')
 .replace(/\s?(?:\.\.\.|…|(?<!\. )\. \. \.(?! \.)) ?/g, '…')
-.replace(/…(?<=\w…)…?\.?(\w)/g, '…⅞⅘ ')//thin space
-.replace(/⅞⅘(?:\s([TYVW]))/g, ' $1').replace(/⅞⅘/g, '')
+.replace(/…(?<=\w…)…?\.?(?=\w)/g, '…⅞⅘ ')//thin space
+.replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
 .replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
-.replace(/…(?<=[^’](\b\w+)…)…?\s\1\B/gi, '…$1')//Bo…Bobby!!
+.replace(/…(?<=[^’](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
 .replace(/…(?<=So…)(?=Some\b)/, '… ')
 .replace(/…(?<=No…)(?=Not\b)/, '… ')
 //↑
-.replace(/…(?<=\b(\w+)…)…?\s\1/g, '… $1')//sixth space
+.replace(/…(?<=\b(\w+)…)…?\s\1\b/g, '… $1')//sixth space
 .replace(/…(?<=[^\s\w\…\"“‘\'\>\%]…)…?(?![\<\'\"’”\|])/g, ' …')
 .replace(/…\.(?<=[\s“]…\.)\s/g, '…')
 .replace(/…(?=[AJ])/g, '… ')//hair-s
