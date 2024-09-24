@@ -16,20 +16,17 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↓↓↓↓↓— 2
 .replace(/[\u200B-\u200D\uFEFF](?=<\/p>)/g, '')
 .replace(/<p\b[^>]+>/g, '<p>')
-.replace(/(?<=<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '')
+.replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '$1')
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')
 //↓
-.replace(/<span>(?<=<p><span>)/g, '')
-.replace(/<\/span>(?=<\/p>)/g, '')//<p><span>Haha</span></p>
+.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↑
 .replace(/<br>\s*(?=<\/?p>)/g, '')
 ///↑↑↑↑↑
 //↓↓↓ —
 .replace(/<p><\/p>/g, '')//excessive <p>
 .replace(/(?:^[\s\n]*|$)/, '<p></p>')
-.replace(/<\/?div(?: id=[^>]+)?>/g, '')
-.replace(/<input type[^>]+>/g, '')
-.replace(/<a href=\"[^\"\>]+\">/g, '')
+.replace(/<(?:\/?div(?: id)?|input type|a href)\b[^>]+>/g, '')
 .replace(/(?<=<h[1-4]>)<span>([^]+?)<\/span>/, '$1')
 //↑↑↑
 
