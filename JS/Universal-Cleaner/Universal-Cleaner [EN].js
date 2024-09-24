@@ -25,7 +25,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/<br>\s*(?=<\/?p>)/g, '')
 ///↑↑↑↑↑
 //↓↓↓ —
-.replace(/<p><\/p>(?!$)/g, '')//excessive <p>
+.replace(/<p><\/p>/g, '')//excessive <p>
 .replace(/(?:^[\s\n]*|$)/, '<p></p>')
 .replace(/<\/?div(?: id=[^>]+)?>/g, '')
 .replace(/<input type[^>]+>/g, '')
