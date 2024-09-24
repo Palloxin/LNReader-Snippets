@@ -133,8 +133,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
-.replace(/(?<=<\/?)em>/g, '♠♠>')
-.replace(/(?<=<\/?)i>/g, '♠>')
+.replace(/(?<=<\/?)(?:em|i)>/g, (v) => v === 'em>' ? '♠♠>' : '♠>')
 .replace(/\s*<(♠+)>(?<=[^<>“]\s?<♠+>)\s*/g, ' <$1>')//thin space
 .replace(/(?<=♠+(?<=\/♠+)>)\s+/g, '  ')//thin+hair space > normal space
 .replace(/(<\/♠+>\s*)([\!\?\;\.\:\,]+)/g, '$2$1')
