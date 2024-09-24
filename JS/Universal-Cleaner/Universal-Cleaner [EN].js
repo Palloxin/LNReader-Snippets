@@ -180,7 +180,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓↓ \w to avoid "A grade" at the start of a phrase. Not applied to the beginning of phrases on purpose, even for B or C grade etc..
 //↑↑↑↑↑
 
-.replace(/([\,\?\!]|\.+(?!(?:com|it|net|jpg|png)\b))(?=[A-Za-z])(?<=\b\w\w+\1)/g, '$1 ')
+.replace(/(?<=(?:[\,?\!]+|.+(?!(?:com|it|net|jpg|png)\b))(?=[A-Za-z])(?<=\b\w\w+[\,\!\?\.]+))/g, ' ')
 .replace(/—(?<=\w—)(?=\w)/g, ' — ')//sixth spaces
 //↓↓ — *
 .replace(/\* ?([^\s”“\*]+) ?\*(?![a-z]) ?/g, '*$1* ')
