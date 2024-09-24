@@ -16,7 +16,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↓↓↓↓↓— 2
 .replace(/[\u200B-\u200D\uFEFF](?=<\/p>)/g, '')
 .replace(/<p\b[^>]+>/g, '<p>')
-.replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '$1')
+.replace(/(?<=<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '')
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')
 //↓
 .replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
