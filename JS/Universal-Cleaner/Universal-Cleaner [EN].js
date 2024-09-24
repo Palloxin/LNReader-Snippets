@@ -136,14 +136,12 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(?<=<\/?)em>/g, '♠♠>')
 .replace(/(?<=<\/?)i>/g, '♠>')
 .replace(/\s*<(♠+)>(?<=[^<>“]\s?<♠+>)\s*/g, ' <$1>')//thin space
-.replace(/(?<=♠+(?<=<\/♠+)>)\s+/g, '  ')//thin+hair space > normal space
+.replace(/(?<=♠+(?<=\/♠+)>)\s+/g, '  ')//thin+hair space > normal space
 .replace(/(<\/♠+>\s*)([\!\?\;\.\:\,]+)/g, '$2$1')
-.replace(/([”\"]\.?)(<\/♠+>)/g, '$2$1')
-.replace(/(<♠+>)([“\"])/g, '$2$1')
+.replace(/([”\"]\.?(?=<)|<♠+>)([“\"]|<\/♠+>)/g, '$2$1')
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])/g, '$2$1$3$5$4')
 .replace(/(?<=♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, ' ')//hair space
-.replace(/♠♠(?<=<\/?♠♠)>/g, 'em>')
-.replace(/♠(?<=<\/?♠)>/g, 'i>')
+.replace(/♠+>/g, (m) => m === '♠♠>' ? 'em>' : 'i>')
 //↑↑↑↑↑↑
 .replace(/:(?=[^\s\d\/])(?<=\w\:)/g, ': ')
 ///↓↓↓↓ — three dots
