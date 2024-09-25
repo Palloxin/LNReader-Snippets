@@ -30,5 +30,5 @@ chapter.innerHTML = chapter.innerHTML
     
 
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||
-//jsfidle: https://jsfiddle.net/19wf0cvm/
+//jsfidle: https://jsfiddle.net/wjmekrL7/1/
 //////↑↑↑↑↑ — END
