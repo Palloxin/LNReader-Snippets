@@ -20,7 +20,7 @@ chapter.innerHTML = chapter.innerHTML
 		return `⸙<${_1}><spo>${_2}${_7}⸙`;
 	else
 		return `⸙<${_1}><spo>${_2}${_7}${_9}<spo>${_10}⸙`})
-.replace(/⸙([^⸙]+)⸙/, (_, a) => `${a.replace(/<(h[1-4]|p)>([^]+?)<\/\1>/, '<h1>$2<\/h1>')}`)
+.replace(/⸙([^⸙]+)⸙/, (_, a) => `${a.replace(/<(h[1-4]|p)>([^]+?)<\/\1>/, '<h1>$2</h1>')}`)
 .replace(/π√(<(p|h[1-5])>)([^]+?)(?=<\/\2>)/, (_, a,b,c)=> {
 	const bas = c.replace(/(?:<\/?[a-z]+>|\.$)/g, '')
 	let dare = reader.chapter.name.includes(bas);

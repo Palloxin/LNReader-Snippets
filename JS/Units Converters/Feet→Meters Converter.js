@@ -7,21 +7,20 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/,(?=\d\d\d(?:\,|\d\d\d)* feet)/g, '')
 .replace(/\bfeet\b/g, '™™™feet')
-.replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ⳼')
+.replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ')
 .replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet\b/g, '⋮⋮⋮feet')
-.replace(/⋮⋮⋮feet\b(?<=\b(?<!\-)(?:(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|(?:twen(?=ty)|thir|fou?r|fif|six|seven|eigh|nine)t(?:een|y)(?:(?<=y)\-(?:one|two|three|four|five|six|seven|eight|nine))?|\d+(?:\.\d+)?|(?:a|one)(?! a))\b( and a half| (hundred|thousand))? ⋮⋮⋮feet)/g, 'ↂↂfeet')
-.replace(/ↂↂfeet\b(?<=\b(?<!\-)([\w\-]+\b(?:\.\d+)?|a)( and a half| (hundred|thousand))? ↂↂfeet)/g, (_, a,b,c) => {
+.replace(/⋮⋮⋮feet\b(?<=\b((?<!ty-)(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|(?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:thir|four|fif|six|seven|eigh|nine)teen|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮feet)/g, (_, a,b,c) => {
 	const multip = {hundred: 100, thousand: 1000}[c] || 1;
 	let fff = 0.305;
 	let nnn = +gioco.indexOf(a) * fff * multip;
 	if(/\d/.test(a)) nnn =  +a * fff * multip;
-	if(c) nnn = Math.abs(nnn);//negativ if "a hundred feet tall"
+	if(c) nnn = Math.abs(nnn); //negativ if "a hundred feet tall"
 	if(b === " and a half") nnn = nnn + (0.5 * fff);
 	if(nnn) nnn = nnn.toFixed(2);
 	if(nnn > 11) nnn = Math.round(nnn);
 	return `⋮⋮⋮feet (${nnn}m)`})
 
-.replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) ⳼(tall|thick|long|wide|away|deep|in (?:length|height)|distance)/g, 'feet $2 $1')
+.replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) ((?:in )?[a-z]+)/g, 'feet $2 $1')
 .replace(/(?:⋮⋮⋮|™™™)feet/g, 'feet')
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
@@ -31,5 +30,5 @@ chapter.innerHTML = chapter.innerHTML
     
 
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||
-//jsfidle: https://jsfiddle.net/mq7y98v1/
+//jsfidle: https://jsfiddle.net/wjmekrL7/2/
 //////↑↑↑↑↑ — END

@@ -19,17 +19,14 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(?<=<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '')
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')
 //↓
-.replace(/<span>(?<=<p><span>)/g, '')
-.replace(/<\/span>(?=<\/p>)/g, '')//<p><span>Haha</span></p>
+.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↑
 .replace(/<br>\s*(?=<\/?p>)/g, '')
 ///↑↑↑↑↑
 //↓↓↓ —
 .replace(/<p><\/p>/g, '')//excessive <p>
 .replace(/(?:^[\s\n]*|$)/, '<p></p>')
-.replace(/<\/?div(?: id=[^>]+)?>/g, '')
-.replace(/<input type[^>]+>/g, '')
-.replace(/<a href=\"[^\"\>]+\">/g, '')
+.replace(/<(?:\/?div(?: id)?|input type|a href)\b[^>]+>/g, '')
 .replace(/(?<=<h[1-4]>)<span>([^]+?)<\/span>/, '$1')
 //↑↑↑
 
@@ -146,15 +143,15 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↓↓↓↓ — three dots
 .replace(/(?:\. ?…|…\.\.)/g, '….')
 .replace(/\s?(?:\.\.\.|…|(?<!\. )\. \. \.(?! \.)) ?/g, '…')
-.replace(/…(?<=\w…)…?\.?(\w)/g, '…⅞⅘ $1')//thin space
-.replace(/⅞⅘(?:\s([TYVW]))/g, ' $1').replace(/⅞⅘/g, '')
+.replace(/…(?<=\w…)…?\.?(?=\w)/g, '…⅞⅘ ')//thin space
+.replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
 .replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
-.replace(/…(?<=[^’](\b\w+)…)…?\s\1\B/gi, '…$1')//Bo…Bobby!!
+.replace(/…(?<=[^’](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
 .replace(/…(?<=So…)(?=Some\b)/, '… ')
 .replace(/…(?<=No…)(?=Not\b)/, '… ')
 //↑
-.replace(/…(?<=\b(\w+)…)…?\s\1/g, '… $1')//sixth space
+.replace(/…(?<=\b(\w+)…)…?\s\1\b/g, '… $1')//sixth space
 .replace(/…(?<=[^\s\w\…\"“‘\'\>\%]…)…?(?![\<\'\"’”\|])/g, ' …')
 .replace(/…\.(?<=[\s“]…\.)\s/g, '…')
 .replace(/…(?=[AJ])/g, '… ')//hair-s
