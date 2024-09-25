@@ -7,7 +7,7 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/,(?=\d\d\d(?:\,|\d\d\d)* feet)/g, '')
 .replace(/\bfeet\b/g, '™™™feet')
-.replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ⳼')
+.replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ')
 .replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet\b/g, '⋮⋮⋮feet')
 .replace(/⋮⋮⋮feet\b(?<=\b(?:(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|(?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:thir|four|fif|six|seven|eigh|nine)teen|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))\b( and a half| (hundred|thousand))? ⋮⋮⋮feet)/g, 'ↂↂfeet')
 .replace(/ↂↂfeet\b(?<=\b([\w\-]+\b(?:\.\d+)?|a)( and a half| ([a-z]+))? ↂↂfeet)/g, (_, a,b,c) => {
@@ -21,7 +21,7 @@ chapter.innerHTML = chapter.innerHTML
 	if(nnn > 11) nnn = Math.round(nnn);
 	return `⋮⋮⋮feet (${nnn}m)`})
 
-.replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) ⳼((?:in )?[a-z]+)/g, 'feet $2 $1')
+.replace(/⋮⋮⋮feet (\(\d+(?:\.\d+)?m\)) ((?:in )?[a-z]+)/g, 'feet $2 $1')
 .replace(/(?:⋮⋮⋮|™™™)feet/g, 'feet')
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
