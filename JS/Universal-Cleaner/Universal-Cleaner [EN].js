@@ -25,7 +25,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↑↑↑↑↑
 //↓↓↓ —
 .replace(/<p><\/p>/g, '')//excessive <p>
-.replace(/(?:^[\s\n]*|$)/, '<p></p>')
+.replace(/^[\s\n]*|$/, '<p></p>')
 .replace(/<(?:\/?div(?: id)?|input type|a href)\b[^>]+>/g, '')
 .replace(/(?<=<h[1-4]>)<span>([^]+?)<\/span>/, '$1')
 //↑↑↑
@@ -47,10 +47,9 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑
 //↓↓↓↓↓— 3
 .replace(/(?<=\d) ?(k?m)([2-9])\b/g, '$1‡$2★')
-.replace(/\bmeters?²/g, 'm²')
 //↑↑↑↑↑
 //↓↓↓—
-.replace(/<sup>(\d)<\/sup>/g, '‡$1★')
+.replace(/<sup>(\d)<\/sup>(?:\s+(?!\w))?/g, '‡$1★')
 .replace(/‡(\d)★/g, (_, a) => {
 	const hdigg = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
 	return hdigg[+a]})
@@ -58,23 +57,22 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓↓ — 
 .replace(/\.(?=\d\d+)(?<=\s\.)/g, '✓+®.')//★↓
 .replace(/®(?=\.\d+%)/g, '®0')//↓
-.replace(/\s(?=[\.\,\]\)\:\;]+)(?<=(?:[¹²³⁴⁵⁶⁷⁸⁹]|\w+)\s)/g, '')//↑↓
+.replace(/\s(?=[\.\,\]\)\:\;]+)(?<=\w\s)/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
 .replace(/([\.\,\:\!\?])(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
 .replace(/(?<=“\w+)\.”\.?/g, '”.')
 .replace(/([\"“”])(?<!\=\")(?!>|\s[\"“”])([^\"“”]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
 .replace(/\,([\"”](?=←←)|[\'’](?=\W))/g, '$1,')//comma
-.replace(/(?:←←|→→)/g, '')
-.replace(/, ?,/g, ', ')
-.replace(/\,(?=[^\s\d\”\’\,])(?<=\D\,)/g, ', ')
-.replace(/ ?[\,\.]\,/g, ', ')
+.replace(/←←|→→/g, '')
+.replace(/,[, ]+/g, ', ')
+.replace(/\,(?=[^\s\d\”\’])(?<=\D\,)/g, ', ')
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 //↑↑↑↑↑
 //↓↓
-.replace(/[”“](?=(?:t|ll|s|d|m)\b(?!-))/g, '’')
-.replace(/’ll\b(?<=‘(?:it?|you|s?he|we|they)’ll)/gi, ' will')
-.replace(/’ve\b(?<=‘(?:i|you|we|they)’ve)/gi, ' have')
-.replace(/’m\b(?<=‘(If )?\bI’m)/g, ' am')
+.replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
+.replace(/(?<=‘(?:[Ii]t?|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey))’ll\b/g, ' will')
+.replace(/(?<=‘(?:I|[Yy]ou|[Ww]e|[Tt]hey))’ve\b/g, ' have')
+.replace(/(?<=‘(?:If )?I)’m\b/g, ' am')
 //↑↑
 
 //↓↓↓↓quotation marks => DOUBLE PRIME 
@@ -122,7 +120,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 
 ////↑↑↑↑↑
 //↓↓↓↓↓↓↓ excessive space — **don't put `.replace`(ments) that add 2+ spaces consecutively above this line**
-.replace(/\s\s+/g, ' ')
+.replace(/\s{2,}/g, ' ')
 //↑↑↑↑↑↑↑
 //↓↓↓ — 
 .replace(/(?<=\?+) (?=\!)/g, '')
