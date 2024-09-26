@@ -122,7 +122,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 
 ////↑↑↑↑↑
 //↓↓↓↓↓↓↓ excessive space — **don't put `.replace`(ments) that add 2+ spaces consecutively above this line**
-.replace(/\s\s+/g, ' ')
+.replace(/\s{2,}/g, ' ')
 //↑↑↑↑↑↑↑
 //↓↓↓ — 
 .replace(/(?<=\?+) (?=\!)/g, '')
