@@ -50,7 +50,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\bmeters?²/g, 'm²')
 //↑↑↑↑↑
 //↓↓↓—
-.replace(/<sup>(\d)<\/sup>\s*(?!\w)/g, '‡$1★')
+.replace(/<sup>(\d)<\/sup>(?:\s+(?!\w))?/g, '‡$1★')
 .replace(/‡(\d)★/g, (_, a) => {
 	const hdigg = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
 	return hdigg[+a]})
