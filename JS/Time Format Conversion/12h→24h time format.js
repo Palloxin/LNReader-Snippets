@@ -25,7 +25,7 @@ else return `12${gag}`;
 })
 
 .replace(/\b([2-9]|1[01]) (o’clock at night|in the (?:evening|afternoon))\b/g, (_, a,b)=> `${Math.round(+a + 12)}:00 ${b.replace(/o’clock /, '')}`)
-.replace(/(?<=:\d\d|\b[AP]M)\.(?=[\.\,])/g, '')
+.replace(/(:\d\d|\b[AP]M)\.(?=[\.\,])/g, '$1')
 .replace(/°°-°°/g, ' - ')//sixth spaces
 .replace(/••••(?=\d)/g, '')
 ;
