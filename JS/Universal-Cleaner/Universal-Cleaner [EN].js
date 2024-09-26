@@ -6,7 +6,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/=(?<=src=)\"[^\"]+\">/g, (y) => {
 imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
-.replace(/(?<=^[^<]*(?:<input[^\>]+\>)?)[\s\n]*/, '♪')//♦start-chapter
+.replace(/(^[^<]*(?:<input[^\>]+\>)?)[\s\n]*/, '$1♪')//♦start-chapter
 //↓↓— 1
 .replace(/\n+/g, '')
 .replace(/<title>[^<]*<\/title>/, '')//EPUBs
@@ -15,7 +15,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑
 ///↓↓↓↓↓— 2
 .replace(/<p\b[^>]+>/g, '<p>')
-.replace(/(?<=<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '')
+.replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '$1')
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')
 //↓
 .replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
@@ -45,7 +45,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //%&&&&replace(/\.[a-z](?<=[a-zA-Z]\.[a-z])(?:\.[a-z])+/g, (_) => `${_.replace(/\./g, '')}`)//input: ``s.p.a.c.e.s.h.i.p`` —> output: ``spaceship``
 //↑
 //↓↓↓↓↓— 3
-.replace(/(?<=\d) ?(k?m)([2-9])\b/g, '$1‡$2★')
+.replace(/(\d) ?(k?m)([2-3])\b/g, '$1$2‡$3★')
 //↑↑↑↑↑
 //↓↓↓—
 .replace(/<sup>(\d)<\/sup>(?:\s+(?!\w))?/g, '‡$1★')
@@ -59,7 +59,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\s(?=[\.\,\]\)\:\;]+)(?<=\w\s)/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
 .replace(/([\.\,\:\!\?])(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
-.replace(/(?<=“\w+)\.”\.?/g, '”.')
+.replace(/(“\w+)\.”\.?/g, '$1”.')
 .replace(/([\"“”])(?<!\=\")(?!>|\s[\"“”])([^\"“”]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
 .replace(/\,([\"”](?=←←)|[\'’](?=\W))/g, '$1,')//comma
 .replace(/←←|→→/g, '')
@@ -69,9 +69,9 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑↑↑
 //↓↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
-.replace(/(?<=‘(?:[Ii]t?|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey))’ll\b/g, ' will')
-.replace(/(?<=‘(?:I|[Yy]ou|[Ww]e|[Tt]hey))’ve\b/g, ' have')
-.replace(/(?<=‘(?:If )?I)’m\b/g, ' am')
+.replace(/(‘(?:[Ii]t?|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey))’ll\b/g, '$1 will')
+.replace(/(‘(?:I|[Yy]ou|[Ww]e|[Tt]hey))’ve\b/g, '$1 have')
+.replace(/(‘(?:If )?I)’m\b/g, '$1 am')
 //↑↑
 
 //↓↓↓↓quotation marks => DOUBLE PRIME 
@@ -79,7 +79,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/[”“\"](?<=\b\w+ [“”\"])(\w+|[\?\!])[”\"]/g, '″$1″')
 .replace(/“(?<=\b\w+ “)(\w+\s\w+)”(?= [a-z])/g, '″$1″')
 .replace(/“(?<=\b[a-z]+ “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
-.replace(/(?<=“\S[^\"”“<]+\s)“([\s\w’]+)”(?=\W[^\"”“<]*?”)/g, '″$1″')
+.replace(/(“\S[^\"”“<]+\s)“([\s\w’]+)”(?=\W[^\"”“<]*?”)/g, '$1″$2″')
 .replace(/[“\"](?<=\b[a-z]+ [“\"])([a-z\s’]+(?<!’))[”\"]/g, '″$1″')
 .replace(/\"(?<=\b(?:or|as?|the|to) \")([A-Za-z’\s]+)\"/g, '″$1″')
 //<p>The “ab bb” is fake.</p>
@@ -97,15 +97,15 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/‘(?=<\/p>)/g, '’')
 .replace(/’(?=\w\w\w+)(?<![\s\w]’)/g, '’ ')
 .replace(/[\"“](?<=<p>[\"“])[\"”“]/g, '“')
-.replace(/(?=[\"”“][\"”“](?<!\"\")\w)(?<=\w+[\?\!\.\…]+)/g, '∆∆')
+.replace(/([\?\!\.\…]+)(?<=\w+\1)(?=[\"”“][\"”“](?<!\"\")\w)/g, '$1∆∆')
 .replace(/∆∆([\"”“])([\"”“])/g, '$1 $2')
 .replace(/[\"”“][\"”“](?<!\"\")/g, '\"')
 .replace(/“(?<=[^\s\>]“)/g, ' “')
-.replace(/(?<=“[^\"”“<>\—\–]+[\—\–]) \“(?=\S)/, '” ')
+.replace(/(“[^\"”“<>\—\–]+[\—\–]) \“(?=\S)/, '$1” ')
 //↓simulation to check the pairs
 .replace(/([\"“”](?<!\=\")(?! offline\=\")(?:[^\"“”<]+?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
 .replace(/∅¢[\"“”](\,)?\s/g, '$1 \“')
-.replace(/(?<=\"∅¢)(?=[A-Za-z])/g, ' ')
+.replace(/(\"∅¢)(?=[A-Za-z])/g, '$1 ')
 .replace(/∅¢(?<=, .∅¢)\s*/g, '∅¢')
 .replace(/∅¢/g, '')
 //↑
@@ -122,18 +122,18 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\s{2,}/g, ' ')
 //↑↑↑↑↑↑↑
 //↓↓↓ — 
-.replace(/(?<=\?+) (?=\!)/g, '')
-.replace(/ ([\!\?]+)(?<=\w+(?<!a|the) [\!\?]+)\.?/g, '$1')
+.replace(/(\?+) (?=\!)/g, '$1')
+.replace(/ ([\!\?]+)(?<=\w+(?<!a|the) \1)\.?/g, '$1')
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
 .replace(/(?<=<\/?)(?:em|i)>/g, (l) => l === 'i>' ? '♠>' : '♠♠>')
 .replace(/\s*<(♠+)>(?<=[^<>“]\s?<♠+>)\s*/g, ' <$1>')//thin space
-.replace(/(?<=♠+(?<=\/♠+)>)\s+/g, '  ')//thin+hair space > normal space
+.replace(/(♠+(?<=\/♠+)>)\s+/g, '$1  ')//thin+hair space > normal space
 .replace(/(<\/♠+>\s*)([\!\?\;\.\:\,]+)/g, '$2$1')
 .replace(/([”\"]\.?(?=<)|<♠+>)([“\"]|<\/♠+>)/g, '$2$1')
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])/g, '$2$1$3$5$4')
-.replace(/(?<=♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, ' ')//hair space
+.replace(/(♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, '$1 ')//hair space
 .replace(/♠+>/g, (m) => m === '♠♠>' ? 'em>' : 'i>')
 //↑↑↑↑↑↑
 .replace(/:(?=[^\s\d\/])(?<=\w\:)/g, ': ')
@@ -165,9 +165,9 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //||has given us – he has invited us||
 ////↑↑↑↑↑
 //↓↓↓ — 
-.replace(/(?<=[\[\)])\s/g, '')
+.replace(/([\[\)])\s/g, '$1')
 .replace(/\((?<=\w\()(?!\d)/g, ' (')// [  case missing on purpose
-.replace(/(?<=[\]\)])(?=\w\w)/g, ' ')
+.replace(/([\]\)])(?=\w\w)/g, '$1 ')
 //↑↑↑
 
 .replace(/-(?<=\b[A-Z]\-)(Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, (_, a)=>`-${a.toLowerCase()}`)
@@ -182,17 +182,17 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\*(?<=\>\*)([^\*\<\,\?\"”“’‘]{2,18}?) \*/g, '*$1*')
 //↑↑
 //↓↓↓↓↓
-.replace(/(?=<\/p>(?<=[^\.]\w<\/p>)(?!<p>[a-z]))/g, '.')//Dot missing at the end of <p>
+.replace(/(<\/p>(?<=[^\.]\w<\/p>)(?!<p>[a-z]))/g, '.</p>')//Dot missing at the end of <p>
 //↑↑↑↑↑
 //↓↓↓ fix missing “ or ” on simple|short paragraphs
-.replace(/(?<=<p>[\"”“](?:[\w’]+))((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2”')
-.replace(/(?<=<p>)([\w’]+)((?:\s[\w’]+){0,2}?)(?=[\!\?\…\.]*[\"”“]<\/p>)/g, '“$1$2')
-.replace(/(?<=<p>)([A-Za-z’]+\,?)([a-zA-Z\s’]+)([\.\!\…\?]*)”/g, '“$1$2$3”')
+.replace(/(<p>[\"”“][\w’]+)((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2$3”')
+.replace(/<p>([\w’]+)((?:\s[\w’]+){0,2}?)(?=[\!\?\…\.]*[\"”“]<\/p>)/g, '<p>“$1$2')
+.replace(/<p>([A-Za-z’]+\,?)([a-zA-Z\s’]+)([\.\!\…\?]*)”/g, '<p>“$1$2$3”')
 .replace(/“(?<=(?:<p>|\, )“)((?:\s?[A-Za-z’]+){1,6}?)([\!\…\?\.]+)(?=<\/p>)/g, '“$1$2”')
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
 //↓ give p to tagless 
-.replace(/(?<=\/p>)(?=[^<]+<)/g, '<p>')
+.replace(/\/p>(?=[^<]+<)/g, '/p><p>')
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±')
