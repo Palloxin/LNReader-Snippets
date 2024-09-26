@@ -198,7 +198,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/,(?=\d\d\d\D)/g, '±')
 .replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±/g, '')}`)
 .replace(/(?<=±\d\B)(?=(?:\d\d\d)+(?!\d))/g, ',')
-.replace(/(?<=±\d),(?=\d\d\d(?!,\d))/g, '')
+.replace(/(±\d),(?=\d\d\d(?!,\d))/g, '$1')
 .replace(/,(?<=\d\d,)(?=\d\d\d\W)/g, "<span style=\'font-size: 0.8em;\'>,</span>")
 .replace(/±(?=\d)/g, '')
 //↑↑↑↑↑↑↑ alternative separators:
