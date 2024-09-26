@@ -5,11 +5,11 @@ const gioco = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'e
 /////↓↓↓↓↓feet→meters
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
-.replace(/,(?=\d\d\d(?:\,|\d\d\d)* feet)/g, '')
 .replace(/\bfeet\b/g, '™™™feet')
+.replace(/,(?=\d\d\d(?:\,|\d\d\d)* ™™™feet)/g, '')
 .replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ')
-.replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet\b/g, '⋮⋮⋮feet')
-.replace(/⋮⋮⋮feet\b(?<=\b((?<![efhnrx]ty-)(?:two|three|four|five|six|seven|eight|nine)|(?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:thir|four|fif|six|seven|eigh|nine)teen|ten|eleven|twelve|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮feet)/g, (_, a,b,c) => {
+.replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet/g, '⋮⋮⋮feet')
+.replace(/⋮⋮⋮feet(?<=\b((?<!ty-)(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|(?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:thir|four|fif|six|seven|eigh|nine)teen|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮feet)/g, (_, a,b,c) => {
 	const multip = {hundred: 100, thousand: 1000}[c] || 1;
 	let fff = 0.305;
 	let nnn = +gioco.indexOf(a) * fff * multip;
