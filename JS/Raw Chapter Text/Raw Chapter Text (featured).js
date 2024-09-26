@@ -1,4 +1,4 @@
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
-.replace(/(?<=\<\/(?:p|h[1-5]|br)>)(?!\n|\s*<p>\s*<\/p>|\s*<(?:br|h[1-5])>)/g, '\n')
+.replace(/(<\/(?:p|h[1-5]|br)>)(?!\n|\s*<p>\s*<\/p>|\s*<(?:br|h[1-5])>)/g, '$1\n')
 chapter.innerText = chapter.outerHTML
