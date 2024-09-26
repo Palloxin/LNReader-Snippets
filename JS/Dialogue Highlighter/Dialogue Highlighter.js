@@ -28,7 +28,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/([\"“”](?<!\=\")(?! offline\=\")(?:[^\"“”<]+?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
 .replace(/∅¢[\"“”](\,)?\s/g, '$1 \“')
 .replace(/(?<=\"∅¢)(?=[A-Za-z])/g, ' ')
-.replace(/[^]∅(?<=, .∅)¢)\s*/g, '')
+.replace(/∅¢(?<=, .∅¢)\s*/g, '∅¢')
 .replace(/∅¢/g, '')
 //↑
 .replace(/”(?=\w)(?<=[^\>\,]”)/g, '” ')

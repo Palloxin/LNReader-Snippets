@@ -14,7 +14,6 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
 //↑↑
 ///↓↓↓↓↓— 2
-.replace(/[\u200B-\u200D\uFEFF](?=<\/p>)/g, '')
 .replace(/<p\b[^>]+>/g, '<p>')
 .replace(/(?<=<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '')
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')
@@ -107,7 +106,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([\"“”](?<!\=\")(?! offline\=\")(?:[^\"“”<]+?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
 .replace(/∅¢[\"“”](\,)?\s/g, '$1 \“')
 .replace(/(?<=\"∅¢)(?=[A-Za-z])/g, ' ')
-.replace(/, ([^]∅¢)/g, '$1,')
+.replace(/∅¢(?<=, .∅¢)\s*/g, '∅¢')
 .replace(/∅¢/g, '')
 //↑
 .replace(/”(?=\w)(?<=[^\>\,]”)/g, '” ')
