@@ -14,7 +14,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
 //↑↑
 ///↓↓↓↓↓— 2
-.replace(/<p\b[^>]+>/g, '<p>')
+.replace(/<p [^>]+>/g, '<p>')
 .replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '$1')
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')
 //↓
