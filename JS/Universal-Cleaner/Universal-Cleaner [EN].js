@@ -181,7 +181,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\*(?<=\>\*)([^\*\<\,\?\"”“’‘]{2,18}?) \*/g, '*$1*')
 //↑↑
 //↓↓↓↓↓
-.replace(/(<\/p>(?<=[^\.]\w<\/p>)(?!<p>[a-z]))/g, '.</p>')//Dot missing at the end of <p>
+.replace(/<\/p>(?!<p>[a-z])(?<=[^\.]\w<\/p>)/g, '.</p>')//Dot missing at the end of <p>
 //↑↑↑↑↑
 //↓↓↓ fix missing “ or ” on simple|short paragraphs
 .replace(/(<p>[\"”“][\w’]+)((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2$3”')
