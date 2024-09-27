@@ -19,10 +19,10 @@ chapter.innerHTML = chapter.innerHTML
 	if(b === " and a half") nnn = nnn + (0.5 * fff);
 	if(nnn) nnn = nnn.toFixed(2);
 	if(nnn > 11) nnn = Math.round(nnn);
-	return `⋮⋮⋮feet${d} (${nnn}m)`})
+	return `⋮⋮⋮feet${d||''} (${nnn}m${d||''})`})
 
 .replace(/⋮⋮⋮(feet²?) (\(\d+(?:\.\d+)?m\)) ((?:in )?[a-z]+)/g, '$1 $3 $2')
-.replace(/(?:⋮⋮⋮|™™™)feet/g, 'feet')
+.replace(/(?:⋮⋮⋮|™™™)feet(²)?/g, (_, a) => a ? 'square feet' : 'feet')
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
 	let feeinc = (+a * 0.305) + (+b * 0.0254);
