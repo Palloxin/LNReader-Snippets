@@ -5,7 +5,7 @@ const gioco = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'e
 /////↓↓↓↓↓feet→meters
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
-.replace(/\bfeet\b/g, '™™™feet')
+.replace(/\b(square )?feet\b/g, (_, a) => a ? 'feet²' : 'feet')
 .replace(/,(?=\d\d\d(?:\,|\d\d\d)* ™™™feet)/g, '')
 .replace(/™™™feet (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ')
 .replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet/g, '⋮⋮⋮feet')
