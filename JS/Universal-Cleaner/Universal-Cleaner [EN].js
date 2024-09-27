@@ -69,8 +69,8 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑↑↑
 //↓↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
-.replace(/(‘(?:(?:[Ii]t?|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I))’(ll|ve|m)\b/g, (_, a,b) => {
-      return `${a} ${{'m': 'am', 'll': 'will'}[b] || 'have'}`})
+.replace(/‘((?:[Ii]t?|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (_, a,b) => {
+      return `‘${a} ${{'m': 'am', 'll': 'will'}[b] || 'have'}`})
 //↑↑
 
 //↓↓↓↓quotation marks => DOUBLE PRIME 
