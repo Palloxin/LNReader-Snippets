@@ -12,8 +12,8 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/⋮⋮⋮feet(?<=\b((?<![efhnrx]ty-)(?:two|three|four|five|six|seven|eight|nine)|(?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:thir|four|fif|six|seven|eigh|nine)teen|ten|eleven|twelve|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮feet)(²)?/g, (_, a,b,c,d) => {
 	const multip = {hundred: 100, thousand: 1000}[c] || 1;
 	let fff = 0.305;
-	let nnn = +gioco.indexOf(a) * fff * multip;
 	if(d) fff = fff * fff;
+	let nnn = +gioco.indexOf(a) * fff * multip;
 	if(/\d/.test(a)) nnn =  +a * fff * multip;
 	if(c) nnn = Math.abs(nnn); //negativ if "a hundred feet tall"
 	if(b === " and a half") nnn = nnn + (0.5 * fff);
