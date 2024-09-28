@@ -14,7 +14,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
 //↑↑
 ///↓↓↓↓↓— 2
-.replace(/<p\b[^>]+>/g, '<p>')
+.replace(/<p [^>]+>/g, '<p>')
 .replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '$1')
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')
 //↓
@@ -63,15 +63,14 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([\"“”])(?<!\=\")(?!>|\s[\"“”])([^\"“”]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
 .replace(/\,([\"”](?=←←)|[\'’](?=\W))/g, '$1,')//comma
 .replace(/←←|→→/g, '')
-.replace(/, ?,[, ]+/g, ', ')
+.replace(/,,[, ]*/g, ', ')
 .replace(/\,(?=[^\s\d\”\’])(?<=\D\,)/g, ', ')
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 //↑↑↑↑↑
 //↓↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
-.replace(/(‘(?:[Ii]t?|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey))’ll\b/g, '$1 will')
-.replace(/(‘(?:I|[Yy]ou|[Ww]e|[Tt]hey))’ve\b/g, '$1 have')
-.replace(/(‘(?:If )?I)’m\b/g, '$1 am')
+.replace(/‘((?:[Ii]t?|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (_, a,b) => {
+      return `‘${a} ${{'m': 'am', 'll': 'will'}[b] || 'have'}`})
 //↑↑
 
 //↓↓↓↓quotation marks => DOUBLE PRIME 
@@ -182,7 +181,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\*(?<=\>\*)([^\*\<\,\?\"”“’‘]{2,18}?) \*/g, '*$1*')
 //↑↑
 //↓↓↓↓↓
-.replace(/(<\/p>(?<=[^\.]\w<\/p>)(?!<p>[a-z]))/g, '.</p>')//Dot missing at the end of <p>
+.replace(/<\/p>(?!<p>[a-z])(?<=[^\.]\w<\/p>)/g, '.</p>')//Dot missing at the end of <p>
 //↑↑↑↑↑
 //↓↓↓ fix missing “ or ” on simple|short paragraphs
 .replace(/(<p>[\"”“][\w’]+)((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2$3”')
@@ -198,7 +197,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/,(?=\d\d\d\D)/g, '±')
 .replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±/g, '')}`)
 .replace(/(?<=±\d\B)(?=(?:\d\d\d)+(?!\d))/g, ',')
-.replace(/(?<=±\d),(?=\d\d\d(?!,\d))/g, '')
+.replace(/(±\d),(?=\d\d\d(?!,\d))/g, '$1')
 .replace(/,(?<=\d\d,)(?=\d\d\d\W)/g, "<span style=\'font-size: 0.8em;\'>,</span>")
 .replace(/±(?=\d)/g, '')
 //↑↑↑↑↑↑↑ alternative separators:
