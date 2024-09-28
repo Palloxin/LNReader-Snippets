@@ -7,7 +7,7 @@ chapter.innerHTML = chapter.innerHTML
 //↓ cases like 3-4 pm
 .replace(/••••((?!12)\d+)-(\d+)\s*([ap]\.?m\b)/gi, '••••$1 $3°°-°°••••$2 $3.')
 //↓ \d AM/PM indicates a different acronym
-.replace(/••••(?<=\bwith ••••)(\d+ [ap])\.?m\b/g, (_, a) => `${a.toUpperCase()}M`)
+.replace(/••••(?<=\bwith •+)(\d+ [ap])\.?m\b/g, (_, a) => `${a.toUpperCase()}M`)
 //↓ exception
 .replace(/••••12(:\d+)?\s*([ap])m\b/g, (_, z,i)=>{
 let gag = z || ":00";
