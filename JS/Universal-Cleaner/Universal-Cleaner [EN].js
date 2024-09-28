@@ -126,7 +126,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
-.replace(/(?<=<\/?)(?:em|i)>/g, (l) => l === 'i>' ? '♠>' : '♠♠>')
+.replace(/(<\/?)(em|i)>/g, (_, a,l) => `${a}${l==='i'?'♠':'♠♠'}>`)
 .replace(/\s*<(♠+)>(?<=[^<>“]\s?<♠+>)\s*/g, ' <$1>')//thin space
 .replace(/(♠+(?<=\/♠+)>)\s+/g, '$1  ')//thin+hair space > normal space
 .replace(/(<\/♠+>\s*)([\!\?\;\.\:\,]+)/g, '$2$1')
