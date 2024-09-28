@@ -9,11 +9,7 @@ chapter.innerHTML = chapter.innerHTML
 //↓ \d AM/PM indicates a different acronym
 .replace(/••••(?<=\bwith •+)(\d+ [ap])\.?m\b/g, (_, a) => `${a.toUpperCase()}M`)
 //↓ exception
-.replace(/••••12(:\d+)?\s*([ap])m\b/g, (_, z,i)=>{
-let gag = z || ":00";
-if(i ==="a") return `00${gag}`;
-else return `12${gag}`;
-})
+.replace(/12(:\d+)?\s*([ap])m\b/g, (_, z,i)=> `${i==='a'?'00':'12'}${z||':00'}`)
 
 .replace(/••••(\d+)(?::(\d\d))?\s*([ap])m(?:\.|\b)/g, (_, a,b,c)=>{
     const h = +a;
