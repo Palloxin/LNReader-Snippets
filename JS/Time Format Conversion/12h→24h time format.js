@@ -25,9 +25,9 @@ else return `12${gag}`;
 })
 
 //↓ o’clock
-.replace(/’(?<=(\d+)? \bo’) ?clock/g, '★$1')
-.replace(/★(?<=([a-z]+|\d+) o★)/g, (_, a) => `’clock${{two:2, three:3, four:4, five: 5, six:6, seven:7, eight:8, nine:9, ten:10, eleven:11}[a]||''}`)
-.replace(/’clock(\d+)( at(?<=\D(?:[7-9]|1[01]) at) night| in(?<=[2-9] in) the afternoon)?\b/g, (_, a,b)=> `’clock ${b ? '(' + (+a+12) + ':00\)' : ''}${b||''}`)
+.replace(/’(?<=(\b\d+)? \bo’) ?clock/g, '★$1')
+.replace(/★(?<=([a-z\d]+) o★)/g, (_, a) => `’clock${{two:2, three:3, four:4, five: 5, six:6, seven:7, eight:8, nine:9, ten:10, eleven:11}[a]||''}`)
+.replace(/’clock(\d+)( at(?<=\D(?:[7-9]|1[01]) at) night| in(?<=[1-9] in) the afternoon)?\b/g, (_, a,b)=> `’clock${b||''} ${b ? '(' + (+a+12) + ':00\)' : ''}`)
 //↑
 .replace(/(:\d\d|\b[AP]M)\.(?=[\.\,])/g, '$1')
 .replace(/°°-°°/g, ' - ')//sixth spaces
