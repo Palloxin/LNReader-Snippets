@@ -8,7 +8,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/\b(square )?feet\b/g, (_, i) => `™™™feet${i?'²':''}`)
 .replace(/,(?=\d\d\d(?:\,|\d\d\d)* ™™™feet)/g, '')
 .replace(/™™™feet²? (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(to)?\b))/g, '⋮⋮⋮feet ')
-.replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)feet/g, '⋮⋮⋮feet')
+.replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about)? ?|as long as )(?=[aefnost\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™+)feet/g, '⋮⋮⋮feet')
 .replace(/⋮⋮⋮feet(?<=\b((?<![efhnrx]ty-)(?:two|three|four|five|six|seven|eight|nine)|(?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:thir|four|fif|six|seven|eigh|nine)teen|ten|eleven|twelve|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮feet)(²)?/g, (_, a,b,c,d) => {
 	const multip = {hundred: 100, thousand: 1000}[c] || 1;
 	let fff = 0.305;
