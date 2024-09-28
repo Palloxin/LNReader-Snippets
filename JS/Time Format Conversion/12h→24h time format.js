@@ -25,7 +25,7 @@ else return `12${gag}`;
 })
 
 //↓ o’clock
-.replace(/’(?<=(\w+) o’)clock\b/g, (_, a) => `’clock${{two:2, three:3, four:4, five: 5, six:6, seven:7, eight:8, nine:9, ten:10, eleven:11}[a.toLowerCase()]||''}`)
+.replace(/’clock(?<=(\w+) o’clock)\b/g, (_, a) => `’clock${{two:2, three:3, four:4, five: 5, six:6, seven:7, eight:8, nine:9, ten:10, eleven:11}[a.toLowerCase()]||''}`)
 .replace(/\b(?:[1-9]|1[01]|[A-Za-z]+) o’clock(\d+)( (?:at|in the)(?<=\D(?:[7-9]|1[01]) (?:at|in the)) (?:night|evening)| in(?<=[1-9] in) the afternoon)?\b/g, (_, a,b)=> `${b ? +a+12 : ''} o’clock${b||''}`)
 //↑
 .replace(/(:\d\d|\b[AP]M)\.(?=[\.\,])/g, '$1')
