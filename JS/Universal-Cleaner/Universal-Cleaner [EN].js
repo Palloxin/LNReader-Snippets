@@ -64,7 +64,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\,([\"”](?=←←)|[\'’](?=\W))/g, '$1,')//comma
 .replace(/←←|→→/g, '')
 .replace(/,,[, ]*/g, ', ')
-.replace(/\,(?=[^\s\d\”\’])(?<=\D\,)/g, ', ')
+.replace(/\,(?![\s\d\”\’])(?<=\D\,)/g, ', ')
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 //↑↑↑↑↑
 //↓↓
@@ -135,7 +135,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, '$1 ')//hair space
 .replace(/♠+>/g, (m) => m === '♠>'?'i>':'em>')
 //↑↑↑↑↑↑
-.replace(/:(?=[^\s\d\/])(?<=\w\:)/g, ': ')
+.replace(/:(?![\s\d\/])(?<=\w\:)/g, ': ')
 ///↓↓↓↓ — three dots
 .replace(/(?:\. ?…|…\.\.)/g, '….')
 .replace(/\s?(?:\.\.\.|…|(?<!\. )\. \. \.(?! \.)) ?/g, '…')
