@@ -6,7 +6,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/=(?<=src=)\"[^\"]+\">/g, (y) => {
 imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
-.replace(/(^[^<]*(?:<input[^\>]+\>)?)[\s\n]*/, '$1♪')//♦start-chapter
+.replace(/(^[^<]*(?:<input[^>]+>)?)[\s\n]*/, '$1♪')//♦start-chapter
 //↓↓— 1
 .replace(/\n+/g, '')
 .replace(/<title>[^<]*<\/title>/, '')//EPUBs
@@ -70,7 +70,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
 .replace(/‘((?:[Ii]t?|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (_, a,b) => {
-      return `‘${a} ${{'m': 'am', 'll': 'will'}[b] || 'have'}`})
+      return `‘${a} ${{'m':'am','ll':'will'}[b]||'have'}`})
 //↑↑
 
 //↓↓↓↓quotation marks => DOUBLE PRIME 
@@ -133,7 +133,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([”\"]\.?(?=<)|<♠+>)([“\"]|<\/♠+>)/g, '$2$1')
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])/g, '$2$1$3$5$4')
 .replace(/(♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, '$1 ')//hair space
-.replace(/♠+>/g, (m) => m === '♠♠>' ? 'em>' : 'i>')
+.replace(/♠+>/g, (m) => m === '♠>'?'i>':'em>')
 //↑↑↑↑↑↑
 .replace(/:(?=[^\s\d\/])(?<=\w\:)/g, ': ')
 ///↓↓↓↓ — three dots
