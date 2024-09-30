@@ -10,8 +10,8 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/^(?:(?=<)[^\?\.,A-Z”“]*?<\/?div\b[^>]*>\s*)+/, '')
 .replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<i>))>)\s+/g, '$1')//
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')//
-.replace(/<p><\/p>(?!$)/g, '')//
-.replace(/^[\s\n]*/, '<p></p>')//
+.replace(/<p><\/p>/g, '')//
+.replace(/^[\s\n]*|$/g, '<p></p>')//
 //
 .replace(/<\/h([1-4])><\/?h\1>/ , ' ')
 .replace(/^((?:<p><\/p>|<(?!(?:p|h[1-4])>)[^>]*>)?[^<]*(?:<input[^>]+>)?(?:\s*<[^>]+>\s*<\/[^>]+>)*)/, '$1π√')
