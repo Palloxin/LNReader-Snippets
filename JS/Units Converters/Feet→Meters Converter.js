@@ -25,8 +25,7 @@ chapter.innerHTML = chapter.innerHTML
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
 	let feeinc = (+a * 0.305) + (+b * 0.0254);
-	if(feeinc) feeinc = feeinc.toFixed(2);
-	return ` ${feeinc}m`})
+	return ` ${feeinc.toFixed(2)}m`})
     
 
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||
