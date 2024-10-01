@@ -152,7 +152,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…\.(?<=[\s“]…\.)\s/g, '…')
 .replace(/…(?=[AJ])/g, '… ')//hair-s
 .replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
-.replace(/…(?<=\bI…)I(?=[A-Za-z])/g, 'I-I')
+.replace(/…I(?<=\bI…I)I(?= ?[A-Za-z])/g, 'I-I')
 ///↑↑↑↑
 ////↓↓↓↓↓
 //’d => had
