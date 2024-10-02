@@ -15,7 +15,7 @@ chapter.innerHTML = chapter.innerHTML
     const h = +a;
     const m = +b || 0;
     if(c === "a")
-      return `${h}:${`${m}`.padStart(2"0")}`;
+      return `${h}:${`${m}`.padStart(2,"0")}`;
     else
       return `${(h+12)%24}:${`${m}`.padStart(2,"0")}`;
 })
