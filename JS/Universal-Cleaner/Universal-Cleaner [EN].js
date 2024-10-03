@@ -3,7 +3,7 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 
 //store images
-.replace(/=(?<=src=)\"[^\"]+\">/g, (y) => {
+.replace(/=(?<=src=)\"[^\"]+\"[^>]*>/g, (y) => {
 imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
 .replace(/(^[^<]*(?:<input[^>]+>)?)[\s\n]*/, '$1♪')//♦start-chapter
