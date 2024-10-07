@@ -3,7 +3,7 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 
 //store images
-.replace(/=(?<=src=)\"[^\"]+\">/g, (y) => {
+.replace(/=(?<=src=)\"[^\"]+\"[^>]*>/g, (y) => {
 imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
 .replace(/(^[^<]*(?:<input[^>]+>)?)[\s\n]*/, '$1♪')//♦start-chapter
@@ -152,15 +152,15 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…\.(?<=[\s“]…\.)\s/g, '…')
 .replace(/…(?=[AJ])/g, '… ')//hair-s
 .replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
-.replace(/…(?<=\bI…)I(?=[A-Za-z])/g, 'I-I')
+.replace(/…I(?<=[^\B…]I…I)(?= ?[A-Za-z])/g, '-I')
 ///↑↑↑↑
 ////↓↓↓↓↓
 //’d => had
-.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|(?:br|f|th)ought|built|began|chosen|caught|drawn|[dg]one|found|felt|forgotten|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|slept|said|sunk|shown|smelt|taken|thrown|told|understood|woken|won)\b)/g, ' had ')
+.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\b)/g, ' had ')
 .replace(/’d(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?(?:had\s))/g, ' had ')
 //’s => has
 .replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?(?:(?:exist|happen|remain)ed|been|become|began|got|had)\b(?=\s))/g, ' has ')
-.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|(?:br|f|th)ought|built|began|chosen|caught|drawn|[dg]one|found|felt|forgotten|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|obviously|paid|sp?ent|said|sunk|shown|slept|smelt|taken|thrown|told|understood|woken|won)\s(?:me|them|us|her|him|it)\b)/g, ' has ')
+.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\s(?:me|them|us|her|him|it)\b)/g, ' has ')
 //||has given us – he has invited us||
 ////↑↑↑↑↑
 //↓↓↓ — 
