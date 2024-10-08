@@ -18,9 +18,9 @@ chapter.innerHTML = chapter.innerHTML
 	if(b === " and a half") nnn += 0.5 * ff;
 	if(nnn) nnn = nnn.toFixed(2);
 	if(nnn > 11) nnn = Math.round(nnn);
-	return `⋮⋮⋮feet${d||''} (${nnn}m${d||''})`})
+	return `⋮⋮⋮feet${d||''} ÷×(${nnn}m${d||''})`})
 
-.replace(/⋮⋮⋮(feet²?) (\(\d+(?:\.\d+)?m\)) ((?:in )?[a-z]+)/g, '$1 $3 $2')
+.replace(/÷×(\([\d\.]+m\)) ((?:in )?[a-z]+)/g, '$2 $1')
 .replace(/(?:⋮⋮⋮|™™™)feet(²)?/g, (_, a) => a ? 'square feet' : 'feet')
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
