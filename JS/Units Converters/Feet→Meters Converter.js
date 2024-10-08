@@ -20,7 +20,7 @@ chapter.innerHTML = chapter.innerHTML
 	if(nnn > 11) nnn = Math.round(nnn);
 	return `⋮⋮⋮feet${d||''} ÷×(${nnn}m${d||''})`})
 
-.replace(/÷×(\([\d\.]+m\)) ((?:in )?[a-z]+)/g, '$2 $1')
+.replace(/÷×(\([\d\.]+m²?\)) ((?:in )?[a-z]+)/g, '$2 $1')
 .replace(/(?:⋮⋮⋮|™™™)feet(²)?/g, (_, a) => a ? 'square feet' : 'feet')
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
