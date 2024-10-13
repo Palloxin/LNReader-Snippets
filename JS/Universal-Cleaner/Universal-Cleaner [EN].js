@@ -64,7 +64,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\,([\"”](?=←←)|[\'’](?=\W))/g, '$1,')//comma
 .replace(/←←|→→/g, '')
 .replace(/,,[, ]*/g, ', ')
-.replace(/\,(?![\s\d\”\’])(?<=\D\,)/g, ', ')
+.replace(/\,(?![\s\d\”\’;])(?<=\D\,)/g, ', ')
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 //↑↑↑↑↑
 //↓↓
