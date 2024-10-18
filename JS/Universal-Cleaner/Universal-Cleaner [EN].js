@@ -184,10 +184,10 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/<\/p>(?!<p>[a-z])(?<=[^\.]\w<\/p>)/g, '.</p>')//Dot missing at the end of <p>
 //↑↑↑↑↑
 //↓↓↓ fix missing “ or ” on simple|short paragraphs
-.replace(/(<p>[\"”“][\w’]+)((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2$3”')
+.replace(/([\"”“](?<=<p>.)[\w’]+)((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2$3”')
 .replace(/<p>([\w’]+)((?:\s[\w’]+){0,2}?)(?=[\!\?\…\.]*[\"”“]<\/p>)/g, '<p>“$1$2')
 .replace(/<p>([A-Za-z’]+\,?)([a-zA-Z\s’]+)([\.\!\…\?]*)”/g, '<p>“$1$2$3”')
-.replace(/“(?<=(?:<p>|\, )“)((?:\s?[A-Za-z’]+){1,6}?)([\!\…\?\.]+)(?=<\/p>)/g, '“$1$2”')
+.replace(/“(?<=<p>“)((?:\s?[A-Za-z’]+){1,6}?)([\!\…\?\.]+)(?=<\/p>)/g, '“$1$2”')
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
 //↓ give p to tagless 
