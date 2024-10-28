@@ -138,7 +138,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/:(?![\s\d\/])(?<=\w\:)/g, ': ')
 ///↓↓↓↓ — three dots
 .replace(/(?:\. ?…|…\.\.)/g, '….')
-.replace(/\s?(?:\.\.\.|…|(?<!\. )\. \. \.(?! \.)) ?/g, '…')
+.replace(/\s?(?:\.\.\.|… ?|(?<!\. )\. \. \.(?! \.) ?)/g, '…')
 .replace(/…(?<=\w…)…?\.?(?=\w)/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
 .replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
