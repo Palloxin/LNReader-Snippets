@@ -153,6 +153,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…(?=[AJ])/g, '… ')//hair-s
 .replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
 .replace(/…I(?<=[^\B…]I…I)(?= ?[A-Za-z])/g, '-I')
+.replace(/…(?=\w)/g, '…⁠')//u2060
 ///↑↑↑↑
 ////↓↓↓↓↓
 //’d => had
