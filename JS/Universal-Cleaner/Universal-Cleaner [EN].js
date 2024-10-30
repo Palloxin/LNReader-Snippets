@@ -143,8 +143,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
-.replace(/…(?<=So…)(?=Some\b)/, '… ')
-.replace(/…(?<=No…)(?=Not\b)/, '… ')
+.replace(/…(?=(?<=So…)Some\b|(?<=No…)Not\b)/g, '… ')
 //↑
 .replace(/…(?<=\b(\w+)…)…?\s\1\b/g, '… $1')//sixth space
 .replace(/…(?<=[^\s\w\…\"“‘\'\>\%]…)…?(?![\<\'\"’”\?\!\|])/g, ' …')
