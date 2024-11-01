@@ -143,7 +143,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
-.replace(/…(?=(?<=So…)Some\b|(?<=No…)Not\b)/g, '… ')
+.replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
 //↑
 .replace(/…(?<=\b(\w+)…)…?\s\1\b/g, '… $1')//sixth space
 .replace(/…(?<=[^\s\w\…\"“‘\'\>\%]…)…?(?![\<\'\"’”\?\!\|])/g, ' …')
@@ -151,7 +151,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…(?=[AJ])/g, '…\u200a\u2060')//hair-s + u2060
 .replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
 .replace(/…I(?<=[^\B…]I…I)(?= ?[A-Za-z])/g, '-I')
-.replace(/…(?=[\u200a]?\w)/g, '…⁠')//u2060
+.replace(/…(?=[\u200a\w])/g, '…⁠')//u2060
 ///↑↑↑↑
 ////↓↓↓↓↓
 //’d => had
