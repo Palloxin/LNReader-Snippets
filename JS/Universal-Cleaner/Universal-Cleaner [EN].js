@@ -69,7 +69,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑↑↑
 //↓↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
-.replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`})
+.replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}}`)
 //↑↑
 
 //↓↓↓↓quotation marks => DOUBLE PRIME 
