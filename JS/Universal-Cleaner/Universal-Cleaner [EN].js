@@ -123,6 +123,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓ — 
 .replace(/(\?+) (?=\!)/g, '$1')
 .replace(/ ([\!\?]+)(?<=\w+(?<!a|the) \1)\.?/g, '$1')
+.replace(/(‘(?<=\s‘)\w+)([\.])’/g, '$1’$2')
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
