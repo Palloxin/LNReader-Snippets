@@ -15,11 +15,12 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑
 ///↓↓↓↓↓— 2
 .replace(/<p [^>]+>/g, '<p>')
-.replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '$1')
+.replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
+.replace(/\s+(?=<\/?(?:p|h[1-9]|div)>)/g, '')
+//↓
+.replace(/<\/span><span>/g, '<\/span> <span>')
 .replace(/<\/?span>/g, '')
 //.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
-//↓
-.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↑
 .replace(/<br>\s*(?=<\/?p>)/g, '')
 ///↑↑↑↑↑
