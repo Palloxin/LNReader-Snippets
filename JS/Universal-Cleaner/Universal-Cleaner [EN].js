@@ -16,7 +16,8 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↓↓↓↓↓— 2
 .replace(/<p [^>]+>/g, '<p>')
 .replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '$1')
-.replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')
+.replace(/<\/?span>/g, '')
+//.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↓
 .replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↑
@@ -69,7 +70,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑↑↑
 //↓↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
-.replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}}`)
+.replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`)
 //↑↑
 
 //↓↓↓↓quotation marks => DOUBLE PRIME 
