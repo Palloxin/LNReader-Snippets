@@ -152,7 +152,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…\.(?<=[\s“]…\.)\s/g, '…')
 .replace(/…(?=[AJ])/g, '…\u200a\u2060')//hair-s + u2060
 .replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
-.replace(/…I(?<=[^\B…]I…I)(?= ?[A-Za-z])/g, '-I')
+.replace(/…I(?<=\bI…I)(?= ?[A-Za-z])/g, 'I-I')
 .replace(/…(?=[\u200a\w])/g, '…⁠')//u2060
 ///↑↑↑↑
 ////↓↓↓↓↓
