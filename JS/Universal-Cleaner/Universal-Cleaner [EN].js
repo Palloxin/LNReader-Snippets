@@ -165,7 +165,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //||has given us – he has invited us||
 ////↑↑↑↑↑
 //↓↓↓ — 
-.replace(/([\[\)])\s/g, '$1')
+.replace(/([\[\(])\s/g, '$1')
 .replace(/\((?<=\w\()(?!\d)/g, ' (')// [  case missing on purpose
 .replace(/([\]\)])(?=\w\w)/g, '$1 ')
 //↑↑↑
