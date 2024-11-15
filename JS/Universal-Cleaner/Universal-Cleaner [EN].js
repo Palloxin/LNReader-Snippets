@@ -147,7 +147,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓↓↓ — italics
 .replace(/(<\/?)(em|i)>/g, (_, a,l) => `${a}${l==='i'?'♠':'♠♠'}>`)
 .replace(/\s(<\/♠+>)/g, '$1 ')
-.replace(/(♠+(?<=\/♠+)>)\s+/g, '$1  ')//n+h space > normal space
+.replace(/(♠+(?<=\/♠+)>)\s+(?!<\/p>)/g, '$1  ')//n+h space > normal space
 .replace(/(<\/♠+>\s*)([\!\?]+|[\;\.\:\,])/g, '$2$1')
 .replace(/([”\"]\.?(?=<)|<♠+>)([“\"]|<\/♠+>)/g, '$2$1')
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])/g, '$2$1$3$5$4')
