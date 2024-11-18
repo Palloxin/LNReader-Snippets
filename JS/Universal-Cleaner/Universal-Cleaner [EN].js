@@ -15,10 +15,12 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑
 ///↓↓↓↓↓— 2
 .replace(/<p [^>]+>/g, '<p>')
-.replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<(?:em|i)>))>)\s+/g, '$1')
-.replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=<\/)span)>)/g, '')
+.replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
+.replace(/\s+(?=<\/?(?:p|h[1-9]|div)>)/g, '')
 //↓
-.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
+.replace(/<\/span><span>/g, '<\/span> <span>')
+.replace(/<\/?span>/g, '')
+//.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↑
 .replace(/<br>\s*(?=<\/?p>)/g, '')
 ///↑↑↑↑↑
@@ -53,26 +55,43 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 	const hdigg = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
 	return hdigg[+a]})
 //↑↑↑
-//↓↓↓↓↓ — 
+///↓↓↓↓↓— three dots
+.replace(/(?:\. ?…|…\.\.)/g, '….')
+.replace(/\s?(?:\.\.\.|… ?|(?<!\. )\. \. \.(?! \.) ?)/g, '…')
+.replace(/…(?<=\w…)…?\.?(?=\w)/g, '…⅞⅘ ')//thin space
+.replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
+.replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
+.replace(/…(?<=[^’](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
+//↓exceptions
+.replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
+//↑
+.replace(/…(?<=\b(\w+)…)…?\s\1\b/g, '… $1')//sixth space
+.replace(/…(?<=[^\s\w\…\"“‘\'\>\%]…)…?(?![\<\'\"’”\|\?])/g, ' …')
+.replace(/…\.(?<=[\s“]…\.)\s/g, '…')
+.replace(/…(?=[AJ])/g, '…\u200a\u2060')//hair-s + u2060
+.replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
+.replace(/…I(?<=\bI…I)(?= ?[A-Za-z])/g, '-I')
+.replace(/…(?=[\u200a\w])/g, '…\u2060')
+///↑↑↑↑↑
+//↓↓↓↓— 
 .replace(/\.(?=\d\d+)(?<=\s\.)/g, '✓+®.')//★↓
 .replace(/®(?=\.\d+%)/g, '®0')//↓
 .replace(/\s(?=[\.\,\]\)\:\;]+)(?<=\w\s)/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
-.replace(/([\.\,\:\!\?])(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
-.replace(/(“\w+)\.”\.?/g, '$1”.')
+.replace(/([\.\,\:]|[\!\?]+)(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
+.replace(/(“\w+)\.”\./g, '$1”.')
 .replace(/([\"“”])(?<!\=\")(?!>|\s[\"“”])([^\"“”]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
-.replace(/\,([\"”](?=←←)|[\'’](?=\W))/g, '$1,')//comma
+.replace(/\,([\"”](?=←←)|[\'\]’](?=\W))/g, '$1,')//comma
 .replace(/←←|→→/g, '')
 .replace(/,,[, ]*/g, ', ')
 .replace(/\,(?![\s\d\”\’;])(?<=\D\,)/g, ', ')
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
-//↑↑↑↑↑
+//↑↑↑↑
 //↓↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
-.replace(/‘((?:[Ii]t?|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (_, a,b) => {
-      return `‘${a} ${{'m':'am','ll':'will'}[b]||'have'}`})
+.replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`)
 //↑↑
-
+	
 //↓↓↓↓quotation marks => DOUBLE PRIME 
 .replace(/“(?<=\bthe “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
 .replace(/[”“\"](?<=\b\w+ [“”\"])(\w+|[\?\!])[”\"]/g, '″$1″')
@@ -122,49 +141,32 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓ — 
 .replace(/(\?+) (?=\!)/g, '$1')
 .replace(/ ([\!\?]+)(?<=\w+(?<!a|the) \1)\.?/g, '$1')
+.replace(/(‘\w+)([\.])’(?:(?<=\s\1\2’)|(?!<))/g, '$1’$2')
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
 .replace(/(<\/?)(em|i)>/g, (_, a,l) => `${a}${l==='i'?'♠':'♠♠'}>`)
 .replace(/\s(<\/♠+>)/g, '$1 ')
-.replace(/(♠+(?<=\/♠+)>)\s+/g, '$1  ')//n+h space > normal space
+.replace(/(♠+(?<=\/♠+)>)\s+(?!<\/p>)/g, '$1  ')//n+h space > normal space
 .replace(/(<\/♠+>\s*)([\!\?]+|[\;\.\:\,])/g, '$2$1')
 .replace(/([”\"]\.?(?=<)|<♠+>)([“\"]|<\/♠+>)/g, '$2$1')
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])/g, '$2$1$3$5$4')
 .replace(/(♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, '$1 ')//hair space
+.replace(/(♠+(?<=\/♠+)>)(?=<♠+>)/g, '$1 ')
 .replace(/♠+>/g, (m) => m === '♠>'?'i>':'em>')
 //↑↑↑↑↑↑
 .replace(/:(?![\s\d\/])(?<=\w\:)/g, ': ')
-///↓↓↓↓ — three dots
-.replace(/(?:\. ?…|…\.\.)/g, '….')
-.replace(/\s?(?:\.\.\.|… ?|(?<!\. )\. \. \.(?! \.) ?)/g, '…')
-.replace(/…(?<=\w…)…?\.?(?=\w)/g, '…⅞⅘ ')//thin space
-.replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
-.replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
-.replace(/…(?<=[^’](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
-//↓exceptions
-.replace(/…(?<=So…)(?=Some\b)/, '… ')
-.replace(/…(?<=No…)(?=Not\b)/, '… ')
-//↑
-.replace(/…(?<=\b(\w+)…)…?\s\1\b/g, '… $1')//sixth space
-.replace(/…(?<=[^\s\w\…\"“‘\'\>\%]…)…?(?![\<\'\"’”\?\!\|])/g, ' …')
-.replace(/…\.(?<=[\s“]…\.)\s/g, '…')
-.replace(/…(?=[AJ])/g, '…\u200a\u2060')//hair-s + u2060
-.replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
-.replace(/…I(?<=[^\B…]I…I)(?= ?[A-Za-z])/g, '-I')
-.replace(/…(?=[\u200a]?\w)/g, '…⁠')//u2060
-///↑↑↑↑
 ////↓↓↓↓↓
 //’d => had
-.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|spoken|sp?ent|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\b)/g, ' had ')
+.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\b)/g, ' had ')
 .replace(/’d(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?(?:had\s))/g, ' had ')
 //’s => has
 .replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?(?:(?:exist|happen|remain)ed|been|become|began|got|had)\b(?=\s))/g, ' has ')
-.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|spoken|sp?ent|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\s(?:me|them|us|her|him|it)\b)/g, ' has ')
+.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\s(?:me|them|us|her|him|it)\b)/g, ' has ')
 //||has given us – he has invited us||
 ////↑↑↑↑↑
 //↓↓↓ — 
-.replace(/([\[\)])\s/g, '$1')
+.replace(/([\[\(])\s/g, '$1')
 .replace(/\((?<=\w\()(?!\d)/g, ' (')// [  case missing on purpose
 .replace(/([\]\)])(?=\w\w)/g, '$1 ')
 //↑↑↑
