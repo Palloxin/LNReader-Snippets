@@ -8,6 +8,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
 .replace(/(^[^<]*(?:<input[^>]+>)?)[\s\n]*/, '$1♪')//♦start-chapter
 //↓↓— 1
+.replace(/[\u200b]/g, '')//zero-width space
 .replace(/\n+/g, '')
 .replace(/<title>[^<]*<\/title>/, '')//EPUBs
 .replace(/&nbsp;/g, ' ')//no-break-space; To make "&nbsp;" not interferee with other replacements.
