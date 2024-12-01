@@ -17,7 +17,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↓↓↓↓↓— 2
 .replace(/<p [^>]+>/g, '<p>')
 .replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
-.replace(/\s+(?=<\/?(?:p|h[1-9]|div)>)/g, '')
+.replace(/\s+(?=<\/?(?:p|h[1-9]|div)[> ])/g, '')
 //↓
 .replace(/<\/span><span>/g, '<\/span> <span>')
 .replace(/<\/?span>/g, '')
