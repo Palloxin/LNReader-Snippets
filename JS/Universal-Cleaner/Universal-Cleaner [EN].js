@@ -44,7 +44,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 	return fakers[aa]})
 //↑↑↑↑↑
 //↓ — 2 disabled js
-//%&&&&replace(/\.[a-z](?<=[a-zA-Z]\.[a-z])(?:\.[a-z])+/g, (_) => `${_.replace(/\./g, '')}`)//input: ``s.p.a.c.e.s.h.i.p`` —> output: ``spaceship``
+//%&&&&replace(/\.[a-z](?<=[a-zA-Z]\.[a-z])(?:\.[a-z])+(?!\.[A-Z])/g, (_) => `${_.replace(/\./g, '')}`)//input: ``s.p.a.c.e.s.h.i.p`` —> output: ``spaceship``
 //↑
 //↓↓↓↓↓— 3
 .replace(/(\d) ?(k?m)([2-3])\b/g, '$1$2‡$3★')
