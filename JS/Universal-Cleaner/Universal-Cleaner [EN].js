@@ -157,7 +157,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(♠+(?<=\/♠+)>)(?=<♠+>)/g, '$1 ')
 .replace(/♠+>/g, (m) => m === '♠>'?'i>':'em>')
 //↑↑↑↑↑↑
-.replace(/:(?![\s\d\/])(?<=\w\:)/g, ': ')
+.replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
 ////↓↓↓↓↓
 //’d => had
 .replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\b)/g, ' had ')
