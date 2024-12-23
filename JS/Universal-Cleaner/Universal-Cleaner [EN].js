@@ -8,6 +8,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
 .replace(/(^[^<]*(?:<input[^>]+>)?)[\s\n]*/, '$1♪')//♦start-chapter
 //↓↓— 1
+.replace(/[\u200b]/g, '')//zero-width space
 .replace(/\n+/g, '')
 .replace(/<title>[^<]*<\/title>/, '')//EPUBs
 .replace(/&nbsp;/g, ' ')//no-break-space; To make "&nbsp;" not interferee with other replacements.
@@ -79,6 +80,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\s(?=[\.\,\]\)\:\;]+)(?<=\w\s)/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
 .replace(/([\.\,\:]|[\!\?]+)(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
+.replace(/\/watch\? (?=\w)/g, '/watch?')//yt links
 .replace(/(“\w+)\.”\./g, '$1”.')
 .replace(/([\"“”])(?<!\=\")(?!>|\s[\"“”])([^\"“”]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
 .replace(/\,([\"”](?=←←)|[\'\]’](?=\W))/g, '$1,')//comma
@@ -117,7 +119,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([\?\!\.\…]+)(?<=\w+\1)(?=[\"”“][\"”“](?<!\"\")\w)/g, '$1∆∆')
 .replace(/∆∆([\"”“])([\"”“])/g, '$1 $2')
 .replace(/[\"”“][\"”“](?<!\"\")/g, '\"')
-.replace(/“(?<=[^\s\>]“)/g, ' “')
+.replace(/“(?<=[^\s\[\『\「\>]“)/g, ' “')
 .replace(/(“[^\"”“<>\—\–]+[\—\–]) \“(?=\S)/, '$1” ')
 //↓simulation to check the pairs
 .replace(/([\"“”](?<!\=\")(?!>|\s?[\"“”]|<\/)(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
@@ -140,7 +142,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑↑↑↑↑
 //↓↓↓ — 
 .replace(/(\?+) (?=\!)/g, '$1')
-.replace(/ ([\!\?]+)(?<=\w+(?<!a|the) \1)\.?/g, '$1')
+.replace(/ ([\!\?]+)(?<=\w+(?<!a|the|:) \1)\.?/g, '$1')
 .replace(/(‘\w+)([\.])’(?:(?<=\s\1\2’)|(?!<))/g, '$1’$2')
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
@@ -155,7 +157,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(♠+(?<=\/♠+)>)(?=<♠+>)/g, '$1 ')
 .replace(/♠+>/g, (m) => m === '♠>'?'i>':'em>')
 //↑↑↑↑↑↑
-.replace(/:(?![\s\d\/])(?<=\w\:)/g, ': ')
+.replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
 ////↓↓↓↓↓
 //’d => had
 .replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|still|slowly|suddenly|then|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\b)/g, ' had ')
@@ -175,13 +177,15 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓↓ \w to avoid "A grade" at the start of a phrase. Not applied to the beginning of phrases on purpose, even for B or C grade etc..
 //↑↑↑↑↑
 
-.replace(/([\,\?\!]+|\.+(?!(?:com|it|net|jpg|png)\b))(?=[A-Za-z])(?<=\b\w\w+[\,\?\!\.]+)/g, '$1 ')
+.replace(/([\,\?\!]+|\.+(?!(?:com|it|net|jpg|png)\b))(?=[A-Za-z])(?<=\b(?!www\.)\w\w+[\,\?\!\.]+)/g, '$1 ')
 .replace(/—(?<=\w—)(?=\w)/g, ' — ')//sixth spaces
+.replace(/\.([Mm])\.,(?<=[AaPp]\.[Mm]\.,)/g, '\1,')//5 a.m.,
 //↓↓ — *
-.replace(/\* ?([^\s”“\*]+) ?\*(?![a-z]) ?/g, '*$1* ')
-.replace(/\*(?<=\>\*) /g, '*')
+.replace(/\*\s?(?![^\w\*]+\*)([^\s”“\*]+) ?\*(?![a-z]) ?/g, '*$1* ')
+.replace(/\* (?:(?<=\>\* )|(?=\*))/g, '*')
 .replace(/\*(?<=\>\*)([^\*\<\,\?\"”“’‘]{2,18}?) \*/g, '*$1*')
 //↑↑
+//Test: "* * *! * * *. * * * * *!";
 //↓↓↓↓↓
 .replace(/<\/p>(?!<p>[a-z])(?<=[^\.]\w<\/p>)/g, '.</p>')//Dot missing at the end of <p>
 //↑↑↑↑↑
@@ -197,10 +201,10 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±')
-.replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±/g, '')}`)
-.replace(/(?<=±\d\B)(?=(?:\d\d\d)+(?!\d))/g, ',')
+.replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±(?<!\d±)/g, '')}`)
+.replace(/±(?=(?:\d\d\d\D))(?<=\d±)/g, ',')
 .replace(/(±\d),(?=\d\d\d(?!,\d))/g, '$1')
-.replace(/,(?<=\d\d,)(?=\d\d\d\W)/g, "<span style=\'font-size: 0.8em;\'>,</span>")
+.replace(/,(?<=\d\d,)(?=\d\d\d\W)/g, '<span style=\'font-size: 0.8em;\'>,</span>')
 .replace(/±(?=\d)/g, '')
 //↑↑↑↑↑↑↑ alternative separators:
 //100𝃳000//100༌000//100˙000//100𑀀000//100ॱ000//100ᱸ000//100ʹ000//100՛000

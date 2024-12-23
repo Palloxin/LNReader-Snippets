@@ -5,7 +5,7 @@ if(spoooiler) {spoooiler.innerText = "———Next Chapter———"}
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 //preparatory
-.replace(/(<h[1-8])[^>]+>/g, '$1>')
+.replace(/(<h[1-8]) [^>]+>/g, '$1>')
 .replace(/&nbsp;/g, ' ')//
 .replace(/<title>[^<]*<\/title>/, '')//epubs
 .replace(/^(?:(?=<)[^\?\.,A-Z”“]*?<\/?div\b[^>]*>\s*)+/, '')
