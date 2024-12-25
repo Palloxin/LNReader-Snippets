@@ -198,7 +198,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑
 //↓ give p to tagless 
 .replace(/\/p>(?=[^<]+<)/g, '/p><p>')
-.replace(/-(?<!<[^>]+-)(?![^<]+>)(?<=\b\w?\w?\w?-)(?=\w)/g, '-⁠')//u2060
+.replace(/-(?<!<[^>]+-)(?![^<]+>)(?<=\b\w\w?\w?-)(?=\w)/g, '-⁠')//u2060
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±')
