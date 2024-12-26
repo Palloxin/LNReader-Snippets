@@ -28,5 +28,5 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/°°-°°/g, ' - ')//sixth spaces
 .replace(/••••(?=\d)/g, '')
 ;
-//fiddle: https://jsfiddle.net/46Ljuqyd/
+//fiddle: https://jsfiddle.net/a2z3omye/
 /////↑↑↑↑↑↑↑↑↑↑ – END
