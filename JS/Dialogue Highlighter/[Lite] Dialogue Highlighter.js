@@ -12,9 +12,11 @@ chapter.innerHTML = chapter.innerHTML
 ///////↓↓↓↓ — Dialogue highlighter
 const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>[^\"“”]+)?[\"”](?<!=\")/g;
 const colorElement = (x) => {
-    x.innerHTML = x.innerHTML.replace(regex, 
-			`"<span style="color: #FFFFEB;">$1$2</span>"`
-	);
+    x.innerHTML = x.innerHTML
+	.replace(/=\"/g, '=\'')
+        .replace(/\">/g, '\'>')
+	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
+	.replace(/[\u2033]/g, '\"');
 };
 (col = (parent) => {
     if (parent.nodeName === "SCRIPT") return;
@@ -23,6 +25,5 @@ const colorElement = (x) => {
     );
     if (!childsWith.length) colorElement(parent);
     else childsWith.forEach((ch) => col(ch));
-})(document.querySelector("chapter"));
-///////↑↑↑↑ — END
-//LITE version manipulates less the text
+})(document.querySelector('#LNReader-chapter'));
+//////↑↑↑↑ — END
