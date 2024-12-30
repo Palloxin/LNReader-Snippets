@@ -62,7 +62,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…(?<=\w…)…?\.?(?=\w)/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
 .replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
-.replace(/…(?<=[^’](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
+.replace(/…(?<=[^’\'](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
 .replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
 //↑
