@@ -15,8 +15,7 @@ const colorElement = (x) => {
     x.innerHTML = x.innerHTML
 	.replace(/=\"/g, '=\'')
         .replace(/\">/g, '\'>')
-	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
-	.replace(/[\u2033]/g, '\"');
+	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`);
 };
 (col = (parent) => {
     if (parent.nodeName === "SCRIPT") return;
