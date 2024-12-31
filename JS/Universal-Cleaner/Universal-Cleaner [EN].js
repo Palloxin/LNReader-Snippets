@@ -87,12 +87,16 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/←←|→→/g, '')
 .replace(/,,[, ]*/g, ', ')
 .replace(/\,(?![\s\d\”\’;])(?<=\D\,)/g, ', ')
-.replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 //↑↑↑↑
-//↓↓
+//↓↓↓  — apostrophe ( ' => ’ )
+.replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
+.replace(/\'(?<=[^\w=]\')([^\"><\']+)\'(?<=\w\')([^\"><\']+)\'(?=\W[^\']+?<\/p>)/g, '\'$1’$2\'')
+.replace(/\'(?<=<p>[^\']+\')(?=[^\w\'][^\']+?<\/p>)/g, '’')
+//↑↑↑
+//↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
 .replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`)
-//↑↑
+//↑
 	
 //↓↓↓↓quotation marks => DOUBLE PRIME 
 .replace(/“(?<=\bthe “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
