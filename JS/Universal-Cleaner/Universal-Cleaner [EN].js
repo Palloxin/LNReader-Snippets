@@ -58,10 +58,10 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑
 ///↓↓↓↓↓— three dots
 .replace(/(?:\. ?…|…\.\.)/g, '….')
-.replace(/\s?(?:\.\.\.|… ?|(?<!\. )\. \. \.(?! \.) ?)/g, '…')
-.replace(/…(?<=\w…)…?\.?(?=\w)/g, '…⅞⅘ ')//thin space
+.replace(/\s?(?:\.\.\.|…\s|(?<!\. )\. \. \.(?! \.) ?)/g, '…')
+.replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=\w)/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
-.replace(/…(?<!\w…)…?\s(?=\w)/g, '…')
+.replace(/…(?<![\w\'\"”’]…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’\'](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
 .replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
