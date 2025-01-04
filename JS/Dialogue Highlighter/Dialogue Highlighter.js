@@ -38,7 +38,7 @@ const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>[^\"“
 const colorElement = (x) => {
     x.innerHTML = x.innerHTML
 	.replace(/=\"/g, '=\'')
-        .replace(/\">/g, '\'>')
+        .replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
 	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
 	.replace(/[\u2033]/g, '\"');
 };
