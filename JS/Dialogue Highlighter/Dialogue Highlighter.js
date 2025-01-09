@@ -34,7 +34,7 @@ chapter.innerHTML = chapter.innerHTML
 ////↑↑↑↑↑
 
 ///////↓↓↓↓ — Dialogue highlighter
-const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>[^\"“”]+)?[\"”](?<!=\")/g;
+const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>(?!\s*<br>)[^\"“”]+)?[\"”](?<!=\")/g;
 const colorElement = (x) => {
     x.innerHTML = x.innerHTML
 	.replace(/=\"/g, '=\'')
