@@ -19,7 +19,8 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div)[> ])/g, '')
 //↓
-.replace(/<\/span><span>/g, '<\/span> <span>')
+.replace(/(<span>.*?)<\/span><span>/g, '$1')
+.replace(/\/span><span>/g, '\/span> <span>')
 .replace(/<\/?span>/g, '')
 //.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↑
@@ -126,7 +127,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/“(?<=[^\s\[\『\「\>]“)/g, ' “')
 .replace(/(“[^\"”“<>\—\–]+[\—\–]) \“(?=\S)/, '$1” ')
 //↓simulation to check the pairs
-.replace(/([\"“”](?<!\=\")(?!>|\s?[\"“”]|<\/)(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
+.replace(/([\"“”](?<!\=\")(?!\s?[\"“”>]|<\/| [a-z\-]+=\")(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
 .replace(/∅¢[\"“”](\,)?\s/g, '$1 \“')
 .replace(/(\"∅¢)(?=[A-Za-z])/g, '$1 ')
 .replace(/, \.∅¢\s*/g, '∅¢')
@@ -200,9 +201,10 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/“(?<=<p>“)((?:\s?[A-Za-z’]+){1,6}?)([\!\…\?\.]+)(?=<\/p>)/g, '“$1$2”')
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
-//↓ give p to tagless 
-.replace(/\/p>(?=[^<]+<)/g, '/p><p>')
+//↓ misc
+.replace(/\/p>(?=[^<]+<)/g, '/p><p>')//give p to tagless
 .replace(/-(?<!<[^>]+-)(?![^<]+>)(?<=\b\w\w?\w?-)(?=\w)/g, '-⁠')//u2060
+.replace(/\.(?<=\b(?:M[sr]s?|etc)\.) /g, '<span style="font-size: 0.8em;">.</span> ')
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±')

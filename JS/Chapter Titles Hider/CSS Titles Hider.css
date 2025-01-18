@@ -9,6 +9,7 @@ spo:active {
     color: inherit;
     user-select: none;
 }
-spo:not(:active) {
+spo:not(:active), spo:not(:active) * {
     transition-duration: 500ms;
+    color: transparent;
 }

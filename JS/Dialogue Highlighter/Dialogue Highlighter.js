@@ -24,7 +24,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/“(?<=[^\s\[\『\「\>]“)/g, ' “')
 .replace(/(“[^\"”“<>\—\–]+[\—\–]) \“(?=\S)/, '$1” ')
 //↓simulation to check the pairs
-.replace(/([\"“”](?<!\=\")(?!>|\s?[\"“”]|<\/)(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
+.replace(/([\"“”](?<!\=\")(?!\s?[\"“”>]|<\/| [a-z\-]+=\")(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
 .replace(/∅¢[\"“”](\,)?\s/g, '$1 \“')
 .replace(/(\"∅¢)(?=[A-Za-z])/g, '$1 ')
 .replace(/, \.∅¢\s*/g, '∅¢')
@@ -34,11 +34,11 @@ chapter.innerHTML = chapter.innerHTML
 ////↑↑↑↑↑
 
 ///////↓↓↓↓ — Dialogue highlighter
-const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>[^\"“”]+)?[\"”](?<!=\")/g;
+const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>(?!\s*<br>)[^\"“”]+)?[\"”](?<!=\")/g;
 const colorElement = (x) => {
     x.innerHTML = x.innerHTML
 	.replace(/=\"/g, '=\'')
-        .replace(/\">/g, '\'>')
+        .replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
 	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
 	.replace(/[\u2033]/g, '\"');
 };
