@@ -153,6 +153,8 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
+.replace(/<(em|i)><(em|i)>(?<!\1>)(.+?)<\/\2><\/\1>)/g, '<em>$3</em>')
+.replace(/<(em|i)>(.+?)<\/\1><\1>/g, '<$1>$2')
 .replace(/(<\/?)(em|i)>/g, (_, a,l) => `${a}${l==='i'?'♠':'♠♠'}>`)
 .replace(/\s(<\/♠+>)/g, '$1 ')
 .replace(/(♠+(?<=\/♠+)>)\s+(?!<\/p>)/g, '$1  ')//n+h space > normal space
