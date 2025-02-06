@@ -63,13 +63,13 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\.\.\b/g, '‥')
 .replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=\w[\w’\'])/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
-.replace(/…(?<![\w\'\"”’]…)…?\s(?=\w)/g, '…')
+.replace(/…(?<![\w\'\"”’\]]…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’\'](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
 .replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
 //↑
 .replace(/…(?<=\b(\w+)…)…?\s\1\b/g, '… $1')//sixth space
-.replace(/…(?<=[^\s\w\…\"“‘\'”’\>\%]…)…?(?![\<\'\"’”\|\?])/g, ' …')
+.replace(/…(?<=[^\s\w\…\"“‘\'”’\>\%\]]…)…?(?![\<\'\"’”\|\?])/g, ' …')
 .replace(/…\.(?<=[\s“]…\.)\s/g, '…')
 .replace(/…(?=[AJ])/g, '…\u200a\u2060')//hair-s + u2060
 .replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
