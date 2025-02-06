@@ -3,7 +3,7 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 
 //store images
-.replace(/=(?<=src=)\"[^\"]+\"[^>]*>/g, (y) => {
+.replace(/=(?<=src=)\"[^\"]+\"[^>]*(?=>)/g, (y) => {
 imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
 .replace(/(^[^<]*(?:<input[^>]+>)?)[\s\n]*/, '$1♪')//♦start-chapter
@@ -17,7 +17,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ///↓↓↓↓↓— 2
 .replace(/<p [^>]+>/g, '<p>')
 .replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
-.replace(/\s+(?=<\/?(?:p|h[1-9]|div)[> ])/g, '')
+.replace(/\s+(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])/g, '')
 //↓
 .replace(/(<span>.*?)<\/span><span>/g, '$1')
 .replace(/\/span><span>/g, '\/span> <span>')
@@ -59,16 +59,17 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑
 ///↓↓↓↓↓— three dots
 .replace(/(?:\. ?…|…\.\.)/g, '….')
-.replace(/\s?(?:\.\.\.|…\s|(?<!\. )\. \. \.(?! \.) ?)/g, '…')
-.replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=\w)/g, '…⅞⅘ ')//thin space
+.replace(/\s?(?:\.\.\.|(?<=\s)…\s*|(?<!\. )\. \. \.(?! \.) ?)/g, '…')
+.replace(/\.\.\b/g, '‥')
+.replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=\w[\w’\'])/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
-.replace(/…(?<![\w\'\"”’]…)…?\s(?=\w)/g, '…')
+.replace(/…(?<![\w\'\"”’\]]…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’\'](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
 .replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
 //↑
 .replace(/…(?<=\b(\w+)…)…?\s\1\b/g, '… $1')//sixth space
-.replace(/…(?<=[^\s\w\…\"“‘\'\>\%]…)…?(?![\<\'\"’”\|\?])/g, ' …')
+.replace(/…(?<=[^\s\w\…\"“‘\'”’\>\%\]]…)…?(?![\<\'\"’”\|\?])/g, ' …')
 .replace(/…\.(?<=[\s“]…\.)\s/g, '…')
 .replace(/…(?=[AJ])/g, '…\u200a\u2060')//hair-s + u2060
 .replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
@@ -78,7 +79,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓— 
 .replace(/\.(?=\d\d+)(?<=\s\.)/g, '✓+®.')//★↓
 .replace(/®(?=\.\d+%)/g, '®0')//↓
-.replace(/\s(?=[\.\,\]\)\:\;]+)(?<=\w\s)/g, '')//↑↓
+.replace(/\s(?=[\.\,\]\)\:\;]+)(?<=[\w\]]\s)/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
 .replace(/([\.\,\:]|[\!\?]+)(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
 .replace(/\/watch\? (?=\w)/g, '/watch?')//yt links
@@ -152,10 +153,12 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
+.replace(/<(em|i)><(em|i)>(?<!\1>)(.+?)<\/\2><\/\1>)/g, '<em>$3</em>')
+.replace(/<(em|i)>(.+?)<\/\1><\1>/g, '<$1>$2')
 .replace(/(<\/?)(em|i)>/g, (_, a,l) => `${a}${l==='i'?'♠':'♠♠'}>`)
 .replace(/\s(<\/♠+>)/g, '$1 ')
-.replace(/(♠+(?<=\/♠+)>)\s+(?!<\/p>)/g, '$1  ')//n+h space > normal space
 .replace(/(<\/♠+>\s*)([\!\?]+|[\;\.\:\,])/g, '$2$1')
+.replace(/(♠+(?<=\/♠+)>)\s+(?!<\/p>)/g, '$1  ')//n+h space > normal space
 .replace(/([”\"]\.?(?=<)|<♠+>)([“\"]|<\/♠+>)/g, '$2$1')
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])/g, '$2$1$3$5$4')
 .replace(/(♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, '$1 ')//hair space
@@ -182,9 +185,11 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓↓ \w to avoid "A grade" at the start of a phrase. Not applied to the beginning of phrases on purpose, even for B or C grade etc..
 //↑↑↑↑↑
 
-.replace(/([\,\?\!]+|\.+(?!(?:com|it|net|jpg|png)\b))(?=[A-Za-z])(?<=\b(?!www\.)\w\w+[\,\?\!\.]+)/g, '$1 ')
+.replace(/([\,\?\!]+|\.+(?!(?:com|it|net|jpg|png|html)\b))(?=[A-Za-z])(?<=\b(?!www\.)\w\w+[\,\?\!\.]+)/g, '$1 ')
 .replace(/—(?<=\w—)(?=\w)/g, ' — ')//sixth spaces
 .replace(/\.([Mm])\.,(?<=[AaPp]\.[Mm]\.,)/g, '\1,')//5 a.m.,
+.replace(/([\?…\.][”“’\"])\.<(?<![”“\"‘]\1)/g, '$1<')
+.replace(/([“‘\"](?<=<p>.)[^”“\"\/]*?![”’\"])\.<\/p>/g, '$1</p>')
 //↓↓ — *
 .replace(/\*\s?(?![^\w\*]+\*)([^\s”“\*]+) ?\*(?![a-z]) ?/g, '*$1* ')
 .replace(/\* (?:(?<=\>\* )|(?=\*[^\w]))/g, '*')
