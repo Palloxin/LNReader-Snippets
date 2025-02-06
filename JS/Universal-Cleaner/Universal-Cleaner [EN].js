@@ -214,9 +214,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±')
 .replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±(?<!\d±)/g, '')}`)
-.replace(/±(?=(?:\d\d\d\D))(?<=\d±)/g, ',')
-.replace(/(±\d),(?=\d\d\d(?!,\d))/g, '$1')
-.replace(/,(?<=\d\d,)(?=\d\d\d\W)/g, '<span style=\'font-size: 0.8em;\'>,</span>')
+.replace(/±(?=(?:\d\d\d\D))(?<=\d±)/g, '<span style="font-size: 0.8em;">,</span>')
 .replace(/±(?=\d)/g, '')
 //↑↑↑↑↑↑↑ alternative separators:
 //100𝃳000//100༌000//100˙000//100𑀀000//100ॱ000//100ᱸ000//100ʹ000//100՛000
