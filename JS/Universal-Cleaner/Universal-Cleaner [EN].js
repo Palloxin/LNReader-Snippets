@@ -153,7 +153,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
-.replace(/<(em|i)><(em|i)>(?<!\1>)(.+?)<\/\2><\/\1>)/g, '<em>$3</em>')
+.replace(/<(em|i)><(em|i)>(?<!\1>)(.+?)<\/\2><\/\1>/g, '<em>$3</em>')
 .replace(/<(em|i)>(.+?)<\/\1><\1>/g, '<$1>$2')
 .replace(/(<\/?)(em|i)>/g, (_, a,l) => `${a}${l==='i'?'♠':'♠♠'}>`)
 .replace(/\s(<\/♠+>)/g, '$1 ')
@@ -214,9 +214,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±')
 .replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±(?<!\d±)/g, '')}`)
-.replace(/±(?=(?:\d\d\d\D))(?<=\d±)/g, ',')
-.replace(/(±\d),(?=\d\d\d(?!,\d))/g, '$1')
-.replace(/,(?<=\d\d,)(?=\d\d\d\W)/g, '<span style=\'font-size: 0.8em;\'>,</span>')
+.replace(/±(?=(?:\d\d\d\D))(?<=\d±)/g, '<span style="font-size: 0.8em;">,</span>')
 .replace(/±(?=\d)/g, '')
 //↑↑↑↑↑↑↑ alternative separators:
 //100𝃳000//100༌000//100˙000//100𑀀000//100ॱ000//100ᱸ000//100ʹ000//100՛000
