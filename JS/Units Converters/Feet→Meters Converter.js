@@ -13,7 +13,7 @@ chapter.innerHTML = chapter.innerHTML
 	const mi = {hundred:100, thousand:1000}[c] || 1;
 	let ff = 0.305;
 	if(d) ff = ff **2;
-	let nnn = /\d/.test(a) ? +a*ff*mi : +taco.indexOf(a)*ff*mi;
+	let nnn = /\d/.test(a) ? +a*ff*mi : +tico.indexOf(a)*ff*mi;
 	if(c) nnn = Math.abs(nnn); //negativ if "a hundred feet tall"
 	if(b === " and a half") nnn += 0.5 * ff;
 	if(nnn) nnn = nnn.toFixed(2);
