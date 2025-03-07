@@ -21,6 +21,7 @@ chapter.innerHTML = chapter.innerHTML
 	return `⋮⋮⋮f${z}t${d||''} ÷×(${nnn}m${d||''})`})
 
 .replace(/÷×(\([\d\.]+m²?\)) ((?:in )?[a-z]+)/g, '$2 $1')
+.replace(/÷×/g, '')
 .replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?/g, (_,z, a) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t`)
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
@@ -29,5 +30,5 @@ chapter.innerHTML = chapter.innerHTML
     
 
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||each had 5 feet of canopy
-//jsfidle: https://jsfiddle.net/bgeLojrz/3/
+//jsfidle: https://jsfiddle.net/fsmLg0r9/1/
 //////↑↑↑↑↑ — END
