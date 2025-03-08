@@ -7,7 +7,7 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/\b(square )?f(ee|oo)t\b/g, (_, i,l) => `™™™f${l==='ee'?'%%':'%'}t${i?'²':''}`)
 .replace(/,(?=\d\d\d(?:\,|\d\d\d)* ™™™f%+t)/g, '')
-.replace(/™™™f(%+t²?) (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(?:to)?\b))/g, '⋮⋮⋮f$1 ')
+.replace(/™™™f(%+t²?) (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(?:to)?\b))/g, '⋮⋮⋮f$1 √√')
 .replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about|approximately)? ?|as long as | the )(?=[otfsen\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)(?=f%+t)/g, '⋮⋮⋮')
 .replace(/⋮⋮⋮f(%+)t(?<=\b((?<![efhnrx]ty-)(?:two|three|four|five|six|seven|eight|nine)|(?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:thir|four|fif|six|seven|eigh|nine)teen|ten|eleven|twelve|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮f%+t)(²)?/g, (_,z, a,b,c,d) => {
 	const mi = {hundred:100, thousand:1000}[c] || 1;
@@ -20,8 +20,7 @@ chapter.innerHTML = chapter.innerHTML
 	if(nnn > 11) nnn = Math.round(nnn);
 	return `⋮⋮⋮f${z}t${d||''} ÷×(${nnn}m${d||''})`})
 
-.replace(/÷×(\([\d\.]+m²?\)) ((?:in )?[a-z]+)/g, '$2 $1')
-.replace(/÷×/g, '')
+.replace(/÷×(\([\d\.]+m²?\)) √√((?:in )?[a-z]+)/g, '$2 $1')
 .replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?/g, (_,z, a) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t`)
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
