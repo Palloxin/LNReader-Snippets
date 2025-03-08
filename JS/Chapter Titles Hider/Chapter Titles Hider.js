@@ -35,12 +35,4 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/π√/, '')
 
 ;
-
-////TEST-STRINGs:
-//``<h3>Chapter 148: </h3><h3>Success</h3>``
-//``<p><strong>1858 Omniscience</strong></p>``
-//``<h2>Chapter 94 – 094. Maehwa Sword </h2><p>094. Maehwa Sword</p>``
-//``<h2>Chapter 001 – 001. Bob Sits Down</h2><p>202. Bob sits down.</p>``
-//``Brawl.`` (use chapterName to check)
-//``
 /////★★★↑↑
