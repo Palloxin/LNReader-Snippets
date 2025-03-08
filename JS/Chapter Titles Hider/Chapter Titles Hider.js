@@ -9,6 +9,7 @@ let [hh, ss, ll] = rgbToHsl(r, g, b)
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 //preparatory
+.replace(/(<h[1-8]) [^>]+>/g, '$1>')
 .replace(/&nbsp;/g, ' ')//
 .replace(/<title>[^<]*<\/title>/, '')//epubs
 .replace(/^(?:(?=<)[^\?\.,A-Z”“]*?<\/?div\b[^>]*>\s*)+/, '')
