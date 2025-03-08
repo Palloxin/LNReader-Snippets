@@ -21,6 +21,7 @@ chapter.innerHTML = chapter.innerHTML
 	return `⋮⋮⋮f${z}t${d||''} ÷×(${nnn}m${d||''})`})
 
 .replace(/÷×(\([\d\.]+m²?\)) √√((?:in )?[a-z]+)/g, '$2 $1')
+.replace(/÷×/g, '')
 .replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?(?: √√)?/g, (_,z, a) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t`)
 
 .replace(/(\d)\'(?<=\s\d\')(\d)\"/g, (_, a,b) => {
