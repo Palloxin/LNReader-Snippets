@@ -31,7 +31,7 @@ chapter.innerHTML = chapter.innerHTML
 	let dare = reader.chapter.name.includes(bas);
 	if(dare) return `<h1>~~<spo>${reader.chapter.name}<\/spo></h1>`;
 	else return `${_}`})
-.replace(/~~<spo>/g, (_) => `<spo style=\"background: hsl(${hh}, ${ss}%, ${+ll-2}%)\">`)
+.replace(/~~<spo>/g, (_) => `<spo style=\"background: hsl(${hh}, ${ss}%, ${+ll-2}%)\" onclick=\"event.preventDefault(); event.stopPropagation()\">`)
 .replace(/π√/, '')
 
 ;
