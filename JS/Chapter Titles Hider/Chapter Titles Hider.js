@@ -2,8 +2,8 @@
 spoooiler = document.querySelector(".next-button");
 if(spoooiler) {spoooiler.innerText = "———Next Chapter———"}
 
-const rgbHsl=(r,g,b)=>{let [z,m]=[Math.min(r,g,b),Math.max(r,g,b)],l=(z+m)/2;return[0|m===z?0:(m===r?(g-b)/(m-z)+(g<b?6:0):m===g?(b-r)/(m-z)+2:(r-g)/(m-z)+4),m?((m-z)/l<1?l/(m-z):l):0,l]};
-let[r,g,b]=document.body.computedStyleMap().get("background-color").toString() .match(/\d+/g,).map(n=>+n);let [hh,ss,ll]=rgbHsl(r,g,b);
+function rgbHsl(r,g,b){r/=255;g/=255;b/=255;let M=Math.max(r,g,b),m=Math.min(r,g,b),d=M-m,l=M+m,h,s;if(d===0)h=s=0;else{s=l/2<.5?d/l:d/(2-d);switch(M){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break}}return[Math.round(h*60),s*100,l*50];}
+let[r,g,b]=document.body.computedStyleMap().get("background-color").toString() .match(/[\d\.]+/g).map(n=>+n);let [hh,ss,ll]=rgbHsl(r,g,b);
 const ba = 2;
 
 chapter = document.querySelector('#LNReader-chapter');
