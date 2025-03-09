@@ -3,7 +3,7 @@ spoooiler = document.querySelector(".next-button");
 if(spoooiler) {spoooiler.innerText = "———Next Chapter———"}
 
 function rgbHsl(r,g,b){r/=255;g/=255;b/=255;var M=Math.max(r,g,b),m=Math.min(r,g,b),d=M-m,L=(M+m)*0.5,H=0,S=0;if(d!==0){S=d/(1-Math.abs(2*L-1));switch(M){case r:H=(g-b)/d+(g<b?6:0);break;case g:H=(b-r)/d+2;break;case b:H=(r-g)/d+4;break}H*=60}if(H<0){H+=360}return[H,S,L]}
-let [r,g,b] = document.body.computedStyleMap().get("background-color").toString() .match(/[\d\.]+/g).map(n=>+n);let [hh,ss,ll] = rgbHsl(r,g,b);
+let [r,g,b] = document.body.computedStyleMap().get("background-color").toString().match(/[\d\.]+/g).map(n=>+n);let [hh,ss,ll] = rgbHsl(r,g,b);
 let ba = 2;
 
 chapter = document.querySelector('#LNReader-chapter');
