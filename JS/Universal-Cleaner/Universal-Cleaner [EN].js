@@ -63,7 +63,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\.\.\b/g, '‥')
 .replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=\w[\w’\'])/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
-.replace(/…(?<![\w\'\"”’\]]…)…?\s(?=\w)/g, '…')
+.replace(/…(?<![\w\'\"”’\]\?]…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’\'](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
 .replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
@@ -147,7 +147,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\s{2,}/g, ' ')
 //↑↑↑↑↑↑↑
 //↓↓↓ — 
-.replace(/(\?+) (?=\!)/g, '$1')
+.replace(/\?+(\. | \!)?/g, (_, a) => a===". "?_.replace('.', ''):_.replace(' ', ''))
 .replace(/ ([\!\?]+)(?<=\w+(?<!a|the|:) \1)\.?/g, '$1')
 .replace(/(‘\w+)([\.])’(?:(?<=\s\1\2’)|(?!<))/g, '$1’$2')
 .replace(/’ (?<= o’ )/g, '’')
