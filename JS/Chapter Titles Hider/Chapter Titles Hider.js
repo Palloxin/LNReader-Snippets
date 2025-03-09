@@ -2,7 +2,7 @@
 spoooiler = document.querySelector(".next-button");
 if(spoooiler) {spoooiler.innerText = "———Next Chapter———"}
 
-function rgbHsl(r,g,b){r/=255;g/=255;b/=255;let M=Math.max(r,g,b),m=Math.min(r,g,b),h,s,l=M+m;d=M-m;if(d===0){h=s=0;}else{s=l/2<0.5?d/l:d/(2-M-m);switch(M){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break;}}return[Math.round(h*60),s*100,l*50];}
+function rgbHsl(r,g,b){r/=255;g/=255;b/=255;var M=Math.max(r,g,b),m=Math.min(r,g,b),d=M-m,L=(M+m)*0.5,H=0,S=0;if(d!==0){S=d/(1-Math.abs(2*L-1));switch(M){case r:H=(g-b)/d+(g<b?6:0);break;case g:H=(b-r)/d+2;break;case b:H=(r-g)/d+4;break}H*=60}if(H<0){H+=360}return[H,S,L]}
 let [r,g,b] = document.body.computedStyleMap().get("background-color").toString() .match(/[\d\.]+/g).map(n=>+n);let [hh,ss,ll] = rgbHsl(r,g,b);
 let ba = 2;
 
