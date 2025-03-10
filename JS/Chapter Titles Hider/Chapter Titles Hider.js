@@ -4,7 +4,6 @@ if(spoooiler) {spoooiler.innerText = "———Next Chapter———"}
 
 function rgbHsl(r,g,b){r/=255,g/=255,b/=255;let h,s,M=Math.max(r,g,b),m=Math.min(r,g,b),l=M+m,d=M-m;return 0===d?h=s=0:(s=l<1?d/l:d/(2-l),M===r?h=(g-b)/d+(g<b?6:0):M===g?h=(b-r)/d+2:M===b&&(h=(r-g)/d+4)),[60*h,100*s,50*l]}
 let [r,g,b] = document.body.computedStyleMap().get("background-color").toString().match(/[\d\.]+/g).map(n=>+n);let [hh,ss,ll] = rgbHsl(r,g,b);
-let ba = 2;
 
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
@@ -31,7 +30,7 @@ chapter.innerHTML = chapter.innerHTML
 	let dare = reader.chapter.name.includes(bas);
 	if(dare) return `<h1>~~<spo>${reader.chapter.name}<\/spo></h1>`;
 	else return `${_}`})
-.replace(/~~<spo>/g, (_) => `<spo style="background: hsl(${hh}, ${ll<80?ss:ss-3}%, ${ll>3?ll-ba:ll<1?ll+5:ll>2?ll+1:ll>1?ll+2:ll+3}%)\" onclick=\"event.preventDefault(); event.stopPropagation()">`)
+.replace(/~~<spo>/g, (_) => `<spo style="background: hsl(${hh}, ${ll<80?ss:ss-3}%, ${ll>3?ll-2:ll<1?ll+5:ll>2?ll+1:ll>1?ll+2:ll+3}%)\" onclick=\"event.preventDefault(); event.stopPropagation()">`)
 .replace(/π√/, '')
 
 ;
