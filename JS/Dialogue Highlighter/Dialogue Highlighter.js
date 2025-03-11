@@ -11,7 +11,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/\"(?<=\b(?:or|as?|the|to) \")([A-Za-z’\s]+)\"/g, '″$1″')
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
-.replace(/(?:‘|’(?<=\W’)(?!s?\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
+.replace(/(?:‘|’(?<![\.,\?!…]’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
 .replace(/”(?=\w)(?<=[^\s\>\,]”)/g, '” ')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|[^>]“[^”–—]+[–—])”)/g, '“')
 .replace(/[“‘](?=<\/p>)/g, (a) => a === '“' ? '”' : '’' )
@@ -21,16 +21,16 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/([\?\!\.\…]+)(?<=\w+\1)(?=[\"”“][\"”“](?<!\"\")\w)/g, '$1∆∆')
 .replace(/∆∆([\"”“])([\"”“])/g, '$1 $2')
 .replace(/[\"”“][\"”“](?<!\"\")/g, '\"')
-.replace(/“(?<=[^\s\[\『\「\>]“)/g, ' “')
-.replace(/(“[^\"”“<>\—\–]+[\—\–]) \“(?=\S)/, '$1” ')
+.replace(/“(?<![\s\[\『\「\>]“)/g, ' “')
+.replace(/(“[^\"”“<>\—\–]+[\—\–]) \“(?!\s)/, '$1” ')
 //↓simulation to check the pairs
-.replace(/([\"“”](?<!\=\")(?!\s?[\"“”>]|<\/| [a-z\-]+=\")(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
+.replace(/([\"“”](?<!\=\")(?!\s?[\"“”>]|<\/| [a-z\-]+=\")(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?!\s)))/g, '∅¢$1∅¢')
 .replace(/∅¢[\"“”](\,)?\s/g, '$1 \“')
 .replace(/(\"∅¢)(?=[A-Za-z])/g, '$1 ')
 .replace(/, \.∅¢\s*/g, '∅¢')
 .replace(/∅¢/g, '')
 //↑
-.replace(/”(?=\w)(?<=[^\>\,]”)/g, '” ')
+.replace(/”(?=\w)(?<![\>\,]”)/g, '” ')
 ////↑↑↑↑↑
 
 ///////↓↓↓↓ — Dialogue highlighter
