@@ -21,7 +21,6 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓
 .replace(/(<span>.*?)<\/span><span>/g, '$1')
 .replace(/\/span><span>/g, '\/span> <span>')
-.replace(/<\/?span>/g, '')
 //.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↑
 .replace(/<br>\s*(?=<\/?p>)/g, '')
