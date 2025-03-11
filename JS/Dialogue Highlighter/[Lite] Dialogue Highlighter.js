@@ -2,11 +2,11 @@
 ////↓↓↓↓↓ — 
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
-.replace(/(?:‘|’(?<=\W’)(?!s?\s))([^\"”“\'’‘\<]+)(?:(?<=[^\s])‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
+.replace(/(?:‘|’(?<![\.,\?!…]’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
 .replace(/”(?<=(?:<p>|\: ?)”)/g, '“')
 .replace(/[“‘](?=<\/p>)/g, (a) => a === '“'?'”':'’')
 .replace(/’(?<=<p>’)/g, '‘')
-.replace(/’(?=\w\w\w+)(?<=[^\s\w]’)/g, '’ ')
+.replace(/’(?=\w\w\w+)(?<![\s\w]’)/g, '’ ')
 .replace(/(?: ([\”’])|([\“‘]) )/g, '$1$2')
 
 ///////↓↓↓↓ — Dialogue highlighter
