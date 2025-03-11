@@ -212,10 +212,9 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\.(?<=\b(?:M[sr]s?|etc)\.) /g, '<span style="font-size: 0.8em;">.</span> ')
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
-.replace(/,(?=\d\d\d\D)/g, '±')
-.replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±(?<!\d±)/g, '')}`)
-.replace(/±(?=(?:\d\d\d\D))(?<=\d±)/g, '<span style="font-size: 0.8em;">,</span>')
-.replace(/±(?=\d)/g, '')
+.replace(/,(?=\d\d\d\D)/g, '±±')
+.replace(/±±(?<=\b\d\d?±±)(?=\d\d\d[^±]{2})/g, '')
+.replace(/±±(?<=\d±±)/g, '<span style="font-size: 0.8em;">,</span>')
 //↑↑↑↑↑↑↑ alternative separators:
 //100𝃳000//100༌000//100˙000//100𑀀000//100ॱ000//100ᱸ000//100ʹ000//100՛000
 //place images
