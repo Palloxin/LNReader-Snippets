@@ -11,7 +11,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/[\u200b]/g, '')//zero-width space
 .replace(/\n+/g, '')
 .replace(/<title>[^<]*<\/title>/, '')//EPUBs
-.replace(/&nbsp;/g, ' ')//no-break-space; To make "&nbsp;" not interferee with other replacements.
+.replace(/&nbsp;/g, ' ')//no-break-space; To make "&nbsp;" not interferee with other replacements.
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
 //↑↑
 ///↓↓↓↓↓— 2
