@@ -84,7 +84,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([\.\,\:]|[\!\?]+)(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
 .replace(/\/watch\? (?=\w)/g, '/watch?')//yt links
 .replace(/(“\w+)\.”\./g, '$1”.')
-.replace(/([\"“”])(?<!\=\")(?=[^>]|[^\s][^\"“”])([^\"“”]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
+.replace(/([\"“”])(?<!\=\")(?=[^>]|\S[^\"“”])([^\"“”]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
 .replace(/\,([\"”](?=←←)|[\'\]’](?=\W))/g, '$1,')//comma
 .replace(/←←|→→/g, '')
 .replace(/,,[, ]*/g, ', ')
@@ -115,7 +115,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //Anastasia sneered; "Weren’t you busy "Crafting"?"
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
-.replace(/(?:‘|’(?<=\W’)(?![a-z]*\s)([^\"”“\'’‘\<]+)(?:(?<=[^\s])‘|’(?=[^a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
+.replace(/(?:‘|’(?<=\W’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<=[^\s])‘|’(?=[^a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
 .replace(/”(?=\w)(?<=[^\s\>\,]”)/g, '” ')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|[^>]“[^”–—]+[–—])”)/g, '“')
 .replace(/[“‘](?=<\/p>)/g, (a) => a === '“' ? '”' : '’' )
