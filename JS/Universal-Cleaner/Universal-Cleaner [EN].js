@@ -213,7 +213,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±±')
-.replace(/±±(?<=\b\d\d?±±)(?=\d\d\d[^±]{2})/g, '')
+.replace(/±±(?<=\b\d\d?±±)(?=\d\d\d[^±])/g, '')
 .replace(/±±(?<=\d±±)/g, '<span style="font-size: 0.8em;">,</span>')
 //↑↑↑↑↑↑↑ alternative separators:
 //100𝃳000//100༌000//100˙000//100𑀀000//100ॱ000//100ᱸ000//100ʹ000//100՛000
