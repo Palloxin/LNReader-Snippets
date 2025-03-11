@@ -11,7 +11,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/[\u200b]/g, '')//zero-width space
 .replace(/\n+/g, '')
 .replace(/<title>[^<]*<\/title>/, '')//EPUBs
-.replace(/&nbsp;/g, ' ')//no-break-space; To make "&nbsp;" not interferee with other replacements.
+.replace(/&nbsp;/g, ' ')//no-break-space; To make "&nbsp;" not interferee with other replacements.
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
 //↑↑
 ///↓↓↓↓↓— 2
@@ -69,7 +69,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
 //↑
 .replace(/…(?<=\b(\w+)…)…?\s\1\b/g, '… $1')//sixth space
-.replace(/…(?<=[^\s\w\…\"“‘\'”’\>\%\]\?]…)…?(?=[^\<\'\"’”\|\?])/g, ' …')
+.replace(/…(?<=[^\s\w\…\"“‘\'”’\>\%\]\?]…)…?(?![\<\'\"’”\|\?])/g, ' …')
 .replace(/…\.(?<=[\s“]…\.)\s/g, '…')
 .replace(/…(?=[AJ])/g, '…\u200a\u2060')//hair-s + u2060
 .replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
@@ -84,11 +84,11 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([\.\,\:]|[\!\?]+)(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
 .replace(/\/watch\? (?=\w)/g, '/watch?')//yt links
 .replace(/(“\w+)\.”\./g, '$1”.')
-.replace(/([\"“”])(?<!\=\")(?=[^>]|\S[^\"“”])([^\"“”]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
+.replace(/([\"“”])(?<!\=\")(?!>|\s[\"“”])([^\"“”]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
 .replace(/\,([\"”](?=←←)|[\'\]’](?=\W))/g, '$1,')//comma
 .replace(/←←|→→/g, '')
 .replace(/,,[, ]*/g, ', ')
-.replace(/\,(?=[^\s\d\”\’;])(?<=\D\,)/g, ', ')
+.replace(/\,(?![\s\d\”\’;])(?<=\D\,)/g, ', ')
 //↑↑↑↑
 //↓↓↓  — apostrophe ( ' => ’ )
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
@@ -96,7 +96,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\'(?<=<p>[^\']+\')(?=[^\w\'][^\']+?<\/p>)/g, '’')
 //↑↑↑
 //↓
-.replace(/[”“](?=(?:[dmst]|ll|ve)\b(?=[^\-]))/g, '’')
+.replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
 .replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`)
 //↑
 	
@@ -115,7 +115,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //Anastasia sneered; "Weren’t you busy "Crafting"?"
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
-.replace(/(?:‘|’(?<=\W’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<=[^\s])‘|’(?=[^a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
+.replace(/(?:‘|’(?<=\W’)(?!s?\s))([^\"”“\'’‘\<]+)(?:(?<=[^\s])‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
 .replace(/”(?=\w)(?<=[^\s\>\,]”)/g, '” ')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|[^>]“[^”–—]+[–—])”)/g, '“')
 .replace(/[“‘](?=<\/p>)/g, (a) => a === '“' ? '”' : '’' )
@@ -149,7 +149,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓ — 
 .replace(/\?+(\. | \!)?/g, (_, a) => a===". "?_.replace('.', ''):_.replace(' ', ''))
 .replace(/ ([\!\?]+)(?<=\w+(?<!a|the|:) \1)\.?/g, '$1')
-.replace(/(‘\w+)([\.])’(?:(?<=\s\1\2’)|(?=[^<]))/g, '$1’$2')
+.replace(/(‘\w+)([\.])’(?:(?<=\s\1\2’)|(?!<))/g, '$1’$2')
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
@@ -177,7 +177,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ////↑↑↑↑↑
 //↓↓↓ — 
 .replace(/([\[\(])\s/g, '$1')
-.replace(/\((?<=\w\()(?=\D)/g, ' (')// [  case missing on purpose
+.replace(/\((?<=\w\()(?!\d)/g, ' (')// [  case missing on purpose
 .replace(/([\]\)])(?=\w\w)/g, '$1 ')
 //↑↑↑
 
@@ -191,7 +191,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([\?!\.…][”“’\"])\.<(?<![”“\"‘]\1\.<)/g, '$1<')
 .replace(/([“‘\"](?<=<p>.)[^”“\"\/]*?![”’\"])\.<\/p>/g, '$1</p>')
 //↓↓ — *
-.replace(/\*\s?(?![^\w\*]+\*)([^\s”“\*]+) ?\*(?=[^a-z]) ?/g, '*$1* ')
+.replace(/\*\s?(?![^\w\*]+\*)([^\s”“\*]+) ?\*(?![a-z]) ?/g, '*$1* ')
 .replace(/\* (?:(?<=\>\* )|(?=\*[^\w]))/g, '*')
 .replace(/\*(?<=\>\*)([^\*\<\,\?\"”“’‘]{2,18}?) \*/g, '*$1*')
 //↑↑
