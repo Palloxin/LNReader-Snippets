@@ -177,7 +177,6 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 ////↑↑↑↑↑
 //↓↓↓ — 
 .replace(/([\[\(])\s/g, '$1')
-.replace(/\((?<=\w\()(?!\d)/g, ' (')// [  case missing on purpose
 .replace(/([\]\)])(?=\w\w)/g, '$1 ')
 //↑↑↑
 
