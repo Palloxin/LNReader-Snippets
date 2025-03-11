@@ -11,7 +11,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/[\u200b]/g, '')//zero-width space
 .replace(/\n+/g, '')
 .replace(/<title>[^<]*<\/title>/, '')//EPUBs
-.replace(/&nbsp;/g, '\u00a0')
+.replace(/&nbsp;/g, '\u00a0')//to include it with \s
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
 //↑↑
 ///↓↓↓↓↓— 2
@@ -63,7 +63,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\.\.\b/g, '‥')
 .replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=\w[\w’\'])/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
-.replace(/…(?<=[^\w\'\"”’\]\?]…)…?\s(?=\w)/g, '…')
+.replace(/…(?<![\w\'\"”’\]\?]…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’\'](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
 .replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
@@ -106,7 +106,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/“(?<=\b\w+ “)(\w+\s\w+)”(?= [a-z])/g, '″$1″')
 .replace(/“(?<=\b[a-z]+ “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
 .replace(/(“\S[^\"”“<]+\s)“([\s\w’]+)”(?=\W[^\"”“<]*?”)/g, '$1″$2″')
-.replace(/[“\"](?<=\b[a-z]+ [“\"])([a-z\s’]+(?<=[^’])[”\"]/g, '″$1″')
+.replace(/[“\"](?<=\b[a-z]+ [“\"])([a-z\s’]+(?<!’))[”\"]/g, '″$1″')
 .replace(/\"(?<=\b(?:or|as?|the|to) \")([A-Za-z’\s]+)\"/g, '″$1″')
 //<p>The “ab bb” is fake.</p>
 //“I saw the “Ack Bac aa”, it's great
@@ -120,7 +120,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|[^>]“[^”–—]+[–—])”)/g, '“')
 .replace(/[“‘](?=<\/p>)/g, (a) => a === '“' ? '”' : '’' )
 .replace(/’(?<=(?:<p>|, )’)/g, '‘')
-.replace(/’(?=\w\w\w+)(?<=[^\s\w]’)/g, '’ ')
+.replace(/’(?=\w\w\w+)(?<![\s\w]’)/g, '’ ')
 .replace(/[\"“](?<=<p>[\"“])[\"”“]/g, '“')
 .replace(/([\?\!\.\…]+)(?<=\w+\1)(?=[\"”“][\"”“](?<!\"\")\w)/g, '$1∆∆')
 .replace(/∆∆([\"”“])([\"”“])/g, '$1 $2')
@@ -213,7 +213,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±')
-.replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±(?<=\D±)/g, '')}`)
+.replace(/(?:\d+±)+/g, (_) => `±${_.replace(/±(?<!\d±)/g, '')}`)
 .replace(/±(?=(?:\d\d\d\D))(?<=\d±)/g, '<span style="font-size: 0.8em;">,</span>')
 .replace(/±(?=\d)/g, '')
 //↑↑↑↑↑↑↑ alternative separators:
