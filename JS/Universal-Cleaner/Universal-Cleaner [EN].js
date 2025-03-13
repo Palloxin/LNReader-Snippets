@@ -204,7 +204,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
 //↓ misc
-.replace(/\/p>(?=[^<]+<)/g, '/p><p>')//give p to tagless
+.replace(/\/p>(?=[^<♪]+<)/g, '/p><p>')//give p to tagless
 .replace(/-(?<!<[^>]+-)(?![^<]+>)(?<=\b\w\w?\w?-)(?=\w)/g, '-⁠')//u2060
 .replace(/\.(?<=\b(?:M[sr]s?|etc)\.) /g, '<span style="font-size: 0.8em;">.</span> ')
 //↑
