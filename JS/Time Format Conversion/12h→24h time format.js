@@ -1,7 +1,7 @@
 /////↓↓↓↓↓↓↓↓↓↓ 12h→24h time format
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
-.replace(/\b((?:[1-9]|1[012]|0\d(?=:\d))(?<!(?::|\d-)\d\d?)(?::[0-5]\d)?(?:-| ?[AaPp]\.?[mM](?=\.[^\.]|\b)))/g, '$1••••')//♦
+.replace(/\b(?<!:|\d-)((?:[1-9]|1[012]|0\d(?=:\d))(?::[0-5]\d)?(?:-| ?[AaPp]\.?[mM](?=\.[^\.]|\b)))/g, '$1••••')//♦
 //↓ the . of ``a/pm.`` ends a phrase and continues
 .replace(/••••([\d:\s]+[ap])\.?m\b/gi, (_, a)=> `••••${a.toLowerCase()}m.`)
 //↓ cases like 3-4 pm
