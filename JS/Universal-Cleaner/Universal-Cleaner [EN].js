@@ -80,6 +80,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/®(?=\.\d+%)/g, '®0')//↓
 .replace(/\s(?=[\.\,\]\)\:\;]+)(?<=[\w\]]\s)/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
+.replace(/:(?<=\d:)\s(?=\d)/g, ':')
 .replace(/([\.\,\:]|[\!\?]+)(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
 .replace(/\/watch\? (?=\w)/g, '/watch?')//yt links
 .replace(/(“\w+)\.”\./g, '$1”.')
