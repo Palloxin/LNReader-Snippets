@@ -58,7 +58,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑
 ///↓↓↓↓↓— three dots
 .replace(/(?:\. ?…|…\.\.)/g, '….')
-.replace(/(?:\s?\.\.\.|\s…\s*|(?:\s(?<!\.))?\. \. \.(?! \.) ?)/g, '…')
+.replace(/(?:\s?\.\.\.|\s…\s*|(?:\s(?<!\..))?\. \. \.(?! \.) ?)/g, '…')
 .replace(/\.\.\b/g, '‥')
 .replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=\w[\w’\'])/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
