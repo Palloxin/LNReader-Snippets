@@ -26,7 +26,7 @@ chapter.innerHTML = chapter.innerHTML
 	else
 		return `⸙<${_1}>~~<spo>${_2}${_7}${_9}~~<spo>${_10}⸙`})
 .replace(/⸙([^⸙]+)⸙/, (_, a) => `${a.replace(/<(h[1-4]|p)>([^]+?)<\/\1>/, '<h1>$2</h1>')}`)
-.replace(/π√<(p|h[1-5])>([^]+?)<\/\1>/, (_, a,b)=> {
+.replace(/π√<(p|h[1-5])>([^]+?)\/\1>/, (_, a,b)=> {
 	const bas = b.replace(/(?:<\/?[a-z]+>|\.$)/g, '')
 	let dare = reader.chapter.name.includes(bas);
 	if(dare) return `<h1>~~<spo>${reader.chapter.name}<\/spo></h1>`;
