@@ -34,13 +34,13 @@ chapter.innerHTML = chapter.innerHTML
 ////↑↑↑↑↑
 
 ///////↓↓↓↓ — Dialogue highlighter
-const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>(?!\s*<br>)[^\"“”]+)?[\"”](?<!=\")/g;
+const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”]|<ww)([^\"“”]+?)(<br>(?!\s*<br>)[^\"“”]+)?[\"”](?<!=\"|ww>\")/g;
 const colorElement = (x) => {
     x.innerHTML = x.innerHTML
-	.replace(/=\"/g, '=\'')
-        .replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
-	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
-	.replace(/[\u2033]/g, '\"');
+		.replace(/=\"/g, '=\'')
+		.replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
+		.replace(regex, `"<ww>$1$2</ww>"`)
+		.replace(/[\u2033]/g, '\"');
 };
 (col = (parent) => {
     if (parent.nodeName === "SCRIPT") return;
