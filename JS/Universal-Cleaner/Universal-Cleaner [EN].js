@@ -3,8 +3,8 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 
 //store images
-.replace(/=(?<=src=)\"[^\"]+\"[^>]*(?=>)/g, (y) => {
-imgs.push(y); return "䷢䷢䷢"+imgs.length;})
+.replace(/=(?<=src=)\"[^\"]+\"[^>]*(?=>)/g, Y => {
+imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
 .replace(/(^[^<]*(?:<input[^>]+>)?)[\s\n]*/, '$1♪')//♦start-chapter
 //↓↓— 1
@@ -35,7 +35,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(?:<br>\s*)+(?=<br>\s*<br>)/g, '')
 .replace(/(?:<br><\/?br>)+(?=<)/g, '')
 //↓↓↓↓↓ — masked letters
-.replace(/[асᴄԁеһіјӏոоοօᴏрԛѕꜱսνᴠԝᴡхⅹуᴢАВСЕНІЈKМΝОРԚЅТԜХ]/g, (aa) => {
+.replace(/[асᴄԁеһіјӏոоοօᴏрԛѕꜱսνᴠԝᴡхⅹуᴢАВСЕНІЈKМΝОРԚЅТԜХ]/g, aa => {
 	const fakers = {
 		а: 'a', с: 'c', ᴄ: 'c', ԁ: 'd', е: 'e', һ: 'h', і: 'i', ј: 'j', ӏ: 'l',
 		ո: 'n', о: 'o', ο: 'o', օ: 'o', ᴏ: 'o', р: 'p', ԛ: 'q', ѕ: 's', ꜱ: 's',
@@ -45,7 +45,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 	return fakers[aa]})
 //↑↑↑↑↑
 //↓ — 2 disabled js
-//%&&&&replace(/\.[a-z](?<=[a-zA-Z]\.[a-z])(?:\.[a-z])+(?!\.[A-Z])/g, (_) => `${_.replace(/\./g, '')}`)//input: ``s.p.a.c.e.s.h.i.p`` —> output: ``spaceship``
+//%&&&&replace(/\.[a-z](?<=[a-zA-Z]\.[a-z])(?:\.[a-z])+(?!\.[A-Z])/g, M => `${M.replace(/\./g, '')}`)//input: ``s.p.a.c.e.s.h.i.p`` —> output: ``spaceship``
 //↑
 //↓↓↓↓↓— 3
 .replace(/(\d) ?(k?m)([2-3])\b/g, '$1$2‡$3★')
@@ -78,7 +78,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓— 
 .replace(/\.(?=\d\d+)(?<=\s\.)/g, '✓+®.')//★↓
 .replace(/®(?=\.\d+%)/g, '®0')//↓
-.replace(/\s(?=[\.\,\]\)\:\;]+)(?<=[\w\]]\s)/g, '')//↑↓
+.replace(/\s(?=[\.\,\]\)\:\;]+)(?<=[\w\]].)/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
 .replace(/([\.\,\:]|[\!\?]+)(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
 .replace(/\/watch\? (?=\w)/g, '/watch?')//yt links
@@ -100,11 +100,11 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 	
 //↓↓↓↓quotation marks => DOUBLE PRIME 
 .replace(/“(?<=\bthe “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
-.replace(/[”“\"](?<=\b\w+ [“”\"])(\w+|[\?\!])[”\"]/g, '″$1″')
-.replace(/“(?<=\b\w+ “)(\w+\s\w+)”(?= [a-z])/g, '″$1″')
-.replace(/“(?<=\b[a-z]+ “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
+.replace(/[”“\"](?<=\w .)(\w+|[\?\!])[”\"]/g, '″$1″')
+.replace(/“(?<=\w “)(\w+\s\w+)”(?= [a-z])/g, '″$1″')
+.replace(/“(?<=[a-z] “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
 .replace(/(“\S[^\"”“<]+\s)“([\s\w’]+)”(?=\W[^\"”“<]*?”)/g, '$1″$2″')
-.replace(/[“\"](?<=\b[a-z]+ [“\"])([a-z\s’]+(?<!’))[”\"]/g, '″$1″')
+.replace(/[“\"](?<=[a-z] [“\"])([a-z\s’]+(?<!’))[”\"]/g, '″$1″')
 .replace(/\"(?<=\b(?:or|as?|the|to) \")([A-Za-z’\s]+)\"/g, '″$1″')
 //<p>The “ab bb” is fake.</p>
 //“I saw the “Ack Bac aa”, it's great
@@ -116,7 +116,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(?:‘|’(?<=[^\.,\?!…]’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
 .replace(/”(?=\w)(?<![\s\>\,]”)/g, '” ')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|[^>]“[^”–—]+[–—])”)/g, '“')
-.replace(/[“‘](?=<\/p>)/g, (a) => a === '“' ? '”' : '’' )
+.replace(/[“‘](?=<\/p>)/g, a => a === '“' ? '”' : '’' )
 .replace(/’(?<=(?:<p>|, )’)/g, '‘')
 .replace(/’(?=\w\w\w+)(?<![\s\w]’)/g, '’ ')
 .replace(/[\"“][\"”“](?<=<p>..)/g, '“')
@@ -145,9 +145,10 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\s{2,}/g, ' ')
 //↑↑↑↑↑↑↑
 //↓↓↓ — 
-.replace(/[\?\!]+(?:\.| \!)/g, (_) => _.replace(/[\. ]/, ''))
+.replace(/([\?\!]+)\./g, '$1')
+.replace(/([\?\!]+) !/g, '$1!')
 .replace(/ ([\!\?]+)(?<=\w+(?<!a|the|:) \1)\.?/g, '$1')
-.replace(/(‘\w+)([\.])’(?:(?<=\s\1\2’)|(?!<))/g, '$1’$2')
+.replace(/(‘\w+)\.’(?:(?<=\s\1\.’)|(?!<))/g, '$1’.')
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
@@ -161,7 +162,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])/g, '$2$1$3$5$4')
 .replace(/(♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, '$1 ')//hair space
 .replace(/(♠+(?<=\/♠+)>)(?=<♠+>)/g, '$1 ')
-.replace(/♠+>/g, (m) => m === '♠>'?'i>':'em>')
+.replace(/♠+>/g, m => m === '♠>'?'i>':'em>')
 //↑↑↑↑↑↑
 .replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
 ////↓↓↓↓↓
@@ -204,7 +205,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
 //↓ misc
-.replace(/\/p>(?=[^<]+<)/g, '/p><p>')//give p to tagless
+.replace(/\/p>(?=[^<♪]+<)/g, '/p><p>')//give p to tagless
 .replace(/-(?<!<[^>]+-)(?![^<]+>)(?<=\b\w\w?\w?-)(?=\w)/g, '-⁠')//u2060
 .replace(/\.(?<=\b(?:M[sr]s?|etc)\.) /g, '<span style="font-size: 0.8em;">.</span> ')
 //↑
@@ -215,8 +216,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑↑↑↑↑ alternative separators:
 //100𝃳000//100༌000//100˙000//100𑀀000//100ॱ000//100ᱸ000//100ʹ000//100՛000
 //place images
-.replace(/䷢䷢䷢(\d+)/g, (_, a) => {
-return (imgs[parseInt(a)-1]);})
+.replace(/䷢䷢䷢(\d+)/g, (_, a) => imgs[parseInt(a)-1])
 
 .replace(/♪/, '')
 .replace(/\bLorem ipsum dolor( sit amet consectetuer adipiscing[^]{1,6}?elit)?/g, '🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴')

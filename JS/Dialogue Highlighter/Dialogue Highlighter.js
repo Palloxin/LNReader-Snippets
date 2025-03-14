@@ -3,18 +3,18 @@
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/“(?<=\bthe “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
-.replace(/[”“\"](?<=\b\w+ [“”\"])(\w+|[\?\!])[”\"]/g, '″$1″')
-.replace(/“(?<=\b\w+ “)(\w+\s\w+)”(?= [a-z])/g, '″$1″')
-.replace(/“(?<=\b[a-z]+ “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
+.replace(/[”“\"](?<=\w .)(\w+|[\?\!])[”\"]/g, '″$1″')
+.replace(/“(?<=\w “)(\w+\s\w+)”(?= [a-z])/g, '″$1″')
+.replace(/“(?<=[a-z] “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
 .replace(/(“\S[^\"”“<]+\s)“([\s\w’]+)”(?=\W[^\"”“<]*?”)/g, '$1″$2″')
-.replace(/[“\"](?<=\b[a-z]+ [“\"])([a-z\s’]+(?<!’))[”\"]/g, '″$1″')
+.replace(/[“\"](?<=[a-z] [“\"])([a-z\s’]+(?<!’))[”\"]/g, '″$1″')
 .replace(/\"(?<=\b(?:or|as?|the|to) \")([A-Za-z’\s]+)\"/g, '″$1″')
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
 .replace(/(?:‘|’(?<![\.,\?!…]’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
 .replace(/”(?=\w)(?<![\s\>\,]”)/g, '” ')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|[^>]“[^”–—]+[–—])”)/g, '“')
-.replace(/[“‘](?=<\/p>)/g, (a) => a === '“' ? '”' : '’' )
+.replace(/[“‘](?=<\/p>)/g, a => a === '“' ? '”' : '’' )
 .replace(/’(?<=(?:<p>|, )’)/g, '‘')
 .replace(/’(?=\w\w\w+)(?<![\s\w]’)/g, '’ ')
 .replace(/[\"“][\"”“](?<=<p>..)/g, '“')
@@ -38,7 +38,7 @@ const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>(?!\s*<
 const colorElement = (x) => {
     x.innerHTML = x.innerHTML
 	.replace(/=\"/g, '=\'')
-        .replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
+	.replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
 	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
 	.replace(/[\u2033]/g, '\"');
 };
