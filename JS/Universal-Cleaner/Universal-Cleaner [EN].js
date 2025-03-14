@@ -215,8 +215,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑↑↑↑↑ alternative separators:
 //100𝃳000//100༌000//100˙000//100𑀀000//100ॱ000//100ᱸ000//100ʹ000//100՛000
 //place images
-.replace(/䷢䷢䷢(\d+)/g, (_, a) => {
-return (imgs[parseInt(a)-1]);})
+.replace(/䷢䷢䷢(\d+)/g, (_, a) => imgs[parseInt(a)-1])
 
 .replace(/♪/, '')
 .replace(/\bLorem ipsum dolor( sit amet consectetuer adipiscing[^]{1,6}?elit)?/g, '🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴')
