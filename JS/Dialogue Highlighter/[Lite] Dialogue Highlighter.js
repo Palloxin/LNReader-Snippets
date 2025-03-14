@@ -10,12 +10,12 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/(?: ([\”’])|([\“‘]) )/g, '$1$2')
 
 ///////↓↓↓↓ — Dialogue highlighter
-const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”]|<ww)([^\"“”]+?)(<br>(?!\s*<br>)[^\"“”]+)?[\"”](?<!=\"|ww>\")/g;
+const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>(?!\s*<br>)[^\"“”]+)?[\"”](?<!=\")/g;
 const colorElement = (x) => {
     x.innerHTML = x.innerHTML
-		.replace(/=\"/g, '=\'')
-		.replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
-		.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
+	.replace(/=\"/g, '=\'')
+	.replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
+	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
 };
 (col = (parent) => {
     if (parent.nodeName === "SCRIPT") return;
