@@ -14,7 +14,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/(?:‘|’(?<![\.,\?!…]’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
 .replace(/”(?=\w)(?<![\s\>\,]”)/g, '” ')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|[^>]“[^”–—]+[–—])”)/g, '“')
-.replace(/[“‘](?=<\/p>)/g, (a) => a === '“' ? '”' : '’' )
+.replace(/[“‘](?=<\/p>)/g, a => a === '“' ? '”' : '’' )
 .replace(/’(?<=(?:<p>|, )’)/g, '‘')
 .replace(/’(?=\w\w\w+)(?<![\s\w]’)/g, '’ ')
 .replace(/[\"“][\"”“](?<=<p>..)/g, '“')
