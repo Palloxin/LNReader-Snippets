@@ -30,8 +30,8 @@ chapter.innerHTML = chapter.innerHTML
 	const bas = b.replace(/(?:<\/?[a-z]+>|\.$)/g, '')
 	let dare = reader.chapter.name.includes(bas);
 	if(dare) return `<h1>~~<spo>${reader.chapter.name}<\/spo></h1>`;
-	else return `${_}`})
-.replace(/~~<spo>/g, (_) => `<spo style="background: hsl(${hh}, ${ss}%, ${ll>3?ll-2:ll<1?ll+5:ll>2?ll+1:ll>1?ll+2:ll+3}%)\" onclick=\"event.preventDefault(); event.stopPropagation()">`)
+	else return _})
+.replace(/~~<spo>/g, S => `<spo style="background: hsl(${hh}, ${ss}%, ${ll>3?ll-2:ll<1?ll+5:ll>2?ll+1:ll>1?ll+2:ll+3}%)\" onclick=\"event.preventDefault(); event.stopPropagation()">`)
 .replace(/π√/, '')
 
 ;
