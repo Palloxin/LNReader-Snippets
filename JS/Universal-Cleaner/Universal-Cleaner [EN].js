@@ -19,7 +19,6 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
 .replace(/\s+(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])/g, '')
 //↓
-.replace(/(<span>.*?)<\/span><span>/g, '$1')
 .replace(/\/span><span>/g, '\/span> <span>')
 //.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↑
