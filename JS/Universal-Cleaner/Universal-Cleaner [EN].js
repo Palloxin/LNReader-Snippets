@@ -3,8 +3,8 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 
 //store images
-.replace(/=(?<=src=)\"[^\"]+\"[^>]*(?=>)/g, (y) => {
-imgs.push(y); return "䷢䷢䷢"+imgs.length;})
+.replace(/=(?<=src=)\"[^\"]+\"[^>]*(?=>)/g, Y => {
+imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↓ — 0 || performance anchors (symbol=♦)
 .replace(/(^[^<]*(?:<input[^>]+>)?)[\s\n]*/, '$1♪')//♦start-chapter
 //↓↓— 1
@@ -35,7 +35,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(?:<br>\s*)+(?=<br>\s*<br>)/g, '')
 .replace(/(?:<br><\/?br>)+(?=<)/g, '')
 //↓↓↓↓↓ — masked letters
-.replace(/[асᴄԁеһіјӏոоοօᴏрԛѕꜱսνᴠԝᴡхⅹуᴢАВСЕНІЈKМΝОРԚЅТԜХ]/g, (aa) => {
+.replace(/[асᴄԁеһіјӏոоοօᴏрԛѕꜱսνᴠԝᴡхⅹуᴢАВСЕНІЈKМΝОРԚЅТԜХ]/g, aa => {
 	const fakers = {
 		а: 'a', с: 'c', ᴄ: 'c', ԁ: 'd', е: 'e', һ: 'h', і: 'i', ј: 'j', ӏ: 'l',
 		ո: 'n', о: 'o', ο: 'o', օ: 'o', ᴏ: 'o', р: 'p', ԛ: 'q', ѕ: 's', ꜱ: 's',
@@ -45,7 +45,7 @@ imgs.push(y); return "䷢䷢䷢"+imgs.length;})
 	return fakers[aa]})
 //↑↑↑↑↑
 //↓ — 2 disabled js
-//%&&&&replace(/\.[a-z](?<=[a-zA-Z]\.[a-z])(?:\.[a-z])+(?!\.[A-Z])/g, (_) => `${_.replace(/\./g, '')}`)//input: ``s.p.a.c.e.s.h.i.p`` —> output: ``spaceship``
+//%&&&&replace(/\.[a-z](?<=[a-zA-Z]\.[a-z])(?:\.[a-z])+(?!\.[A-Z])/g, M => `${M.replace(/\./g, '')}`)//input: ``s.p.a.c.e.s.h.i.p`` —> output: ``spaceship``
 //↑
 //↓↓↓↓↓— 3
 .replace(/(\d) ?(k?m)([2-3])\b/g, '$1$2‡$3★')
