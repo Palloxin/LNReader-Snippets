@@ -3,11 +3,11 @@
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/“(?<=\bthe “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
-.replace(/[”“\"](?<=\b\w+ [“”\"])(\w+|[\?\!])[”\"]/g, '″$1″')
-.replace(/“(?<=\b\w+ “)(\w+\s\w+)”(?= [a-z])/g, '″$1″')
-.replace(/“(?<=\b[a-z]+ “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
+.replace(/[”“\"](?<=\w .)(\w+|[\?\!])[”\"]/g, '″$1″')
+.replace(/“(?<=\w “)(\w+\s\w+)”(?= [a-z])/g, '″$1″')
+.replace(/“(?<=[a-z] “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
 .replace(/(“\S[^\"”“<]+\s)“([\s\w’]+)”(?=\W[^\"”“<]*?”)/g, '$1″$2″')
-.replace(/[“\"](?<=\b[a-z]+ [“\"])([a-z\s’]+(?<!’))[”\"]/g, '″$1″')
+.replace(/[“\"](?<=[a-z] [“\"])([a-z\s’]+(?<!’))[”\"]/g, '″$1″')
 .replace(/\"(?<=\b(?:or|as?|the|to) \")([A-Za-z’\s]+)\"/g, '″$1″')
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
