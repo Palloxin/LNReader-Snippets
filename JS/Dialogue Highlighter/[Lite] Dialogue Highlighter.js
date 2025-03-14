@@ -4,18 +4,18 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/(?:‘|’(?<![\.,\?!…]’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
 .replace(/”(?<=(?:<p>|\: ?)”)/g, '“')
-.replace(/[“‘](?=<\/p>)/g, (a) => a === '“'?'”':'’')
+.replace(/[“‘](?=<\/p>)/g, a => a === '“'?'”':'’')
 .replace(/’(?<=<p>’)/g, '‘')
 .replace(/’(?=\w\w\w+)(?<![\s\w]’)/g, '’ ')
 .replace(/(?: ([\”’])|([\“‘]) )/g, '$1$2')
 
 ///////↓↓↓↓ — Dialogue highlighter
-const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>(?!\s*<br>)[^\"“”]+)?[\"”](?<!=\")/g;
+const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”]|<ww)([^\"“”]+?)(<br>(?!\s*<br>)[^\"“”]+)?[\"”](?<!=\"|ww>\")/g;
 const colorElement = (x) => {
     x.innerHTML = x.innerHTML
-	.replace(/=\"/g, '=\'')
-        .replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
-	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`);
+		.replace(/=\"/g, '=\'')
+		.replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
+		.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
 };
 (col = (parent) => {
     if (parent.nodeName === "SCRIPT") return;
