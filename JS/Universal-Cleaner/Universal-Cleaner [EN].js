@@ -175,7 +175,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 ////↑↑↑↑↑
 //↓↓↓ — 
 .replace(/([\[\(])\s/g, '$1')
-.replace(/([\]\)])(?=\w\w)/g, '$1 ')
+.replace(/[\]\)](?=\w\w)/g, '$& ')
 //↑↑↑
 
 .replace(/-(?<=\b[A-Z]\-)(Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, '-$1'.toLowerCase())
