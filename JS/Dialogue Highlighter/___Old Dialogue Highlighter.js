@@ -17,4 +17,4 @@ const colorElement = (x) => {
 })(document.querySelector('#LNReader-chapter'));
 //////↑↑↑↑ — END
 
-//OLD because it's slow, a lot.
+//OLD because it's slower, a lot.
