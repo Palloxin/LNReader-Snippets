@@ -184,7 +184,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 .replace(/([\,\?\!]+|\.+(?!(?:com|it|net|jpg|png|html)\b))(?=[A-Za-z])(?<=\b(?!www\.)\w\w+[\,\?\!\.]+)/g, '$1 ')
 .replace(/—(?<=\w—)(?=\w)/g, ' — ')//sixth spaces
-.replace(/\.([Mm])\.,(?<=[AaPp]\.[Mm]\.,)/g, '\1,')//5 a.m.,
+.replace(/\.([Mm])\.,(?<=[AaPp]\.[Mm]\.,)/g, '$1,')//5 a.m.,
 .replace(/([\?!\.…][”“’\"])\.<(?<![”“\"‘]\1\.<)/g, '$1<')
 .replace(/(![”’\"])(?<=<p>[“‘\"][^”“\"\/]*?!.)\.<\/p>/g, '$1</p>')
 //↓↓ — *
