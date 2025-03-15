@@ -178,7 +178,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/[\]\)](?=\w\w)/g, '$& ')
 //↑↑↑
 
-.replace(/-(?<=\b[A-Z]\-)(Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, _ => _.toLowerCase())
+.replace(/-(?<=\b[A-Z]\-)(?:Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, _ => _.toLowerCase())
 //↓↓↓↓↓ \w to avoid "A grade" at the start of a phrase. Not applied to the beginning of phrases on purpose, even for B or C grade etc..
 //↑↑↑↑↑
 
