@@ -92,7 +92,6 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\'(?<![\w=]\')([^\><\']+\'(?:[^><\']+\')*)(?=\W[^\']+?<\/p>)/g, (_, a) => `${a.replace(/'(?<=\s.)/g, '‘').replace('\'', '’')}`)
 .replace(/\'(?<!\<\/?p>.)(?!<\/?p>)(?<=<p>[^\']+?\')(?=[^\w\'][^\']+?<\/p>)/g, '’')//<p>[^\']+?
 //↑↑↑ - https://jsfiddle.net/Lgyjthc1/8/
-//↑↑↑
 //↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
 .replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`)
