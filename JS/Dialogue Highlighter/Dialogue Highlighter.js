@@ -26,7 +26,7 @@ chapter.innerHTML = chapter.innerHTML
 //↓simulation to check the pairs
 .replace(/([\"“”](?<!\=\")(?!\s?[\"“”>]|<\/| [a-z\-]+=\")(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?!\s)))/g, '∅¢$1∅¢')
 .replace(/∅¢[\"“”](\,)?\s/g, '$1 \“')
-.replace(/(\"∅¢)(?=[A-Za-z])/g, '$1 ')
+.replace(/\"∅¢(?=[A-Za-z])/g, '$& ')
 .replace(/, \.∅¢\s*/g, '∅¢')
 .replace(/∅¢/g, '')
 //↑
