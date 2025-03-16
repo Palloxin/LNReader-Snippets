@@ -91,10 +91,9 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 .replace(/\'(?<![\w=]\')([^><]+?)\'(?![^\'<]+\')/g, (_, a) => {
     let t = /\'(?<!(?:[\s\W]|[^Ss]).)/g;
-    let z = a.match(t);
-    return `'${z?a.replace(t, '’').replace(/’(?<=\'[^\'’]+’)(?=[^\']+$)/, '\''):a}'`})
+    return `'${a.match(t)?a.replace(t, '’').replace(/’(?<=\'[^\'’]+’)(?=[^\']+$)/, '\''):a}'`})
 .replace(/\'(?<!\<\/?p>.)(?!<\/?p>)(?<=<p>[^\']+?\')(?=[^\w\'][^\']+?<\/p>)/g, '’')//<p>[^\']+?
-// - https://jsfiddle.net/ob9w8qez/1/
+// - https://jsfiddle.net/6wf8bnxr/
 //↑↑↑ - https://jsfiddle.net/69zbg81a/1/
 //↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
