@@ -91,11 +91,11 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 .replace(/\'(?<![\w=]\')([^><]+?)\'(?![^\'<]+\')/g, (_, a) => {
     let t = /\'(?<!(?:[\s\W]|[^Ss]).)/g;
-    let z = a.match(t)?.length;
-    return `'${z?a.replace(t, '’'):a}'`})
+    let z = a.match(t);
+    return `'${z?a.replace(t, '’').replace(/’(?<=\'[^\'’]+’)(?=[^\']+$)/, '\''):a}'`})
 .replace(/\'(?<!\<\/?p>.)(?!<\/?p>)(?<=<p>[^\']+?\')(?=[^\w\'][^\']+?<\/p>)/g, '’')//<p>[^\']+?
-// - https://jsfiddle.net/nxs3Loz7/2/
-//↑↑↑ - [altermative script]: https://jsfiddle.net/69zbg81a/1/
+// - https://jsfiddle.net/ob9w8qez/1/
+//↑↑↑ - https://jsfiddle.net/69zbg81a/1/
 //↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
 .replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`)
