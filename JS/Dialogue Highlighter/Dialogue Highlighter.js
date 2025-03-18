@@ -26,7 +26,7 @@ chapter.innerHTML = chapter.innerHTML
 //↓simulation to check the pairs
 .replace(/([\"“”](?<!\=\")(?!\s?[\"“”>]|<\/| [a-z\-]+=\")(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?!\s)))/g, '∅¢$1∅¢')
 .replace(/∅¢[\"“”](\,)?\s/g, '$1 \“')
-.replace(/(\"∅¢)(?=[A-Za-z])/g, '$1 ')
+.replace(/\"∅¢(?=[A-Za-z])/g, '$& ')
 .replace(/, \.∅¢\s*/g, '∅¢')
 .replace(/∅¢/g, '')
 //↑
@@ -34,20 +34,11 @@ chapter.innerHTML = chapter.innerHTML
 ////↑↑↑↑↑
 
 ///////↓↓↓↓ — Dialogue highlighter
-const regex = /[\"“”](?<!\=\")(?!>|\s?[\"“”])([^\"“”]+?)(<br>(?!\s*<br>)[^\"“”]+)?[\"”](?<!=\")/g;
-const colorElement = (x) => {
-    x.innerHTML = x.innerHTML
-	.replace(/=\"/g, '=\'')
-	.replace(/\"(?=>| [a-z\-]+=\")/g, '\'')
-	.replace(regex, `"<span style="color: #FFFFEB;">$1$2</span>"`)
-	.replace(/[\u2033]/g, '\"');
-};
-(col = (parent) => {
-    if (parent.nodeName === "SCRIPT") return;
-    const childsWith = [...parent.children].filter((ch) =>
-        /[\"“”]/.exec(ch.innerText)
-    );
-    if (!childsWith.length) colorElement(parent);
-    else childsWith.forEach((ch) => col(ch));
-})(document.querySelector('#LNReader-chapter'));
+chapter = document.querySelector('#LNReader-chapter');
+chapter.innerHTML = chapter.innerHTML
+.replace(/<\/?(?:p|div|h[1-9r]|br>\s*<br)>/g, '𛖠$&')//\u1b5a0
+.replace(/(=\"[^\"]+)\" /g, '$1𛖠\' ')
+.replace(/[\"“”](?<!\=\")(?!>|\s?[\"“”]| [a-z\-]+=\"|<ww)([^\"“”𛖠]+?)(<br>[^\"“”'𛖠]+)?[\"”](?<!=\"| [a-z\-]+=\"|ww>\")(?![^𛖠]+<(?:p|div|h[1-9]|br>\s*<br)>)/g, `"<ww>$1$2</ww>"`)
+.replace(/[\u2033]/g, '\"')
+.replace(/𛖠/g, '');
 //////↑↑↑↑ — END

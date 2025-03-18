@@ -19,7 +19,6 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
 .replace(/\s+(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])/g, '')
 //↓
-.replace(/(<span>.*?)<\/span><span>/g, '$1')
 .replace(/\/span><span>/g, '\/span> <span>')
 //.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
 //↑
@@ -90,9 +89,12 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑↑
 //↓↓↓  — apostrophe ( ' => ’ )
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
-.replace(/\'(?<![\w=]\')([^\"><\']+)\'(?<=\w\')([^\"><\']+)\'(?=\W[^\']+?<\/p>)/g, '\'$1’$2\'')
-.replace(/\'(?<=<p>[^\']+\')(?=[^\w\'][^\']+?<\/p>)/g, '’')
-//↑↑↑
+.replace(/\'(?<![\w=]\')([^><]+?)\'(?![^\'<]+\')/g, (_, a) => {
+    let t = /\'(?<!(?:[\s\W]|[^Ss]).)/g;
+    return `'${a.match(t)?a.replace(t, '’').replace(/’(?<=\'[^\'’]+’)(?=[^\']+$)/, '\''):a}'`})
+.replace(/\'(?<!\<\/?p>.)(?!<\/?p>)(?<=<p>[^\']+?\')(?=[^\w\'][^\']+?<\/p>)/g, '’')//<p>[^\']+?
+// - https://jsfiddle.net/6wf8bnxr/
+//↑↑↑ - https://jsfiddle.net/69zbg81a/1/
 //↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
 .replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`)
@@ -128,7 +130,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↓simulation to check the pairs
 .replace(/([\"“”](?<!\=\")(?!\s?[\"“”>]|<\/| [a-z\-]+=\")(?:<?[^\"“”<]+?(?:<[^\"“”<]+?)?)(?:<br>[^\"“”<]+)?([\"”]|“(?=\S)))/g, '∅¢$1∅¢')
 .replace(/∅¢[\"“”](\,)?\s/g, '$1 \“')
-.replace(/(\"∅¢)(?=[A-Za-z])/g, '$1 ')
+.replace(/\"∅¢(?=[A-Za-z])/g, '$& ')
 .replace(/, \.∅¢\s*/g, '∅¢')
 .replace(/∅¢/g, '')
 //↑
@@ -161,7 +163,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([”\"]\.?(?=<)|<♠+>)([“\"]|<\/♠+>)/g, '$2$1')
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])/g, '$2$1$3$5$4')
 .replace(/(♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, '$1 ')//hair space
-.replace(/(♠+(?<=\/♠+)>)(?=<♠+>)/g, '$1 ')
+.replace(/♠+(?<=\/♠+)>(?=<♠+>)/g, '$& ')
 .replace(/♠+>/g, m => m === '♠>'?'i>':'em>')
 //↑↑↑↑↑↑
 .replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
@@ -176,21 +178,21 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 ////↑↑↑↑↑
 //↓↓↓ — 
 .replace(/([\[\(])\s/g, '$1')
-.replace(/([\]\)])(?=\w\w)/g, '$1 ')
+.replace(/[\]\)](?=\w\w)/g, '$& ')
 //↑↑↑
 
-.replace(/-(?<=\b[A-Z]\-)(Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, (_, a)=>`-${a.toLowerCase()}`)
+.replace(/-(?<=\b[A-Z]\-)(?:Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, _ => _.toLowerCase())
 //↓↓↓↓↓ \w to avoid "A grade" at the start of a phrase. Not applied to the beginning of phrases on purpose, even for B or C grade etc..
 //↑↑↑↑↑
 
-.replace(/([\,\?\!]+|\.+(?!(?:com|it|net|jpg|png|html)\b))(?=[A-Za-z])(?<=\b(?!www\.)\w\w+[\,\?\!\.]+)/g, '$1 ')
+.replace(/(?:[\,\?\!]+|\.+(?!(?:com|it|net|jpg|png|html)\b))(?=[A-Za-z])(?<=\b(?!www\.)\w\w+[\,\?\!\.]+)/g, '$& ')
 .replace(/—(?<=\w—)(?=\w)/g, ' — ')//sixth spaces
-.replace(/\.([Mm])\.,(?<=[AaPp]\.[Mm]\.,)/g, '\1,')//5 a.m.,
+.replace(/\.([Mm])\.,(?<=[AaPp]\.[Mm]\.,)/g, '$1,')//5 a.m.,
 .replace(/([\?!\.…][”“’\"])\.<(?<![”“\"‘]\1\.<)/g, '$1<')
 .replace(/(![”’\"])(?<=<p>[“‘\"][^”“\"\/]*?!.)\.<\/p>/g, '$1</p>')
 //↓↓ — *
-.replace(/\*\s?(?![^\w\*]+\*)([^\s”“\*]+) ?\*(?![a-z]) ?/g, '*$1* ')
-.replace(/\* (?:(?<=\>\* )|(?=\*[^\w]))/g, '*')
+.replace(/\*\s?(?![^\w\*]+\*)([^\s”“\*]+) ?\*(?![a-z\.]) ?/g, '*$1* ')
+.replace(/\* (?:(?<=\>\* )|(?=\*\W))/g, '*')
 .replace(/\*(?<=\>\*)([^\*\<\,\?\"”“’‘]{2,18}?) \*/g, '*$1*')
 //↑↑
 //Test: "* * *! * * *. * * * * *!";
@@ -206,8 +208,8 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑
 //↓ misc
 .replace(/\/p>(?=[^<♪]+<)/g, '/p><p>')//give p to tagless
-.replace(/-(?<!<[^>]+-)(?![^<]+>)(?<=\b\w\w?\w?-)(?=\w)/g, '-⁠')//u2060
-.replace(/\.(?<=\b(?:M[sr]s?|etc)\.) /g, '<span style="font-size: 0.8em;">.</span> ')
+.replace(/-(?<!<[^>]+?-)(?![^<]+?>)(?<=\b\w\w?\w?-)(?=\w)/g, '-⁠')//u2060
+.replace(/\.(?<=\b(?:M[sr]s?|etc)\.)(?=[ ,])/g, '<span style="font-size: 0.8em;">.</span>')
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±±')
