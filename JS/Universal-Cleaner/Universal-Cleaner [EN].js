@@ -147,8 +147,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\s{2,}/g, ' ')
 //↑↑↑↑↑↑↑
 //↓↓↓ — 
-.replace(/([\?\!]+)\./g, '$1')
-.replace(/([\?\!]+) !/g, '$1!')
+.replace(/[\?\!]+(?:\.| !)/g, _ => _.replace(/[\. ]/, ''))
 .replace(/ ([\!\?]+)(?<=\w+(?<!a|the|:) \1)\.?/g, '$1')
 .replace(/(‘\w+)\.’(?:(?<=\s\1\.’)|(?!<))/g, '$1’.')
 .replace(/’ (?<= o’ )/g, '’')
@@ -169,11 +168,11 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
 ////↓↓↓↓↓
 //’d => had
-.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|accident|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\b)/g, ' had ')
+.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|accident|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|flown|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won|worn)\b)/g, ' had ')
 .replace(/’d(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|(?:actu|accident|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?(?:had\s))/g, ' had ')
 //’s => has
 .replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|(?:actu|accident|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?(?:(?:exist|happen|remain)ed|been|become|began|got|had)\b(?=\s))/g, ' has ')
-.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won)\s(?:me|them|us|her|him|it)\b)/g, ' has ')
+.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|flown|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|thought|thrown|told|understood|woken|won|worn)\s(?:me|them|us|her|him|it)\b)/g, ' has ')
 //||has given us – he has invited us||
 ////↑↑↑↑↑
 //↓↓↓ — 
@@ -191,9 +190,10 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([\?!\.…][”“’\"])\.<(?<![”“\"‘]\1\.<)/g, '$1<')
 .replace(/(![”’\"])(?<=<p>[“‘\"][^”“\"\/]*?!.)\.<\/p>/g, '$1</p>')
 //↓↓ — *
-.replace(/\*\s?(?![^\w\*]+\*)([^\s”“\*]+) ?\*(?![a-z\.]) ?/g, '*$1* ')
+.replace(/\*\s?(?![^\w\*]+\*)([^\s”“\*]+) ?\*(?![a-z\.,\?’”!]|<\/p>) ?/g, '*$1* ')
+//.replace(/>*(\S[^<”“\"\'‘\*]+?) \*<\//g, '>*$1*</')
 .replace(/\* (?:(?<=\>\* )|(?=\*\W))/g, '*')
-.replace(/\*(?<=\>\*)([^\*\<\,\?\"”“’‘]{2,18}?) \*/g, '*$1*')
+.replace(/\*(?<=>.)(?:(\S[^\*\<\,\?\"”“’‘]{2,18}?) \*|(\S[^<”“\"\'‘\*]+?) \*(?=<\/))/g, '*$1$2*')
 //↑↑
 //Test: "* * *! * * *. * * * * *!";
 //↓↓↓↓↓
