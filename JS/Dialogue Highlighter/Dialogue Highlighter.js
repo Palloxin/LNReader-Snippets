@@ -37,8 +37,8 @@ chapter.innerHTML = chapter.innerHTML
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/<\/?(?:p|div|h[1-9r]|br>\s*<br)>/g, '𛖠$&')//\u1b5a0
-.replace(/(=\"[^\"]+)\" /g, '$1𛖠\' ')
-.replace(/[\"“”](?<!\=\")(?!>|\s?[\"“”]| [a-z\-]+=\"|<ww)([^\"“”𛖠]+?)(<br>[^\"“”'𛖠]+)?[\"”](?<!=\"| [a-z\-]+=\"|ww>\")(?![^𛖠]+<(?:p|div|h[1-9]|br>\s*<br)>)/g, `"<ww>$1$2</ww>"`)
+.replace(/=\"([^\"]+)\"(?=[> ])/g, '=\'$1\'')
+.replace(/[\"“”](?<!\=\")(?!>|\s?[\"“”]| [a-z\-]+=\"|<ww)([^\"“”𛖠]+?)(<br>[^\"“”'𛖠]+)?[\"”](?<!=\"| [a-z\-]+=\"|ww>\")(?![^𛖠]+<(?:p|div|h[1-9]|br>\s*<br)>)/g, `"⁠<span style="color: #FFFFEB;">$1$2</span>⁠"`)//2060
 .replace(/[\u2033]/g, '\"')
 .replace(/𛖠/g, '');
-//////↑↑↑↑ — END
+//////↑↑↑↑ — END - https://jsfiddle.net/L6pskwc2/2/
