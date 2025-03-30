@@ -197,7 +197,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↑↑
 //Test: "* * *! * * *. * * * * *!";
 //↓↓↓↓↓
-.replace(/<\/p>(?!<p>[a-z])(?<=[^\.]\w<\/p>)/g, '.</p>')//Dot missing at the end of <p>
+.replace(/<\/p>(?!<p>[a-z])(?<=[^\.][^\W_]<\/p>)/g, '.</p>')//Dot missing at the end of <p>
 //↑↑↑↑↑
 //↓↓↓ fix missing “ or ” on simple|short paragraphs
 .replace(/([\"”“](?<=<p>.)[\w’]+)((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2$3”')
