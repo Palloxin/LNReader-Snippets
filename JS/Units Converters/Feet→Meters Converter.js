@@ -7,9 +7,9 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/\b(square )?f(ee|oo)t\b/g, (_, i,l) => `™™™f${l==='ee'?'%%':'%'}t${i?'²':''}`)
 .replace(/,(?=\d\d\d(?:\,|\d\d\d)* ™™™f%+t)/g, '')
-.replace(/™™™f(%+t²?) (?=tall|thick|long|wide|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(?:to)?\b))/g, '⋮⋮⋮f$1 √√')
+.replace(/™™™f(%+t²?) (?=tall|thick|long|wide|height|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(?:to)?\b))/g, '⋮⋮⋮f$1 √√')
 .replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about|approximately)? ?|as long as | the (?=[^™⋮<]+™+f%t))(?=[otfsen\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)(?=f%+t)/g, '⋮⋮⋮')
-.replace(/⋮⋮⋮f(%+)t(?<=\b((?<![efhnrx]ty-)(?:two|three|four|five|six|seven|eight|nine)|(?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:\-(?:one|two|three|four|five|six|seven|eight|nine))?|(?:thir|four|fif|six|seven|eigh|nine)teen|ten|eleven|twelve|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮f%+t)(²)?/g, (_,z, a,b,c,d) => {
+.replace(/⋮⋮⋮f(%+)t(?<=\b((?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:-(?:one|two|three|four|five|six|seven|eight|nine))?|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|(?:thir|four|fif|six|seven|eigh|nine)teen|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮f%+t)(²)?/g, (_,z, a,b,c,d) => {
 	const mi = {hundred:100, thousand:1000}[c] || 1;
 	let ff = 0.305;
 	if(d) ff = ff **2;
@@ -28,7 +28,6 @@ chapter.innerHTML = chapter.innerHTML
 	let feeinc = (+a * 0.305) + (+b * 0.0254);
 	return ` ${feeinc.toFixed(2)}m`})
 
-
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||each had 5 feet of canopy
-//jsfidle: https://jsfiddle.net/tpsdc9j3/2/
+//jsfidle: https://jsfiddle.net/cvzj97Ln/2/
 //////↑↑↑↑↑ — END

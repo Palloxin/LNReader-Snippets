@@ -75,7 +75,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…(?=[\u200a\w])/g, '…\u2060')
 ///↑↑↑↑↑
 //↓↓↓↓— 
-.replace(/\.(?=\d\d+)(?<=\s\.)/g, '✓+®.')//★↓
+.replace(/\.(?=\d\d)(?<=\s\.)/g, '✓+®.')//★↓
 .replace(/®(?=\.\d+%)/g, '®0')//↓
 .replace(/\s(?=[\.\,\]\)\:\;]+)(?<=[\w\]].)/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
@@ -83,7 +83,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\/watch\? (?=\w)/g, '/watch?')//yt links
 .replace(/(“\w+)\.”\./g, '$1”.')
 .replace(/([\"“”])(?<!\=\")(?!>|\s[\"“”])([^\"“”<]+)([\"”])(?<!=\")/g, '→→$1$2$3←←')
-.replace(/\,([\"”](?=←←)|[\'\]’](?=\W))/g, '$1,')//comma
+.replace(/\,([\"”]←←(?!(?:[^\"“”<]+(?:[\"”“]|<(?!\/p>)))(?:[a-z](?<=[\"”“].)|[^a-z](?<![\"”“].)))|[\'\]’](?=\W))/g, '$1,')//comma
 .replace(/←←|→→/g, '')
 .replace(/,(?:,[, ]*|(?![\s\d\”\"\’;])(?<=\D\,))/g, ', ')
 //↑↑↑↑
@@ -91,7 +91,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\'(?<=[A-Za-z]\')(?=[A-Za-z])/g, '’')
 .replace(/\'(?<![\w=]\')([^><]+?)\'(?![^\'<]+\')/g, (_, a) => {
     let t = /\'(?<!(?:[\s\W]|[^Ss]).)/g;
-    return `'${a.match(t)?a.replace(t, '’').replace(/’(?<=\'[^\'’]+’)(?=[^\']+$)/, '\''):a}'`})
+    return `'${t.test(a)?a.replace(t, '’').replace(/’(?<=\'[^\'’]+’)(?=[^\']+$)/, '\''):a}'`})
 .replace(/\'(?<!\<\/?p>.)(?!<\/?p>)(?<=<p>[^\']+?\')(?=[^\w\'][^\']+?<\/p>)/g, '’')//<p>[^\']+?
 // - https://jsfiddle.net/6wf8bnxr/
 //↑↑↑ - https://jsfiddle.net/69zbg81a/1/
@@ -147,8 +147,8 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\s{2,}/g, ' ')
 //↑↑↑↑↑↑↑
 //↓↓↓ — 
-.replace(/[\?\!]+(?:\.| !)/g, _ => _.replace(/[\. ]/, ''))
-.replace(/ ([\!\?]+)(?<=\w+(?<!a|the|:) \1)\.?/g, '$1')
+.replace(/([\?\!]+)(?:\.| (?=\!))/g, '$1')
+.replace(/ (?!\?\?\?)([\!\?]+)(?<=\w+(?<!a|the|:) \1)\.?/g, '$1')
 .replace(/(‘\w+)\.’(?:(?<=\s\1\.’)|(?!<))/g, '$1’.')
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
@@ -197,7 +197,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↑↑
 //Test: "* * *! * * *. * * * * *!";
 //↓↓↓↓↓
-.replace(/<\/p>(?!<p>[a-z])(?<=[^\.]\w<\/p>)/g, '.</p>')//Dot missing at the end of <p>
+.replace(/<\/p>(?!<p>[a-z])(?<=[^\.][^\W_]<\/p>)/g, '.</p>')//Dot missing at the end of <p>
 //↑↑↑↑↑
 //↓↓↓ fix missing “ or ” on simple|short paragraphs
 .replace(/([\"”“](?<=<p>.)[\w’]+)((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2$3”')
