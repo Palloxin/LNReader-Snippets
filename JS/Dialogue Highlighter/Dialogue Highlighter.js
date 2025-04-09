@@ -36,9 +36,9 @@ chapter.innerHTML = chapter.innerHTML
 ///////↓↓↓↓ — Dialogue highlighter
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
-.replace(/<\/?(?:p|div|h[1-9r]|br>\s*<br)>/g, '𛖠$&')//\u1b5a0
+.replace(/<\/?(?:p|div|h[1-9r]|br>\s*<br)(?:>| [^<>]+>)/g, '𛖠$&')//\u1b5a0
 .replace(/=\"([^\"]+)\"(?=[> ])/g, '=\'$1\'')
-.replace(/[\"“”](?<!\=\")(?!>|\s?[\"“”]| [a-z\-]+=\")(\s*<\/[^>]+>)?<([^\"“”𛖠]+?)(<br>[^\"“”'𛖠]+)?[\"”](?<!=\"| [a-z\-]+=\")(?![^𛖠]+<(?:p|div|h[1-9]|br>\s*<br)>)/g, `"⁠$1<span style="color: #FFFFEB;">$2$3</span>⁠"`)//2060
+.replace(/[\"“”](?<!\=\")(?!>|\s?[\"“”]| [a-z\-]+=\")((?:\s*<\/[^>]+>)+)?<([^\"“”𛖠]+?)(<br>[^\"“”'𛖠]+)?[\"”](?<!=\"| [a-z\-]+=\")(?![^𛖠]+<(?:p|div|h[1-9]|br>\s*<br)>)/g, `"⁠$1<span style="color: #FFFFEB;">$2$3</span>⁠"`)//2060
 .replace(/[\u2033]/g, '\"')
 .replace(/𛖠/g, '');
 //////↑↑↑↑ — END - https://jsfiddle.net/L6pskwc2/2/
