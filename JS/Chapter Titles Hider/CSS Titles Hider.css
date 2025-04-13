@@ -1,14 +1,15 @@
 spo {
-    color: transparent;
-    border-radius: 0.19vh;
-    box-decoration-break: clone;
- -webkit-box-decoration-break: clone;
+   color: transparent !important;
+   border-radius: 0.19vh;
+   box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+   user-select: none;
 }
 spo:active {
-    color: inherit;
+    color: inherit !important;
     user-select: none;
 }
 spo:not(:active), spo:not(:active) * {
     transition-duration: 500ms;
-    color: transparent;
+    color: transparent !important;
 }
