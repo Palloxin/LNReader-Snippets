@@ -96,7 +96,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 // - https://jsfiddle.net/6wf8bnxr/
 //↑↑↑ - https://jsfiddle.net/69zbg81a/1/
 //↓
-.replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))/g, '’')
+.replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))(?<=\w)/g, '’')
 .replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`)
 //↑
 	
