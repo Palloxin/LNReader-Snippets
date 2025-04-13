@@ -56,7 +56,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 	return hdigg[+a]})
 //↑↑↑
 ///↓↓↓↓↓— three dots
-.replace(/(?:\. ?…|…\.\.)/g, '….')
+.replace(/\. ?…|…\.\.(?!\.)/g, '….')
 .replace(/(?:\s?\.\.\.|\s…\s*|(?:\s(?<!\..))?\. \. \.(?! \.) ?)/g, '…')
 .replace(/\.\.\b/g, '‥')
 .replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=\w[\w’\'])/g, '…⅞⅘ ')//thin space
