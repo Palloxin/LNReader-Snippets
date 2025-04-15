@@ -13,8 +13,8 @@ chapter.innerHTML = chapter.innerHTML
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/<\/?(?:p|div|h[1-9r]|br>\s*<br)(?:>| [^>]+>)/g, '𛖠$&')//\u1b5a0
-.replace(/=\"([^\"]+)\"(?=[> ])/g, '=\'÷°÷$1÷°÷\'')
-.replace(/[\"“”](?<!\=\")(?!>|\s?[\"“”]| [a-z\-]+=\")((?:\s*<\/[^>]+>)+)?([^\"“”𛖠]+?)(<br>[^\"“”'𛖠]+)?[\"”](?<!=\"| [a-z\-]+=\")(?![^𛖠]+<(?:p|div|h[1-9]|br>\s*<br)>)/g, `"⁠$1<span style='color: #FFFFEB;'>$2$3</span>⁠"`)//2060
-.replace(/÷°÷/g, '')
+.replace(/=\"([^\"]+)\"(?=[> ])/g, '=÷°÷\'$1÷°÷\'')
+.replace(/[\"“”](?!\s?[\"“”]| [a-z\-]+=\")((?:\s*<\/[^>]+>)+)?([^\"“”𛖠]+?)(<br>[^\"“”'𛖠]+)?[\"”](?![^𛖠]+<(?:p|div|h[1-9]|br>\s*<br)>)/g, `"⁠$1<span style=÷°÷'color: #FFFFEB;÷°÷'>$2$3</span>⁠"`)//2060
+.replace(/÷°÷'/g, '\"')
 .replace(/𛖠/g, '');
 //////↑↑↑↑ — END
