@@ -17,7 +17,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 ///↓↓↓↓↓— 2
 .replace(/<p [^>]+>/g, '<p>')
 .replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
-.replace(/\s+(?:(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])|(<\/(?:[abi]|em|span|strong)>))/g, (_, a) => a?`${a} `:'') 
+.replace(/\s+(?:(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])|((?:<\/(?:[abi]|em|span|strong)>\s*)+))/g, (_, a) => a?`${a.replace(/\s/g, '')} `:'') 
 //↓
 .replace(/\/span><span>/g, '\/span> <span>')
 //.replace(/<\/?span>(?:(?=<\/p>)|(?<=<p><span>))/g, '')
