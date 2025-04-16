@@ -1,7 +1,8 @@
 //Cleaning of quotation marks contexts
-//↓↓↓↓quotation marks => DOUBLE PRIME 
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
+.replace(/(?:<span>(?:[^<]*<(?!(?:span|\/?p)>))+\/span>(?:[^<]*<(?!\/?(?:p|span)>)[^>]+>)*){2,}/g, _ => `${_.replace(/<\/span>(.*?)<span>/g, '$1')}`)//span clog - https://jsbench.me/w0m9jpmj80
+//↓↓↓↓quotation marks => DOUBLE PRIME 
 .replace(/“(?<=\bthe “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
 .replace(/[”“\"](?<=\w .)(\w+|[\?\!])[”\"]/g, '″$1″')
 .replace(/“(?<=\w “)(\w+\s\w+)”(?= [a-z])/g, '″$1″')
