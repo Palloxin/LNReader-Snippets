@@ -19,7 +19,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
 .replace(/\s+(?:(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])|((?:<\/(?:[abi]|em|span|strong)>\s*)+))/g, (_, a) => a?`${a.replace(/\s/g, '')} `:'') 
 //↓
-.replace(/(?:<span>(?:[^<]*<(?!(?:span|\/?p)>))+\/span>(?:[^<]*<(?!\/?(?:p|span)>)[^>]+>)*){2,}/g, _ => `${_.replace(/<\/span>(.*?)<span>/g, '$1')}`)//span clog - https://jsbench.me/w0m9jpmj80
+.replace(/(?:<span>(?:[^<]*<(?!(?:span|\/?p)>))+\/span>[^<]*(?:<(?!\/?(?:p|span)>)[^>]+>[^<]*)*){2,}/g, _ => `${_.replace(/<\/span>(.*?)<span>/g, '$1')}`)//span clog - https://jsbench.me/w0m9jpmj80
 //↑
 .replace(/<br>\s*(?=<\/?p>)/g, '')
 ///↑↑↑↑↑
