@@ -45,7 +45,7 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/<\/?(?:p|div|h[1-9r]|br>\s*<br)(?:>| [^>]+>)/g, '𛖠$&')//\u1b5a0
 .replace(/=\"([^\"]+)\"(?=[> ])/g, '=÷°÷\'$1÷°÷\'')
-.replace(/[\"“”](?!\s?[\"“”])[^\"“”𛖠]+[\"”]/g, _ => `∆∆${_.replace(/(<[^\/!][^>]*>)([^<\"”]*[\"”])/, '$2¶¶$1')}`)//move open tag near end of dialogue
+.replace(/[\"“”](?!\s?[\"“”])[^\"“”𛖠]+[\"”](?<!ww>\")/g, _ => `∆∆${_.replace(/(<[^\/!][^>]*>)([^<\"”\w]*[\"”])/, '$2¶¶$1')}`)//move open tag near end of dialogue
 .replace(/∆∆[\"“”](?!\s?[\"“”])((?:\s*<\/[^>]+>)+)?([^\"“”𛖠]+)[\"”](?:¶¶(<[^>]+>))?/g, `"$1<span style=÷°÷\'color: #FFFFEB÷°÷\'>$2<\/span>$3⁠"`)//2060
 .replace(/“\"⁠<([^”“\"]+)\"”/g, '““⁠<$1””')
 .replace(/[\u2033]/g, '\"')
