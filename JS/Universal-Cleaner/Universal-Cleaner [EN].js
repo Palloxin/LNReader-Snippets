@@ -58,8 +58,9 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\. ?…|…\.\.(?!\.)/g, '….')
 .replace(/(?:\s?\.\.\.|\s…\s*|(?:\s(?<!\..))?\. \. \.(?! \.) ?)/g, '…')
 .replace(/\.\.\b/g, '‥')
-.replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=\w[\w’\'])/g, '…⅞⅘ ')//thin space
+.replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=[A-Z]|[a-z])/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
+.replace(/…(?<=[\"“].)\s/g, '…')
 .replace(/…(?<![\w\'\"”’\]\?]…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’\'](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
@@ -72,7 +73,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/…([a-zA-Z][a-zA-Z\s]{1,20})…/g, '‥$1…')
 .replace(/…I(?<=\bI…I)(?= ?[A-Za-z])/g, '-I')
 .replace(/…(?=[\u200a\w])/g, '…\u2060')
-///↑↑↑↑↑
+///↑↑↑↑↑ — https://jsfiddle.net/f32r74q1/1/
 //↓↓↓↓— 
 .replace(/\.(?=\d\d)(?<=\s\.)/g, '✓+®.')//★↓
 .replace(/®(?=\.\d+%)/g, '®0')//↓
