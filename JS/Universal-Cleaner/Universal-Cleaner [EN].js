@@ -60,7 +60,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/\.\.\b/g, '‥')
 .replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=[A-Z]|[a-z])/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
-.replace(/…(?<=[\"“].)\s/g, '…')
+.replace(/…(?<=\W[\"\"‘“].)\s/g, '…')
 .replace(/…(?<![\w\'\"”’\]\?]…)…?\s(?=\w)/g, '…')
 .replace(/…(?<=[^’\'](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
