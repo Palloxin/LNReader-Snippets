@@ -24,7 +24,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/÷×/g, '')
 .replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?(?: √√)?\s*/g, (_,z, a) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t `)
 
-.replace(/(\d)[\'’](?<=\s\d.)(\d(?!\d))\"?/g, (_, a,b) => {
+.replace(/(\d)[\'’](?<=\s\d.)(\d(?!\d))\"?(?: ft\b)?/g, (_, a,b) => {
 	let feeinc = (+a * 0.305) + (+b * 0.0254);
 	return ` ${feeinc.toFixed(2)}m`})
 
