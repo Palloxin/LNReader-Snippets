@@ -8,7 +8,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/\b(square )?f(ee|oo)t\b/g, (_, i,l) => `™™™f${l==='ee'?'%%':'%'}t${i?'²':''}`)
 .replace(/,(?=\d\d\d(?:\,|\d\d\d)* ™™™f%+t)/g, '')
 .replace(/™™™f(%+t²?) (?=tall|thick|long|wide|height|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(?:to)?\b))/g, '⋮⋮⋮f$1 √√')
-.replace(/™™™(?<=(?:(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about|approximately)? ?|as long as | the (?=[^™⋮<]+™+f%t))(?=[otfsen\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)(?=f%+t)/g, '⋮⋮⋮')
+.replace(/™™™(?<=(?:\b(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about|approximately)? ?|within |as long as | the (?=[^™⋮<]+™+f%t))(?=[otfsen\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)(?=f%+t)/g, '⋮⋮⋮')
 .replace(/⋮⋮⋮f(%+)t(?<=\b((?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:-(?:one|two|three|four|five|six|seven|eight|nine))?|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|(?:thir|four|fif|six|seven|eigh|nine)teen|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮f%+t)(²)?/g, (_,z, a,b,c,d) => {
 	const mi = {hundred:100, thousand:1000}[c] || 1;
 	let ff = 0.305;
