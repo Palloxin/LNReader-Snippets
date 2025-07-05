@@ -14,6 +14,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/&nbsp;/g, '\u00a0')//to include it with \s
 .replace(/\s+(?:(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])|((?:<\/(?:[abi]|em|span|strong)>\s*)+))/g, (_, a) => a?`${a.replace(/\s/g, '')} `:'')//move out outer spaces
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
+.replace(/=\"(?=[ >])/g, '=\"\"')//weird case
 //↑↑
 ///↓↓↓↓↓— 2
 .replace(/<p [^>]+>/g, '<p>')
