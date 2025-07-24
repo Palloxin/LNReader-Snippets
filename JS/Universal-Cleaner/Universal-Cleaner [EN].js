@@ -176,11 +176,11 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
 ////↓↓↓↓↓
 //’d => had
-.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|accident|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|flown|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|misunderstood|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|taught|thought|thrown|told|understood|woken|won|worn)\b)/g, ' had ')
-.replace(/’d(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|once|(?:actu|accident|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?(?:had\s))/g, ' had ')
+.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|decisively|eve[nr]|evidently|easily|first|just|(?:actu|accident|addition|basic|fin|initi|just|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|really|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?([a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|br?ought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|flown|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|misunderstood|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|taught|thought|thrown|told|understood|woken|won|worn)\b)/g, ' had ')
+.replace(/’d(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|once|(?:actu|accident|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|really|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?(?:had\s))/g, ' had ')
 //’s => has
-.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|(?:actu|accident|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?(?:(?:exist|happen|remain)ed|been|become|began|got|had)\b(?=\s))/g, ' has ')
-.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|brought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|flown|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|misunderstood|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|taught|thought|thrown|told|understood|woken|won|worn)\s(?:me|them|us|her|him|it)\b)/g, ' has ')
+.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:(?:all|al(?:most|ready|so|ways)|completely|certainly|eve[nr]|evidently|easily|first|just|(?:actu|accident|addition|basic|fin|initi|natur|origin|person|successf)[au]lly|never|not|only|previously|recently|really|still|somehow|slowly|suddenly|then|unfortunately|long since)\s)?(?:(?:exist|happen|remain)ed|been|become|began|got|had)\b(?=\s))/g, ' has ')
+.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+ed(?<!(?:e|\b[^])ed)|[bs]een|br?ought|built|began|chosen|caught|drawn|drunk|[dg]one|found|felt|flown|forgotten|fought|fallen|gotten|got|given|grown|held|heard|kept|known|led|left|lent|learnt|lost|made|met|misunderstood|now|paid|sp?ent|spoken|slept|said|sunk|shown|smelt|taken|taught|thought|thrown|told|understood|woken|won|worn)\s(?:me|them|us|her|him|it)\b)/g, ' has ')
 //||has given us – he has invited us||
 ////↑↑↑↑↑
 //↓↓↓ — 
@@ -188,6 +188,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/[\]\)](?=\w\w)/g, '$& ')
 //↑↑↑
 
+.replace(/ça(?<=\bfaça)de/g, 'cade')
 .replace(/-(?<=\b[A-Z]\-)(?:Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, _ => _.toLowerCase())
 //↓↓↓↓↓ \w to avoid "A grade" at the start of a phrase. Not applied to the beginning of phrases on purpose, even for B or C grade etc..
 //↑↑↑↑↑
