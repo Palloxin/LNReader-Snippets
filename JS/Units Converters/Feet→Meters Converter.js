@@ -19,7 +19,8 @@ chapter.innerHTML = chapter.innerHTML
 	if(nnn) nnn = nnn.toFixed(2);
 	if(nnn > 11) nnn = Math.round(nnn);
 	return `⋮⋮⋮f${z}t${d||''} ÷×(${nnn}m${d||''})`})
-
+	
+.replace(/÷×([^√]+)√√(?=from\b)/g, '$1')
 .replace(/÷×(\([\d\.]+m²?\)) √√((?:in |of (?=distance))?[a-z]+)/g, '$2 $1')
 .replace(/÷×/g, '')
 .replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?(?: √√)?\s*/g, (_,z, a) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t `)
