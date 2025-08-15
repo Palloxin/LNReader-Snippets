@@ -189,6 +189,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑
 
 .replace(/ça(?<=\bfaça)de/g, 'cade')
+.replace(/ïve(?<=\bnaïve)/g, 'ive')
 .replace(/-(?<=\b[A-Z]\-)(?:Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, _ => _.toLowerCase())
 //↓↓↓↓↓ \w to avoid "A grade" at the start of a phrase. Not applied to the beginning of phrases on purpose, even for B or C grade etc..
 //↑↑↑↑↑
@@ -238,5 +239,6 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
