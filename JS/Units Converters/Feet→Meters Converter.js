@@ -7,20 +7,20 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/\b(square )?f(ee|oo)t\b/g, (_, i,l) => `™™™f${l==='ee'?'%%':'%'}t${i?'²':''}`)
 .replace(/,(?=\d\d\d(?:\,|\d\d\d)* ™™™f%+t)/g, '')
-.replace(/™™™f(%+t²?) (?=tall|thick|long|wide|height|lower|radius|distance|away|from|in (?:length|height|diameter)|(?:deep|high)(?! in(?:to)?\b)|of distance)/g, '⋮⋮⋮f$1 √√')
+.replace(/™™™f(%+t²?) (?=tall|thick|long|wide|height|lower|radius|distance|away|from||in (?:length|height|diameter)|(?:deep|high)(?! in(?:to)?\b)|of distance|farther down)/g, '⋮⋮⋮f$1 √√')
 .replace(/™™™(?<=(?:\b(?:height|altitude|length|width|wingspan|range) of (?:almost|over|about|approximately)? ?|within |farther than |as long as | the (?=[^™⋮<]+™+f%t))(?=[otfsen\d])(?:[a-z\d]+|[a-z]+\s[a-z]+) ™™™)(?=f%+t)/g, '⋮⋮⋮')
 .replace(/⋮⋮⋮f(%+)t(?<=\b((?:twen|thir|for|fif|six|seven|eigh|nine)ty(?:-(?:one|two|three|four|five|six|seven|eight|nine))?|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|(?:thir|four|fif|six|seven|eigh|nine)teen|\d+(?:\.\d+)?|(?:a|one)(?! [a⋮]))( and a half| (hundred|thousand))? ⋮⋮⋮f%+t)(²)?/g, (_,z, a,b,c,d) => {
 	const mi = {hundred:100, thousand:1000}[c] || 1;
 	let ff = 0.305;
 	if(d) ff = ff **2;
-	let nnn = /\d/.test(a) ? +a*ff*mi : +tico.indexOf(a)*ff*mi;
+	let nnn = /\d/.test(a) ? +a*ff*mi : +taco.indexOf(a)*ff*mi;
 	if(c) nnn = Math.abs(nnn); //negativ if "a hundred feet tall"
 	if(b === " and a half") nnn += 0.5 * ff;
 	if(nnn) nnn = nnn.toFixed(2);
 	if(nnn > 11) nnn = Math.round(nnn);
 	return `⋮⋮⋮f${z}t${d||''} ÷×(${nnn}m${d||''})`})
-	
-.replace(/÷×([^√]+)√√(?=from\b)/g, '$1')
+
+.replace(/÷×([^√]+)√√(?=from\b|farther down\b)/g, '$1')
 .replace(/÷×(\([\d\.]+m²?\)) √√((?:in |of (?=distance))?[a-z]+)/g, '$2 $1')
 .replace(/÷×/g, '')
 .replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?(?: √√)?\s*/g, (_,z, a) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t `)
@@ -28,7 +28,9 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/(\d)[\'’](?<=\s\d.)(\d(?!\d))\"?(?: ft\b)?/g, (_, a,b) => {
 	let feeinc = (+a * 0.305) + (+b * 0.0254);
 	return ` ${feeinc.toFixed(2)}m`})
+    
 
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||each had 5 feet of canopy
 //jsfidle: https://jsfiddle.net/cvzj97Ln/2/
 //////↑↑↑↑↑ — END
+
