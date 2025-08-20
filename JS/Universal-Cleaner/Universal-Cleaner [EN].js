@@ -174,6 +174,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/♠+>/g, m => m === '♠>'?'i>':'em>')
 //↑↑↑↑↑↑
 .replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
+////↓↓↓↓↓
 //’d => had
 .replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|additionally|accidentally|actually|actively|basically|both|barely|clearly|completely|certainly|casually|deliberately|decisively|definitely|eve[nr]|essentially|evidently|easily|finally|forcibly|first|half|initially|instantly|inadvertently|just|long|previously|mostly|naturally|nearly|never|no[wt]|originally|obviously|once|only|often|personally|probably|previously|recently|really|rarely|still|somehow|successfully|slowly|suddenly|totally|then|truly|unfortunately|at least|long since)\s)?((?:half-)?[a-z]+ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orn|[bl]ent|bitten|[bf]lown|broken|br?ought|built|burnt|[ct]aught|chosen|[cf]lung|crept|gone|dug|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|found|forgotten|forsaken|forgiven|foresawn|freed|frozen|got|given|grown|had|heard|[hr]idden|held|[kw]ept|known|[lps]aid|left|lost|lea[np]t|lain|lit|made|meant|met|misheard|mistaken|misunderstood|overseen|rung|[st]old|sp?ent|shaken|shone|sho[dt]|sh?own|shrunk|slept|spoken|spilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|sworn|swept|swum|swung|taken|thought|thrown|understood|wo[kv]en|won|written|worn)\b)/g, ' had ')
 .replace(/’d(?<=\b[A-Za-z]+’d)\s(?=(?:(?:all|al(?:most|ready|so|ways)|additionally|accidentally|actually|actively|basically|both|barely|clearly|completely|certainly|casually|deliberately|decisively|definitely|eve[nr]|essentially|evidently|easily|finally|forcibly|first|half|initially|instantly|inadvertently|just|long|previously|mostly|naturally|nearly|never|not|originally|obviously|once|only|often|personally|probably|previously|recently|really|rarely|still|somehow|successfully|slowly|suddenly|totally|then|truly|unfortunately|at least|long since)\s)?(?:had\s))/g, ' had ')
@@ -241,6 +242,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
 
