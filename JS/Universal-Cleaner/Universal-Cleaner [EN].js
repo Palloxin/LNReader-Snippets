@@ -184,7 +184,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //’s => has
 .replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|eve[nr]|first|half|just|long|never|not|once|often|only|still|somehow|then|truly|at least|long since)\s)?(?:existed|happened|remained|been|become|began|got|had)\b(?=\s))/g, ' has ')
-.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orn|[bl]ent|bitten|[bf]lown|broken|br?ought|built|burnt|[ct]aught|chosen|[cf]lung|crept|gone|dug|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|found|forgotten|forsaken|forgiven|foresawn|freed|frozen|got|given|grown|had|heard|[hr]idden|held|[kw]ept|known|[lps]aid|left|lost|lea[np]t|lain|lit|made|meant|met|misheard|mistaken|misunderstood|overseen|proven|rung|[st]old|sp?ent|shaken|strode|shone|sho[dt]|sh?own|shrunk|spoken|spilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|sworn|s[lw]ept|swum|swung|taken|thought|thrown|understood|wo[kv]en|won|written|worn)\s(?:me|them|us|her|hi[ms]|its?|my|your|our)\b)/g, ' has ')//no 'their'
+.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orn|[bl]ent|[bf]ound|[bl]it|bitten|[bf]lown|broken?|br?ought|built|burnt|[ct]aught|chosen|[cf]lung|crept|gone|dug|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|forgotten|forsaken|forgiven|foresawn|freed|frozen|got|given|grown|had|heard|[hr]idden|held|[kw]ept|known|[lps]aid|left|lost|lea[np]t|lain|made|meant|met|misheard|mistaken|misunderstood|overseen|proven|rung|[st]old|sp?ent|shaken|strode|shone|sho[dt]|sh?own|shrunk|spoken|spilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|sworn|s[lw]ept|swum|swung|taken|thought|thrown|understood|wo[kv]en|won|written|worn)\s(?:me|them|us|her|hi[ms]|its?|my|your|our)\b)/g, ' has ')//no 'their'
 //||has given us – he has invited us||
 ////↑↑↑↑↑
 //↓↓↓ — 
@@ -243,8 +243,3 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
-
-
-
-
-
