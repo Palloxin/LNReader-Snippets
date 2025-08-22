@@ -21,7 +21,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/<p [^>]+>/g, '<p>')
 .replace(/(<\/?(?:p|h[1-9]|div)>)\s+/g, '$1')
 //↓
-.replace(/(?:<span>(?:[^<]*<(?!(?:span|\/?p)>))+\/span>[^<]*(?:<(?!\/?(?:p|span)>)[^>]+>[^<]*)*){2,}/g, _ => `${_.replace(/<\/span>(.*?)<span>/g, '$1')}`)//span clog - https://jsbench.me/w0m9jpmj80
+.replace(/(?:<(span|strong)>(?:[^<]*<(?!(?:\1|\/?p)>))+\/\1>[^<]*(?:<(?!\/?(?:p|\1)>)[^>]+>[^<]*)*){2,}/g, _ => `${_.replace(/<\/(span|strong)>(.*?)<\1>/g, '$2')}`)//tag clog - https://jsbench.me/w0m9jpmj80
 //↑
 .replace(/<br>\s*(?=<\/?p>)/g, '')
 ///↑↑↑↑↑
@@ -244,6 +244,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
 
