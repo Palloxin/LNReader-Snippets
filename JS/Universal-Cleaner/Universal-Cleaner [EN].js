@@ -28,7 +28,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓ —
 .replace(/<p><\/p>/g, '')//excessive <p>
 .replace(/^\s*|$/g, '<p></p>')
-.replace(/<(?:\/?div(?: id)?|input type|\/?a(?=[ >]))\b[^>]+>/g, '')
+.replace(/<(?:\/?div(?: id)?|input type|\/?a(?=[ >]))\b[^>]*>/g, '')
 .replace(/(<h[1-4]>)<span>([^]+?)<\/span>/, '$1$2')
 //↑↑↑
 
@@ -244,6 +244,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
 
