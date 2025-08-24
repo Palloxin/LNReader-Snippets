@@ -20,7 +20,7 @@ chapter.innerHTML = chapter.innerHTML
 	if(nnn > 11) nnn = Math.round(nnn);
 	return `⋮⋮⋮f${z}t${d||''} ÷×(${nnn}m${d||''})`})
 
-.replace(/÷×([^√]+)√√(?=from\b|farther down\b)/g, '$1')
+.replace(/÷×([^√]+)√√(?=from\b|farther down\b|into\b)/g, '$1')
 .replace(/÷×(\([\d\.]+m²?\)) √√((?:in |of (?=distance))?[a-z]+)/g, '$2 $1')
 .replace(/÷×/g, '')
 .replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?(?: √√)?\s*/g, (_,z, a) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t `)
@@ -33,5 +33,6 @@ chapter.innerHTML = chapter.innerHTML
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||each had 5 feet of canopy
 //jsfidle: https://jsfiddle.net/cvzj97Ln/2/
 //////↑↑↑↑↑ — END
+
 
 
