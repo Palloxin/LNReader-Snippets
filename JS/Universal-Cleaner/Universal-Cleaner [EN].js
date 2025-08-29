@@ -192,7 +192,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/([\[\(])\s/g, '$1')
 .replace(/[\]\)](?=\w\w)/g, '$& ')
 //↑↑↑
-
+.replace(/\\u003[ec]/g, _ => /c/.test(_)?'&lt;':'&gt;')
 .replace(/ça(?<=\bfaça)de/g, 'cade')
 .replace(/ïve(?<=\bnaïve)/g, 'ive')
 .replace(/-(?<=\b[A-Z]\-)(?:Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, _ => _.toLowerCase())
@@ -244,4 +244,5 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
