@@ -157,7 +157,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↑↑↑↑↑↑↑
 //↓↓↓ — 
 .replace(/([\?\!]+)(?:\.| (?=\!))/g, '$1')
-.replace(/ (?!\?\?\?)([\!\?]+)(?<=\w+(?<!a|the|:) \1)\.?/g, '$1')
+.replace(/ (?!\?\?\?)([\!\?]+)(?<=\w+(?<!\ba|\bthe|:) \1)\.?/g, '$1')
 .replace(/(‘\w+)\.’(?:(?<=\s\1\.’)|(?!<))/g, '$1’.')
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
@@ -178,21 +178,21 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
 ////↓↓↓↓↓
 //’d => had
-.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:only|each|ever)\s)?(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|even|first|half|just|long|last|never|no[wt]|once|often|still|somehow|then|truly|at least|long since)\s)?(?:half-)?(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orn|[bl]ent|[bf]ound|[bl]it|bitten|[bf]lown|broken?|br?ought|built|burnt|[ct]aught|chosen|[cf]lung|crept|gone|dug|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|forgotten|forsaken|forgiven|foresawn|freed|frozen|got|gotten|given|grown|had|heard|[hr]idden|held|[kw]ept|known|[lps]aid|left|lost|lea[np]t|lain|made|meant|met|misheard|mistaken|misunderstood|overseen|proven|rung|[st]old|sp?ent|shaken|strode|shone|sho[dt]|sh?own|shrunk|spoken|spilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|sworn|s[lw]ept|swum|swung|taken|thought|thrown|understood|wo[kv]en|won|written|worn)\b)/g, ' had ')
-.replace(/’d\b(?<=\b[A-Za-z]+’d)\s(?=(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|each|eve[nr]|first|half|just|long|never|not|once|often|only|still|somehow|then|truly|at least|long since)\s)?(?:had\s))/g, ' had ')
+.replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=(?:(?:only|each|n?ever)\s)?(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|even|first|half|just|long|last|never|no[wt]|once|often|still|somehow|then|truly|at least|long since)\s)?(?:half-)?(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|clad|chosen|[cf]lung|crept|gone|dug|disproven|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|given|grown|had|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|learnt|spe[ln]t|spoken|taken|taught|understood|written)|mown|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|wo[kv]en|w?rung|won|written|worn)\b)/g, ' had ')
+.replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|each|eve[nr]|first|half|just|long|never|not|once|often|only|still|somehow|then|truly|at least|long since)\s)?(?:had\s))/g, ' had ')
 
-.replace(/’d\s(?=(?:(?:previously|recently)\s|(?<=\b(?:[Ee]ver since|looked like) [A-Za-z]+’d.)|(?=[a-z]+ before[\.,]))(?:become|bet|come|cast|cost|cut|hit|hurt|let|put|quit|read|run|set|shut|spread)\b)/g, ' had ')
+.replace(/’d\s(?=(?:(?:previously|recently)\s|(?<=\b(?:[Ee]ver since|looked like) [A-Za-z][a-z]*’d.)|(?=[a-z]+ before[\.,]))(?:become|bet|come|cast|cost|cut|hit|hurt|let|put|quit|read|run|set|shut|spread)\b)/g, ' had ')
 
 //’s => has
-.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|each|eve[nr]|first|half|just|long|never|not|once|often|only|still|somehow|then|truly|at least|long since)\s)?(?:existed|happened|remained|been|become|began|got|had)\b(?=\s))/g, ' has ')
-.replace(/’s\b(?<=\b[A-Za-z]+’s)\s(?=(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orn|[bl]ent|[bf]ound|[bl]it|bitten|[bf]lown|broken?|br?ought|built|burnt|[ct]aught|chosen|[cf]lung|crept|gone|dug|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|forgotten|forsaken|forgiven|foresawn|freed|frozen|got|gotten|given|grown|had|heard|[hr]idden|held|[kw]ept|known|[lps]aid|left|lost|lea[np]t|lain|made|meant|met|misheard|mistaken|misunderstood|overseen|proven|rung|[st]old|sp?ent|shaken|strode|shone|sho[dt]|sh?own|shrunk|spoken|spilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|sworn|s[lw]ept|swum|swung|taken|thought|thrown|understood|wo[kv]en|won|written|worn)\s(?:me|them|us|her|hi[ms]|its?|my|your|our)\b)/g, ' has ')//no 'their'
-//||has given us – he has invited us||
-////↑↑↑↑↑
+.replace(/’s\b(?<=\b[A-Za-z][a-z]*’s)\s(?=(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|each|eve[nr]|first|half|just|long|never|not|once|often|only|still|somehow|then|truly|at least|long since)\s)?(?:existed|happened|remained|been|become|began|got|had)\b(?=\s))/g, ' has ')
+.replace(/’s\b(?<=\b[A-Za-z][a-z]*’s)\s(?=(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|clad|chosen|[cf]lung|crept|gone|dug|disproven|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|given|grown|had|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|learnt|spe[ln]t|spoken|taken|taught|understood|written)|mown|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|wo[kv]en|w?rung|won|written|worn)\s(?:me|them|us|her|hi[ms]|its?|my|your|our)\b)/g, ' has ')//no 'their'
+//||has given us –
+////↑↑↑↑↑ — regex101.com/r/hcA5XD
 //↓↓↓ — 
 .replace(/([\[\(])\s/g, '$1')
 .replace(/[\]\)](?=\w\w)/g, '$& ')
 //↑↑↑
-
+.replace(/\\u003[ec]/g, _ => /c/.test(_)?'&lt;':'&gt;')
 .replace(/ça(?<=\bfaça)de/g, 'cade')
 .replace(/ïve(?<=\bnaïve)/g, 'ive')
 .replace(/-(?<=\b[A-Z]\-)(?:Class|Rank|Cup|Shirt|Plan|Grade|Spot)/g, _ => _.toLowerCase())
@@ -203,7 +203,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/—(?<=\w—)(?=\w)/g, ' — ')//sixth spaces
 .replace(/\.([Mm])\.,(?<=[AaPp]\.[Mm]\.,)/g, '$1,')//5 a.m.,
 .replace(/([\?!\.…][”“’\"])\.<(?<![”“\"‘]\1\.<)/g, '$1<')
-.replace(/(![”’\"])(?<=<p>[“‘\"][^”“\"\/]*?!.)\.<\/p>/g, '$1</p>')
+.replace(/(![”’\"])\.(?<=<p>[“‘\"][^”“\"\/]*?\!.\.)<\/p>/g, '$1</p>')
 //↓↓ — *
 .replace(/\*\s?(?![^\w\*]+\*)([^\s”“\*]+) ?\*(?![a-z\.,\?’”!]|<\/p>) ?/g, '*$1* ')
 //.replace(/>*(\S[^<”“\"\'‘\*]+?) \*<\//g, '>*$1*</')
@@ -244,4 +244,6 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
+
 
