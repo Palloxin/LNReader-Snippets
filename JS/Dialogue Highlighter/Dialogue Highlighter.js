@@ -37,7 +37,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/∅¢/g, '')
 .replace(/𛖠/g, '')
 //↑
-.replace(/”(?=\w)(?<![\>\,]”)/g, '” ')
+.replace(/”\b(?<![\>\,]”)/g, '” ')// \b => (?=\w)
 ////↑↑↑↑↑
 
 ///////↓↓↓↓ — Dialogue highlighter
