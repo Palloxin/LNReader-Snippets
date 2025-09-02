@@ -143,7 +143,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/∅¢/g, '')
 .replace(/𛖠/g, '')
 //↑
-.replace(/”(?=\w)(?<![\>\,]”)/g, '” ')
+.replace(/”\b(?<![\>\,]”)/g, '” ')// \b => (?=\w)
 //test-strings:
 //AAAAAAAAAAAA↓↓
 //||“With this I’m immune to it,“ Leylin nodded.||
@@ -244,6 +244,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
 
