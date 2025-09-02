@@ -187,7 +187,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/’s\b(?<=\b[A-Za-z][a-z]*’s)\s(?=(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|each|eve[nr]|first|half|just|long|never|not|once|often|only|still|somehow|then|truly|at least|long since)\s)?(?:existed|happened|remained|been|become|began|got|had)\b(?=\s))/g, ' has ')
 .replace(/’s\b(?<=\b[A-Za-z][a-z]*’s)\s(?=(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|clad|chosen|[cf]lung|crept|gone|dug|disproven|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|given|grown|had|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|learnt|spe[ln]t|spoken|taken|taught|understood|written)|mown|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|wo[kv]en|w?rung|won|written|worn)\s(?:me|them|us|her|hi[ms]|its?|my|your|our)\b)/g, ' has ')//no 'their'
 //||has given us –
-////↑↑↑↑↑ — regex101.com/r/IDGxi3
+////↑↑↑↑↑ — regex101.com/r/hcA5XD
 //↓↓↓ — 
 .replace(/([\[\(])\s/g, '$1')
 .replace(/[\]\)](?=\w\w)/g, '$& ')
@@ -244,3 +244,4 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
