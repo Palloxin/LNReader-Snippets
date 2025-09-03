@@ -217,7 +217,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓ fix missing “ or ” on simple|short paragraphs
 .replace(/([\"”“](?<=<p>.)[\w’]+(?:\s[\w’]+){0,2}[\!\?\…\.]*)(?=<\/p>)/g, '$1”')
 .replace(/<p>(?=[\w’]+(?:\s[\w’]+){0,2}[\!\?\…\.]*[\"”“]<\/p>)/g, '<p>“')
-.replace(/<p>([A-Za-z’]+[\s,][a-zA-Z\s’]+)([\.\!\…\?]*)”/g, '<p>“$1$2”')
+.replace(/<p>(?=[A-Za-z’]+[\s,][a-zA-Z\s’]+[\.\!\…\?]*”)/g, '<p>“')
 .replace(/“(?<=<p>“)((?:\s?[A-Za-z’]+){1,6}[\!\…\?\.]+)(?=<\/p>)/g, '“$1”')
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
@@ -244,6 +244,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
 
