@@ -32,8 +32,8 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(<h[1-4]>)<span>([^]+?)<\/span>/, '$1$2')
 //↑↑↑
 
-.replace(/(?:<br>\s*)+(?=<br>\s*<br>)/g, '')
-.replace(/(?:<br><\/?br>)+(?=<)/g, '')
+//.replace(/(?:<br>\s*)+(?=<br>\s*<br>)/g, '')
+//.replace(/(?:<br><\/?br>)+(?=<)/g, '')
 //↓↓↓↓↓ — masked letters
 .replace(/[асᴄԁеһіјӏոоοօᴏрԛѕꜱսνᴠԝᴡхⅹуᴢАВСЕНІЈKМΝОРԚЅТԜХ]/g, aa => {
 	const fakers = {
@@ -244,5 +244,6 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
