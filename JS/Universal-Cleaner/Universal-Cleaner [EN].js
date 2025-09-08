@@ -57,7 +57,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 	return hdigg[+a]})
 //↑↑↑
 ///↓↓↓↓↓— three dots
-.replace(/\. ?…|…\.\.(?!\.)/g, '….')
+.replace(/\. ?…|…[\.\s]\.(?!\.)/g, '….')
 .replace(/(?:\s?\.\.\.|\s…\s*|(?:\s(?<!\..))?\. \. \.(?! \.) ?)/g, '…')
 .replace(/\.\.\b/g, '‥')
 .replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=[A-Z]|[a-z])/g, '…⅞⅘ ')//thin space
@@ -245,6 +245,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
 
