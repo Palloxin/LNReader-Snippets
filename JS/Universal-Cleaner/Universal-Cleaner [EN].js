@@ -236,7 +236,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //place images
 .replace(/䷢䷢䷢(\d+)/g, (_, a) => imgs[parseInt(a)-1])
 
-.replace(/ /g, '&nbsp;')//u00a0
+.replace(/[\u00a0]/g, '&nbsp;')
 .replace(/♪/, '')
 .replace(/\bLorem ipsum dolor( sit amet consectetuer adipiscing[^]{1,6}?elit)?/g, '🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴')
 //↑ — 0
@@ -245,4 +245,3 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
-
