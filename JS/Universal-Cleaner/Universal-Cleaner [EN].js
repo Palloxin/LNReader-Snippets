@@ -11,7 +11,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/[\u200b]/g, '')//zero-width space
 .replace(/\n+/g, '')
 .replace(/<title>[^<]*<\/title>/, '')//EPUBs
-.replace(/&nbsp;/g, '\u00a0')//to include it with \s
+.replace(/&nbsp;\s*/g, '\u00a0')//to include it with \s
 .replace(/<span style=\"font-[^:]+: ?(bold|italic);?\">((?:[^](?!<span[> ]))*?<)\/span>/g, (_, a,b) => /^i/.test(a)?'<em>'+b+'/em>':'<strong>'+b+'/strong>')
 .replace(/\s+(?:(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])|((?:<\/(?:[abi]|em|span|strong)>\s*)+))/g, (_, a) => a?`${a.replace(/\s/g, '')} `:'')//move out outer spaces
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
@@ -245,3 +245,4 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
