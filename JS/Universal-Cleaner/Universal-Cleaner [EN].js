@@ -11,7 +11,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/[\u200b]/g, '')//zero-width space
 .replace(/\n+/g, '')
 .replace(/<title>[^<]*<\/title>/, '')//EPUBs
-.replace(/&nbsp;/g, '\u00a0')//to include it with \s
+.replace(/&nbsp;\s*/g, '\u00a0')//to include it with \s
 .replace(/<span style=\"font-[^:]+: ?(bold|italic);?\">((?:[^](?!<span[> ]))*?<)\/span>/g, (_, a,b) => /^i/.test(a)?'<em>'+b+'/em>':'<strong>'+b+'/strong>')
 .replace(/\s+(?:(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])|((?:<\/(?:[abi]|em|span|strong)>\s*)+))/g, (_, a) => a?`${a.replace(/\s/g, '')} `:'')//move out outer spaces
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
@@ -32,8 +32,8 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(<h[1-4]>)<span>([^]+?)<\/span>/, '$1$2')
 //↑↑↑
 
-.replace(/(?:<br>\s*)+(?=<br>\s*<br>)/g, '')
-.replace(/(?:<br><\/?br>)+(?=<)/g, '')
+//.replace(/(?:<br>\s*)+(?=<br>\s*<br>)/g, '')
+//.replace(/(?:<br><\/?br>)+(?=<)/g, '')
 //↓↓↓↓↓ — masked letters
 .replace(/[асᴄԁеһіјӏոоοօᴏрԛѕꜱսνᴠԝᴡхⅹуᴢАВСЕНІЈKМΝОРԚЅТԜХ]/g, aa => {
 	const fakers = {
@@ -57,13 +57,13 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 	return hdigg[+a]})
 //↑↑↑
 ///↓↓↓↓↓— three dots
-.replace(/\. ?…|…\.\.(?!\.)/g, '….')
+.replace(/\. ?…|…[\.\s]\.(?!\.)/g, '….')
 .replace(/(?:\s?\.\.\.|\s…\s*|(?:\s(?<!\..))?\. \. \.(?! \.) ?)/g, '…')
 .replace(/\.\.\b/g, '‥')
 .replace(/…(?<=(?:\w|[a-z][’\'\"\”])…)…?\.?(?=[A-Z]|[a-z])/g, '…⅞⅘ ')//thin space
 .replace(/⅞⅘\s(?=[TYVW])/g, ' ').replace(/⅞⅘/g, '')
 .replace(/…(?<=\W[\"\"‘“].)\s/g, '…')
-.replace(/…(?<![\w\'\"”’\]\?]…)…?\s(?=\w)/g, '…')
+.replace(/…(?<![\w\'\"”’\]\?]…)…?\s\b/g, '…')
 .replace(/…(?<=[^’\'](\b\w+)…)\s\1\B/gi, '…$1')//Bo…Bobby!!
 //↓exceptions
 .replace(/…(?=(?:Some|Not)\b(?<=So…Some|No…Not))/g, '… ')
@@ -79,14 +79,14 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓↓— 
 .replace(/\.(?=\d\d)(?<=\s\.)/g, '✓+®.')//★↓
 .replace(/®(?=\.\d+%)/g, '®0')//↓
-.replace(/\s(?=[\.\,\]\)\;]+|:(?!\)))(?<=[\w\]].)/g, '')//↑↓
+.replace(/\s+(?=[\.\,\]\)\;]+|:(?!\)))(?<=[\w\.\]]\s{1,5})/g, '')//↑↓
 .replace(/✓\+®/g, '')//★↑
 .replace(/([\,\:]|\.(?<!…\.)|[\!\?]+)(?<=[a-z\…]\1)(?=[A-Z]|\d(?<=,\d))/g, '$1 ')
-.replace(/\/watch\? (?=\w)/g, '/watch?')//yt links
+.replace(/\/watch\? \b/g, '/watch?')//yt links
 .replace(/\.[”\"]\.(?<=[“\"]\w+\b\..\.)/g, '”.')
 .replace(/<(?=\/?(?:p|div|h[1-9r]|br>\s*<br)(?:>| [^>]+>))/g, '𛖠<')//\u1b5a0
 .replace(/([\"“”])(?<!\=\")(?!>|\s[\"“”])([^\"“”𛖠]+)([\"”])(?<!=\")/g, '→→$1$2$3←←').replace(/𛖠/g, '')
-.replace(/\,([\"”]←←(?!(?:[^](?!\/p>|[\"”“][^a-z]))*?[\"”“][a-z])(?:<\/(?:strong|em|span|[bai])>)*|[\'\]’](?=\W))/g, '$1,')//regex101.com/r/ni3BdT/14
+.replace(/\,([\"”]←←(?!(?:[^](?!\/p>|[\"”“][^a-z]))*?[\"”“][a-z])(?:<\/(?:strong|em|span|[bai])>)*|[\'\]’]\B)/g, '$1,')//regex101.com/r/ni3BdT/14
 .replace(/←←|→→/g, '')
 .replace(/,(?:,[, ]*|(?!(?:<\/[a-z]+>)?[\s\d\”\"\’;])(?<=\D\,))/g, ', ')
 //↑↑↑↑
@@ -96,8 +96,8 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
     let t = /\'(?<!(?:[\s\W]|[^Ss]).)/g;
     return `'${t.test(a)?a.replace(t, '’').replace(/’(?<=\'[^\'’]+’)(?=[^\']+$)/, '\''):a}'`})
 .replace(/\'(?<!\<\/?p>.)(?!<\/?p>)(?<=<p>[^\']+?\')(?=[^\w\'][^\']+?<\/p>)/g, '’')//<p>[^\']+?
-// - https://jsfiddle.net/6wf8bnxr/
-//↑↑↑ - https://jsfiddle.net/69zbg81a/1/
+// - jsfiddle.net/hjgmovt9/
+//↑↑↑ - jsfiddle.net/69zbg81a/1/
 //↓
 .replace(/[”“](?=(?:[dmst]|ll|ve)\b(?!-))(?<=\w)/g, '’')
 .replace(/‘((?:[Ii]t|[Yy]ou|[Ss]?[Hh]e|[Ww]e|[Tt]hey)(?=’[lv])|(?:If )?I)’(ll|ve|m)\b/g, (l, j,i) => `‘${j} ${{'m':'am','ll':'will'}[i]||'have'}`)
@@ -119,10 +119,10 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
 .replace(/(?:‘|’(?<=[^\.,\?!…]’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
-.replace(/”(?=\w)(?<![\s\>\,]”)/g, '” ')
+.replace(/”\b(?<![\s\>\,]”)/g, '” ')// \b => (?=\w)
 .replace(/““[^“”\"]+””/g, '×÷×$&')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. |–|[^>]“[^”–—]+[–—])”)/g, '“')
-.replace(/[“‘](?=(?:<\/[^>]+>\s*)*<\/p>)/g, a => a==='“'?'”':'’')
+.replace(/[“‘](?=(?:<\/[^>]+>\s*)*<(?:\/p>|br>\s*<br>))/g, a => a==='“'?'”':'’')
 .replace(/’(?<=(?:<p>|, )’)/g, '‘')
 .replace(/’(?=\w\w\w+)(?<![\s\w]’)/g, '’ ')
 //.replace(/(?: ([\”’])|([\“‘]) )/g, '$1$2')
@@ -143,7 +143,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/∅¢/g, '')
 .replace(/𛖠/g, '')
 //↑
-.replace(/”(?=\w)(?<![\>\,]”)/g, '” ')
+.replace(/”\b(?<![\>\,]”)/g, '” ')// \b => (?=\w)
 //test-strings:
 //AAAAAAAAAAAA↓↓
 //||“With this I’m immune to it,“ Leylin nodded.||
@@ -158,7 +158,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓ — 
 .replace(/([\?\!]+)(?:\.| (?=\!))/g, '$1')
 .replace(/ (?!\?\?\?)([\!\?]+)(?<=\w+(?<!\ba|\bthe|:) \1)\.?/g, '$1')
-.replace(/(‘\w+)\.’(?:(?<=\s\1\.’)|(?!<))/g, '$1’.')
+.replace(/([‘\']\w+)\.([’\'])(?<=\s\1\..)/g, '$1$2.')
 .replace(/’ (?<= o’ )/g, '’')
 //↑↑↑
 //↓↓↓↓↓↓ — italics
@@ -178,16 +178,16 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
 ////↓↓↓↓↓
 //’d => had
-.replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=(?:(?:only|each|n?ever)\s)?(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|even|first|half|just|long|last|never|no[wt]|once|often|still|somehow|then|truly|at least|long since)\s)?(?:half-)?(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|clad|chosen|[cf]lung|crept|gone|dug|disproven|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|given|grown|had|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|learnt|spe[ln]t|spoken|taken|taught|understood|written)|mown|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|wo[kv]en|w?rung|won|written|worn)\b)/g, ' had ')
+.replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=(?:(?:only|each|n?ever)\s)?(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|even|first|half|just|long|last|never|no[wt]|once|often|still|somehow|then|truly|at least|long since)\s)?(?:half-)?(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|chidden|clad|chosen|[cf]lung|crept|[dg]one|dug|disproven|drawn|[dhr]ove|dreamt|dr[au]nk|dealt|durst|dwelt|driven|[fl]ed|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|[gr]iven|grown|had|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|lear?nt|laden|spe[ln]t|spoken|taken|taught|understood|written)|mown|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|[st]hriven|smitten|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|stript|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|wo[kv]en|w?rung|won|written|worn)\b)/g, ' had ')
 .replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|each|eve[nr]|first|half|just|long|never|not|once|often|only|still|somehow|then|truly|at least|long since)\s)?(?:had\s))/g, ' had ')
 
 .replace(/’d\s(?=(?:(?:previously|recently)\s|(?<=\b(?:[Ee]ver since|looked like) [A-Za-z][a-z]*’d.)|(?=[a-z]+ before[\.,]))(?:become|bet|come|cast|cost|cut|hit|hurt|let|put|quit|read|run|set|shut|spread)\b)/g, ' had ')
 
 //’s => has
 .replace(/’s\b(?<=\b[A-Za-z][a-z]*’s)\s(?=(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|each|eve[nr]|first|half|just|long|never|not|once|often|only|still|somehow|then|truly|at least|long since)\s)?(?:existed|happened|remained|been|become|began|got|had)\b(?=\s))/g, ' has ')
-.replace(/’s\b(?<=\b[A-Za-z][a-z]*’s)\s(?=(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|clad|chosen|[cf]lung|crept|gone|dug|disproven|drawn|do[nv]e|dreamt|dr[au]nk|dealt|dwelt|driven|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|given|grown|had|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|learnt|spe[ln]t|spoken|taken|taught|understood|written)|mown|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|wo[kv]en|w?rung|won|written|worn)\s(?:me|them|us|her|hi[ms]|its?|my|your|our)\b)/g, ' has ')//no 'their'
+.replace(/’s\b(?<=\b[A-Za-z][a-z]*’s)\s(?=(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|chidden|clad|chosen|[cf]lung|crept|[dg]one|dug|disproven|drawn|[dhr]ove|dreamt|dr[au]nk|dealt|durst|dwelt|driven|[fl]ed|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|[gr]iven|grown|had|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|lear?nt|laden|spe[ln]t|spoken|taken|taught|understood|written)|mown|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|[st]hriven|smitten|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|stript|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|wo[kv]en|w?rung|won|written|worn)\s(?:me|them|us|her|hi[ms]|its?|my|your|our)\b)/g, ' has ')//no 'their'
 //||has given us –
-////↑↑↑↑↑ — regex101.com/r/hcA5XD
+////↑↑↑↑↑ — regex101.com/r/h1H0nh
 //↓↓↓ — 
 .replace(/([\[\(])\s/g, '$1')
 .replace(/[\]\)](?=\w\w)/g, '$& ')
@@ -215,15 +215,16 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/<\/p>(?!<p>[a-z])(?<=[^\.][^\W_]<\/p>)/g, '.</p>')//Dot missing at the end of <p>
 //↑↑↑↑↑
 //↓↓↓ fix missing “ or ” on simple|short paragraphs
-.replace(/([\"”“](?<=<p>.)[\w’]+)((?:\s[\w’]+){0,2}?)([\!\?\…\.]*)(?=<\/p>)/g, '$1$2$3”')
-.replace(/<p>(?=[\w’]+(?:\s[\w’]+){0,2}?[\!\?\…\.]*[\"”“]<\/p>)/g, '<p>“')
-.replace(/<p>([A-Za-z’]+[\s,][a-zA-Z\s’]+)([\.\!\…\?]*)”/g, '<p>“$1$2”')
-.replace(/“(?<=<p>“)((?:\s?[A-Za-z’]+){1,6}?)([\!\…\?\.]+)(?=<\/p>)/g, '“$1$2”')
+.replace(/([\"”“](?<=<p>.)[\w’]+(?:\s[\w’]+){0,2}[\!\?\…\.]*)(?=<\/p>)/g, '$1”')
+.replace(/<p>(?=[\w’]+(?:\s[\w’]+){0,2}[\!\?\…\.]*[\"”“]<\/p>)/g, '<p>“')
+.replace(/<p>(?=[A-Za-z’]+[\s,][a-zA-Z\s’]+[\.\!\…\?]*”)/g, '<p>“')
+.replace(/“(?<=<p>“)((?:\s?[A-Za-z’]+){1,6}[\!\…\?\.]+)(?=<\/p>)/g, '“$1”')
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
 //↓ misc
+.replace(/:\/\/(?<=\bhttp(s)?:..)(?:[^<\s]+\s(?<=[\?\.].)(?!<))+/g, (_, a) => `${a?'':'s'}${_.replace(/\s/g, '')}`)//incorrect spacing
 .replace(/\/p>(?=[^<♪]+<)/g, '/p><p>')//give p to tagless
-.replace(/-(?<!<[^>]+?-)(?![^<]+?>)(?<=\b\w\w?\w?-)(?=\w)/g, '-⁠')//u2060 hypen
+.replace(/-(?![^<]+?>)(?<!<[^>]+?-)(?<=\b\w{1,3}(?:-|\w-(?=\w{1,3}\b)))/g, '-⁠')//u2060 hypen
 .replace(/\.(?<=\b(?:M[sr]s?|etc)\.)(?=[ ,])/g, '<span style="font-size: 0.8em;">.</span>')
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
@@ -235,7 +236,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //place images
 .replace(/䷢䷢䷢(\d+)/g, (_, a) => imgs[parseInt(a)-1])
 
-.replace(/ /g, '&nbsp;')//u00a0
+.replace(/[\u00a0]/g, '&nbsp;')
 .replace(/♪/, '')
 .replace(/\bLorem ipsum dolor( sit amet consectetuer adipiscing[^]{1,6}?elit)?/g, '🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴')
 //↑ — 0
@@ -244,6 +245,3 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
-
-
-
