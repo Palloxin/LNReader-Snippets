@@ -23,7 +23,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/÷×([^√]+)√√(?=from\b|farther down\b|into\b)/g, '$1')
 .replace(/÷×(\([\d\.]+m²?\)) √√((?:in |of (?=distance))?[a-z]+)/g, '$2 $1')
 .replace(/÷×/g, '')
-.replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?(?: √√)?\s*/g, (_,z, a) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t `)
+.replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?(?: √√)?/g, (_,z, a) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t`)
 
 .replace(/(\d)[\'’](?<=\s\d.)(\d(?!\d))\"?(?: ft\b)?/g, (_, a,b) => {
 	let feeinc = (+a * 0.305) + (+b * 0.0254);
@@ -33,6 +33,7 @@ chapter.innerHTML = chapter.innerHTML
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||each had 5 feet of canopy
 //jsfidle: https://jsfiddle.net/cvzj97Ln/2/
 //////↑↑↑↑↑ — END
+
 
 
 
