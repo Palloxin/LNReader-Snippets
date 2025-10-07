@@ -178,7 +178,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
 ////↓↓↓↓↓
 //’d => had
-.replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=(?:(?:only|each|n?ever)\s)?(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|eve[nr]|first|half|just|long|last|never|no[wt]|once|often|still|since|somehow|then|truly|at least|long since|kind of)\s)?(?:half-)?(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|chidden|clad|chosen|[cf]lung|crept|[dg]one|dug|disproven|drawn|[dhr]ove|dreamt|dr[au]nk|dealt|durst|dwelt|driven|[fl]ed|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|[gr]iven|grown|had|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|lear?nt|laden|spe[ln]t|spoken|taken|taught|understood|written)|mown|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|[st]hriven|smitten|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|stript|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|wo[kv]en|w?rung|won|written|worn)\b)/g, ' had ')
+.replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=(?:(?:only|each|n?ever|maybe)\s)?(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|eve[nr]|first|half|just|long|last|never|no[wt]|once|often|still|since|somehow|then|truly|at least|long since|kind of)\s)?(?:half-)?(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|chidden|clad|chosen|[cf]lung|crept|[dg]one|dug|disproven|drawn|[dhr]ove|dreamt|dr[au]nk|dealt|durst|dwelt|driven|[fl]ed|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|[gr]iven|grown|had|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|lear?nt|laden|spe[ln]t|spoken|taken|taught|understood|written)|mown|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|[st]hriven|smitten|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|stript|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|wo[kv]en|w?rung|won|written|worn)\b)/g, ' had ')
 .replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|each|eve[nr]|first|half|just|long|never|not|once|often|only|still|somehow|then|truly|at least|long since)\s)?(?:had\s))/g, ' had ')
 
 .replace(/’d\s(?=(?:(?:previously|recently)\s|(?<=\b(?:[Ee]ver since|looked like|[Ss]ince then,?) [A-Za-z][a-z]*’d.)|(?=[a-z]+ before[\.,]|[a-z]+ had\b))(?:become|bet|come|cast|cost|cut|hit|hurt|let|put|quit|read|run|set|shut|spread)\b)/g, ' had ')
@@ -247,6 +247,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
 
