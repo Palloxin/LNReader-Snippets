@@ -227,7 +227,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/:\/\/(?<=\bhttp(s)?:..)(?:[^<\s]+\s(?<=[\?\.].)(?!<))+/g, (_, a) => `${a?'':'s'}${_.replace(/\s/g, '')}`)//incorrect spacing
 .replace(/\/p>(?=[^<♪]+<)/g, '/p><p>')//give p to tagless
 .replace(/-\b(?![^<]+?>)(?<!<[^>]+?-)(?<=\b\w{1,3}(?:-|\w-(?=\w{1,3}\b)))/g, '-⁠')//u2060 hypen
-.replace(/\.(?<=\b(?:M[sr]s?|etc)\.)(?=[ ,])/g, '<span style="font-size: 0.8em;">.</span>')
+.replace(/\.(?<=\b(?:M[sr]s?|etc)\.)(?=[ ,])/g, '<span style="font-size: 0.81em;">.</span>')
 //↑
 //↓↓↓↓↓↓↓ thousands separator— n ≤9999 excluded—
 .replace(/,(?=\d\d\d\D)/g, '±±')
@@ -247,6 +247,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
 
 
