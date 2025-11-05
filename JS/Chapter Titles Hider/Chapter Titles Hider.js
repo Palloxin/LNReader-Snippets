@@ -39,4 +39,3 @@ chapter.innerHTML = chapter.innerHTML
 
 ;
 /////★★★↑↑
-
