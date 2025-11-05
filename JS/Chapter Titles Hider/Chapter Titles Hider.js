@@ -11,7 +11,7 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 //preparatory
 .replace(/(<h[1-8]) [^>]+>/g, '$1>')
-.replace(/&nbsp;/g, ' ')//
+.replace(/&nbsp;\s*/g, ' ')//
 .replace(/<title>[^<]*<\/title>/, '')//epubs
 .replace(/^(?:(?=<)[^\?\.,A-Z”“]*?<\/?div\b[^>]*>\s*)+/, '')
 .replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<i>))>)\s+/g, '$1')//
@@ -35,6 +35,7 @@ chapter.innerHTML = chapter.innerHTML
 	else return _})
 .replace(/~~<spo>/g, S => `<spo style="background: hsl(${hh}, ${ss}%, ${ll>3?ll-2:ll<1?ll+5:ll>2?ll+1:ll>1?ll+2:ll+3}%)\" onclick=\"event.preventDefault(); event.stopPropagation()">`)
 .replace(/π√/, '')
+.replace(/[\u00a0]/g, '&nbsp;')//u00a0
 
 ;
 /////★★★↑↑

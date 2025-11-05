@@ -25,9 +25,9 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/÷×/g, '')
 .replace(/(?:⋮⋮⋮|™™™)f(%+)t(²)?( √√)?/g, (_,z, a,b) => `${a?'square ':''}f${z==='%'?'oo':'ee'}t${b?' ':''}`)
 
-.replace(/(\d)[\'’](?<=\s\d.)(\d(?!\d))\"?(?: ft\b)?/g, (_, a,b) => {
+.replace(/(\d)(?=[\'’])(?<=\s.)(?:\'(?!\d\”)|’(?!\d\"))([0-9]|1[012])(?!\d)[\"”]?(?: ft\b)?/g, (_, a,b) => {
 	let feeinc = (+a * 0.305) + (+b * 0.0254);
-	return ` ${feeinc.toFixed(2)}m`})
+	return `${_}(${feeinc.toFixed(2)}m)`})
     
 
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||each had 5 feet of canopy
