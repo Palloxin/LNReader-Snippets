@@ -19,6 +19,3 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/÷°÷'/g, '\"')
 .replace(/𛖠/g, '');
 //////↑↑↑↑ — END
-
-
-
