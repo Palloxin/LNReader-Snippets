@@ -5,7 +5,7 @@ chapter.innerHTML = chapter.innerHTML
   
 //↓↓↓↓quotation marks => DOUBLE PRIME 
 .replace(/“(?<=\b(?:the|and) “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
-.replace(/[”“\"](?<=\w .)(\w+|[\?\!])[”\"]/g, '″$1″')
+.replace(/[”“\"](?<=\w .)(\w+|[\?\!])(\.)?[”\"]/g, '″$1″$2')
 .replace(/[“\"](?<=\w .)(\S+(?:\s+\S+){1,3})[\"”](?= [a-z])/g, '″$1″')
 .replace(/“(?<=[a-z] “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
 .replace(/(“\S[^\"”“<]+\s)“([\s\w’]+)”(?=\W[^\"”“<]*?”)/g, '$1″$2″')
