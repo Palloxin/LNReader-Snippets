@@ -105,7 +105,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 	
 //↓↓↓↓quotation marks => DOUBLE PRIME 
 .replace(/“(?<=\b(?:the|and) “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
-.replace(/[”“\"](?<=\w .)(\w+|[\?\!])[”\"]/g, '″$1″')
+.replace(/[”“\"](?<=\w .)(\w+|[\?\!])(\.)?[”\"]/g, '″$1″$2')
 .replace(/[“\"](?<=\w .)(\S+(?:\s+\S+){1,3})[\"”](?= [a-z])/g, '″$1″')
 .replace(/“(?<=[a-z] “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
 .replace(/(“\S[^\"”“<]+\s)“([\s\w’]+)”(?=\W[^\"”“<]*?”)/g, '$1″$2″')
@@ -225,6 +225,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
 //↓ misc
+.replace(/\.(?:(?<=Ph.)\s(?=D\.))/g, '.')//dot space fix
 .replace(/:\/\/(?<=\bhttp(s)?:..)(?:[^<\s]+\s(?<=[\?\.].)(?!<))+/g, (_, a) => `${a?'':'s'}${_.replace(/\s/g, '')}`)//incorrect spacing
 .replace(/\/p>(?=[^<♪]+<)/g, '/p><p>')//give p to tagless
 .replace(/-\b(?![^<]+?>)(?<!<[^>]+?-)(?<=\b\w{1,3}(?:-|\w-(?=\w{1,3}\b)))/g, '-⁠')//u2060 hypen
@@ -248,3 +249,5 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
+
