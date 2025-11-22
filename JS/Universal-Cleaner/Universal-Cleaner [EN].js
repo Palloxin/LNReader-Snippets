@@ -225,6 +225,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //test: ||<p>“Mm, kakaa!" Bob nodded. “Bla bla’s. Blabla…”||
 //↑↑↑
 //↓ misc
+.replace(/\.(?:(?<=Ph.)\s(?=D\.))/g, '.')//dot space fix
 .replace(/:\/\/(?<=\bhttp(s)?:..)(?:[^<\s]+\s(?<=[\?\.].)(?!<))+/g, (_, a) => `${a?'':'s'}${_.replace(/\s/g, '')}`)//incorrect spacing
 .replace(/\/p>(?=[^<♪]+<)/g, '/p><p>')//give p to tagless
 .replace(/-\b(?![^<]+?>)(?<!<[^>]+?-)(?<=\b\w{1,3}(?:-|\w-(?=\w{1,3}\b)))/g, '-⁠')//u2060 hypen
@@ -248,4 +249,5 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 
 //%%%%%%%%%
 ;
+
 
