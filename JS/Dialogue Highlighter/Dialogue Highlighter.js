@@ -19,7 +19,7 @@ chapter.innerHTML = chapter.innerHTML
 //“The move Heaven Defying "Wu Ji" has been.."
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
-.replace(/(?:‘|’(?<![\.,\?!…]’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
+.replace(/(?:‘|’(?<=[^\.,\?!…]’)(?![a-z]*\s|[a-z]\b))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘We don’t!’ said the Merfolks’ people``||| jsfiddle.net/5gLfanov
 .replace(/”\b(?<![\s\>\,]”)/g, '” ')// \b => (?=\w)
 .replace(/““[^“”\"]+””/g, '×÷×$&')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. )”)/g, '“')
