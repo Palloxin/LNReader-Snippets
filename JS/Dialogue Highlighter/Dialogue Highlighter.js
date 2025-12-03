@@ -4,9 +4,8 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/(?:<span>(?:[^<]*<(?!(?:span|\/?p)>))+\/span>(?:[^<]*<(?!\/?(?:p|span)>)[^>]+>)*){2,}/g, _ => `${_.replace(/<\/span>(.*?)<span>/g, '$1')}`)//span clog - https://jsbench.me/w0m9jpmj80
   
 //↓↓↓↓quotation marks => DOUBLE PRIME 
-//↓↓↓↓quotation marks => DOUBLE PRIME 
 .replace(/“(?<=\b(?:the|and) “)([\s\-\w’]+)([\!])?”/g, '″$1″$2')
-.replace(/[”“\"](?<=\w .)(\w+|[\?\!])[”\"]/g, '″$1″')
+.replace(/[”“\"](?<=\w .)(\w+|[\?\!])(\.)?[”\"]/g, '″$1″$2')
 .replace(/[“\"](?<=\w .)(\S+(?:\s+\S+){1,3})[\"”](?= [a-z])/g, '″$1″')
 .replace(/“(?<=[a-z] “)([a-z]+\s[a-z]+)”(?= [A-Za-z])/g, '″$1″')
 .replace(/(“\S[^\"”“<]+\s)“([\s\w’]+)”(?=\W[^\"”“<]*?”)/g, '$1″$2″')
@@ -20,7 +19,7 @@ chapter.innerHTML = chapter.innerHTML
 //“The move Heaven Defying "Wu Ji" has been.."
 ///↑↑↑↑
 ////↓↓↓↓↓ — 
-.replace(/(?:‘|’(?<![\.,\?!…]’)(?![a-z]*\s))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘He said ‘something’!’``|||``‘We don’t!’ They said on the Merfolk Pirates’ deck.``|||
+.replace(/(?:‘|’(?<=[^\.,\?!…]’)(?![a-z]*\s|[a-z]\b))([^\"”“\'’‘\<]+)(?:(?<!\s)‘|’(?![a-z]))/g, '‘$1’')//test-strings: ``Can’t u do the ’job’?``|||``‘We don’t!’ said the Merfolks’ people``||| jsfiddle.net/5gLfanov
 .replace(/”\b(?<![\s\>\,]”)/g, '” ')// \b => (?=\w)
 .replace(/““[^“”\"]+””/g, '×÷×$&')
 .replace(/”(?<=(?:<p>|, |”|\: ?|\. )”)/g, '“')
