@@ -28,11 +28,12 @@ chapter.innerHTML = chapter.innerHTML
 	else
 		return `⸙<${_1}>~~<spo>${gu2}${_7}${_9}~~<spo>${_10}⸙`})
 .replace(/⸙([^⸙]+)⸙/, (_, a) => `${a.replace(/<(h[1-4]|p)>([^]+?)<\/\1>/, '<h1>$2</h1>')}`)
-.replace(/π√<(p|h[1-5])>([^]+?)<\/\1>/, (_, a,b)=> {
-	const bas = b.replace(/(?:<\/?[a-z]+>|\.$)/g, '')
+.replace(/(aaaa)( "The)/, (_, a,b)=> {
+	if(typeof reader === 'undefined') return _; else {
+	const bas = b.replace(/(?:<\/?[a-z]+>|\.$)/g, '');
 	let dare = reader.chapter.name.includes(bas);
 	if(dare) return `<h1>~~<spo>${reader.chapter.name}<\/spo></h1>`;
-	else return _})
+	else return _}})
 .replace(/~~<spo>/g, S => `<spo style="background: hsl(${hh}, ${ss}%, ${ll>3?ll-2:ll<1?ll+5:ll>2?ll+1:ll>1?ll+2:ll+3}%)\" onclick=\"event.preventDefault(); event.stopPropagation()">`)
 .replace(/π√/, '')
 .replace(/[\u00a0]/g, '&nbsp;')//u00a0
