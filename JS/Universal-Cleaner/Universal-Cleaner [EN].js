@@ -15,6 +15,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/<span style=\"font-[^:]+: ?(bold|italic);?\">((?:[^](?!<span[> ]))*?<)\/span>/g, (_, a,b) => /^i/.test(a)?'<em>'+b+'/em>':'<strong>'+b+'/strong>')
 .replace(/\s+(?:(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])|((?:<\/(?:[abi]|em|span|strong)>\s*)+))/g, (_, a) => a?`${a.replace(/\s/g, '')} `:'')//move out outer spaces
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
+.replace(/<table ?[^>]*>[^]+?<\/table>/g, '<div style=\"overflow:scroll">$&</div>')//table overflow
 .replace(/=\"(?=[ >])/g, '=\"\"')//weird case
 //↑↑
 ///↓↓↓↓↓— 2
