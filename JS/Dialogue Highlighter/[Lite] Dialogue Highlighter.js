@@ -14,8 +14,11 @@ chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/<(?=\/?(?:p|div|h[1-9r]|br>\s*<br)[> ])/g, '𛖠<')//\u1b5a0
 .replace(/=\"([^\"]+)\"(?=[> ])/g, '=÷°÷\'$1÷°÷\'')
-.replace(/[\"“”](?!\s?[\"“”])[^\"“”𛖠]+[\"”]/g, _ => `∆∆${_.replace(/(<[^\/!][^>]*>)([^<\"”\w]*[\"”])/, '$2¶¶$1')}`)//move open tag near end of dialogue
-.replace(/∆∆[\"“”]((?:\s*<\/[^>]+>)+)?([^\"“”𛖠]+)[\"”](?:¶¶(<[^>]+>))?/g, `"$1<span style=÷°÷\'color: #FFFFEB÷°÷\'>$2<\/span>$3⁠"`)//u2060
-.replace(/÷°÷'/g, '\"')
+.replace(/[\"“”](?!\s?[\"“”])[^\"“”𛖠]+[\"”]/g, _ => `${/[^<]*<\/[^>]+>|<[^\/!][^>]+>[^<]*$/.test(_)?_.replace(/^/, '∆∆').replace(/^.(?=[^<]*<\/([^>]+)>)/, '\"¶×¶</$1>').replace(/(<([^!\/\s>]+\b)[^>]*>)([^<\"”]+)?(?=[\"”]$)/, (_, a,b,c) => `${c?a:''}${c||''}${c?'</'+ b + '>':''}"${a}`):_.replace(/.([^]+).$/, `"<span style=÷°÷\'color: #FFFFEB÷°÷\'>$1<\/span>⁠"`)}`)
+.replace(/¶×¶<\/([^>]+)>(?<=<(\1\b[^>]*)>[^𛖠¶]+¶×¶<[^>]+>)/, '</$1><$2>')// finalize closing front open tag
+.replace(/∆∆[\"“”]((?:\s*<\/[^>]+>)+)?([^\"“”𛖠]+)"(<[^\/!][^>]+>)?[\"”]/g, `"$1<span style=÷°÷\'color: #FFFFEB÷°÷\'>$2<\/span>$3\u2060"`)//u2060
+.replace(/“\"⁠<([^”“\"]+)\"”/g, '““⁠<$1””')
+.replace(/[\u2033]/g, '\"')
+.replace(/÷°÷\'/g, '\"')
 .replace(/𛖠/g, '');
 //////↑↑↑↑ — END
