@@ -28,7 +28,8 @@ chapter.innerHTML = chapter.innerHTML
 	else
 		return `⸙<${_1}>~~<spo>${gu2}${_7}${_9}~~<spo>${_10}⸙`})
 .replace(/⸙([^⸙]+)⸙/, (_, a) => `${a.replace(/<(h[1-4]|p)>([^]+?)<\/\1>/, '<h1>$2</h1>')}`)
-.replace(/(aaaa)( "The)/, (_, a,b)=> {
+.replace(/⸙([^⸙]+)⸙/, (_, a) => `${a.replace(/<(h[1-4]|p)>([^]+?)<\/\1>/, '<h1>$2</h1>')}`)
+.replace(/π√<(p|h[1-5])>([^]+?)<\/\1>/, (_, a,b)=> {
 	if(typeof reader === 'undefined') return _; else {
 	const bas = b.replace(/(?:<\/?[a-z]+>|\.$)/g, '');
 	let dare = reader.chapter.name.includes(bas);
