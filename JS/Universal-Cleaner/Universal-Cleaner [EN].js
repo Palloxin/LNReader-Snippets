@@ -14,9 +14,9 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/&nbsp;\s*/g, '\u00a0')//to include it with \s
 .replace(/<span style=\"font-[^:]+: ?(bold|italic);?\">((?:[^](?!<span[> ]))*?<)\/span>/g, (_, a,b) => /^i/.test(a)?'<em>'+b+'/em>':'<strong>'+b+'/strong>')
 .replace(/\s+(?:(?=[’‘\'"”“]?<\/?(?:p|h[1-9]|div)[> ])|((?:<\/(?:[abi]|em|span|strong)>\s*)+))/g, (_, a) => a?`${a.replace(/\s/g, '')} `:'')//move out outer spaces
-.replace(/<div ?[^>]*>((?!<(?:div|p|table)[> ])(?:[^](?!<(?:div|p|table)[> ]))*?)<\/div>/g, '<p>$1</p>')//div ➟ p
+.replace(/<div(?:<| [^>]+)>((?!<(?:div|p|table)[> ])(?:[^](?!<(?:div|p|table)[> ]))*?)<\/div>/g, '<p>$1</p>')//div ➟ p
 .replace(/<(em|span|[abip]|div)\b[^>]*>\s*<\/\1>/g, '')
-.replace(/<table ?[^>]*>[^]+?<\/table>/g, (_) => `<div style=\"overflow:scroll\">${_.replace(/(<\/?)p(?=[> ])/g, '$1div')}<\/div>`)//table overflow
+.replace(/<table(?:>| [^>]+>)[^]+?<\/table>/g, (_) => `<div style=\"overflow:scroll\">${_.replace(/(<\/?)p(?=[> ])/g, '$1div')}<\/div>`)//table overflow
 .replace(/=\"(?=[ >])/g, '=\"\"')//weird case
 //↑↑
 ///↓↓↓↓↓— 2
@@ -30,7 +30,7 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 //↓↓↓ —
 .replace(/<p><\/p>/g, '')//excessive <p>
 .replace(/^\s*|$/g, '<p></p>')
-.replace(/<(?:\/?div(?: id)?|input type|\/?a(?=[ >]))\b[^>]*>/g, '')
+.replace(/<(?:input type|\/?a\b)(?:>| [^>]+>)/g, '')
 .replace(/(<h[1-4]>)<span>([^]+?)<\/span>/, '$1$2')
 //↑↑↑
 
