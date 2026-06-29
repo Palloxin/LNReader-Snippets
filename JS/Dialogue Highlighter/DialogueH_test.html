@@ -1,0 +1,45 @@
+<html><head></head><body><div id="LNReader-chapter">
+
+#1<p><span>aaaa "The bbbb</span><b>cc</b><span>ddd"</span></p>
+#2<p>aaaa "The bbb<span>" cccc</span></p>
+#3<p>aaaa "The bbb<span> ddd" cccc</span></p>
+#4<p><span>“The bbb”</span></p>
+#5<p><span>“The b<b>b</b>b</b>”</span></p>
+#6<p><span>aaa "</span>The bbb"</p>
+#7<p><span>dd “The bbbb</span><b>aa</b>cc”</p>
+#8<p>aaa "The bbb" cc</p>
+
+
+
+
+
+</div></body>
+  
+<script>
+chapter = document.querySelector('#LNReader-chapter');
+chapter.innerHTML = chapter.innerHTML
+.replace(/<(?=\/?(?:p|div|h[1-9r]|br>\s*<br)[> ])/g, '𛖠<')//\u1b5a0
+.replace(/=\"([^\"]+)\"(?=[> ])/g, '=÷°÷\'$1÷°÷\'')
+.replace(/[\"“”](?!\s?[\"“”])[^\"“”𛖠]+[\"”]/g, _ => `${/^[^<]*<\/[^>]+>|<[^\/!][^>]+>[^<]*$/.test(_)?'∆∆'.concat(_).replace(/[\"”“](?=[^<]+<\/([^>]+)>)/, '\"¶×¶</$1>').replace(/(<([^!\/\s>]+\b)[^>]*>)([^<\"”]+)?(?=[\"”]$)/, (_, a,b,c) => `${c?a:''}${c||''}${c?'</'+ b + '>':''}"${a}`):_.replace(/.([^]+).$/, `"<ww>$1<\/ww>⁠"`)}`)//u2060
+.replace(/¶×¶<\/([^>]+)>(?<=(<\1(?:>| [^>]+>))[^𛖠¶]+¶×¶<[^>]+>)/g, '</$1>$2')// finalize closing front open tag
+.replace(/∆∆[\"“”]((?:\s*<\/[^>]+>)+)?([^\"“”𛖠]+)(?:"(<[^\/!][^>]+>))?[\"”]/g, `"$1<ww>$2<\/ww>$3\u2060"`)//u2060
+.replace(/“\"⁠<([^”“\"]+)\"”/g, '““⁠<$1””')
+.replace(/[\u2033]/g, '\"')
+.replace(/÷°÷\'/g, '\"')
+.replace(/𛖠/g, '');
+
+
+//↓↓ Verification Code  —  expected output
+chapter.innerHTML = chapter.innerHTML
+.replace(/#1(?=<p><span>aaaa "<\/span><ww><span>The bbbb<\/span><b>cc<\/b><span>ddd<\/span><\/ww><span>\u2060"<\/span><\/p>)/, '✔️')
+.replace(/#2(?=<p>aaaa "<ww>The bbb<\/ww><span>\u2060" cccc<\/span><\/p>)/, '✔️')
+.replace(/#3(?=<p>aaaa "<ww>The bbb<span> ddd<\/span><\/ww><span>\u2060" cccc<\/span><\/p>)/, '✔️')
+.replace(/#4(?=<p><span>"<ww>The bbb<\/ww>\u2060"<\/span><\/p>)/, '✔️')
+.replace(/#5(?=<p><span>"<ww>The b<b>b<\/b>b<\/ww>\u2060"<\/span><\/p>)/, '✔️')
+.replace(/#6(?=<p><span>aaa "<\/span><ww>The bbb<\/ww>\u2060"<\/p>)/, '✔️')
+.replace(/#7(?=<p><span>dd "<\/span><ww><span>The bbbb<\/span><b>aa<\/b>cc<\/ww>\u2060"<\/p>)/, '✔️')
+.replace(/#8(?=<p>aaa "<ww>The bbb<\/ww>\u2060" cc<\/p>)/, '✔️')
+chapter.innerText = chapter.outerHTML
+
+</script>
+</html>
