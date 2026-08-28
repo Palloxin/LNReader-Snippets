@@ -13,7 +13,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/(<h[1-8]) [^>]+>/g, '$1>')
 .replace(/&nbsp;\s*/g, ' ')//
 .replace(/<title>[^<]*<\/title>/, '')//epubs
-.replace(/^(?:(?=<)[^\?\.,A-Z”“]*?<\/?div(?:>| [^>]+>)\s*)+(?=<div[> ])|^(?=<)[^\?\.,A-Z”“]*?<\/?div(?:>| [^>]+>)\s*(?!<div[> ])|<\/div>\s*$/g, '')
+.replace(/^(?:(?=<)[^\?\.,A-Z”“]*?<\/?div(?:>| [^>]+>)\s*)+(?=<div[> ])|^(?=<)[^\?\.,A-Z”“]*?<\/?div(?: [^>]+)?>\s*(?!<div[> ])|<\/div>\s*$/g, '')
 .replace(/(<\/?(?:p|h[1-9]|div|span(?!>\s+<i>))>)\s+/g, '$1')//
 .replace(/\s+(?=<\/?(?:p|h[1-9]|div|(?<=\/)span)>)/g, '')//
 .replace(/<p><\/p>/g, '')//
