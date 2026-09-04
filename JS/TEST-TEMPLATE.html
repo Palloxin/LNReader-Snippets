@@ -1,7 +1,7 @@
 <html><head></head><body><div id="LNReader-chapter">
 
-<p>Input 1</p>
-<p>Input 2</p>
+#1<p>Input 1</p>
+#2<p>Input 2</p>
 
 
 
@@ -16,8 +16,12 @@ chapter.innerHTML = chapter.innerHTML
 
 //↓↓ Verification Code: wanted output
 chapter.innerHTML = chapter.innerHTML
-.replace(//, '✔️$&')
-.replace(//, '✔️$&')
+//.replace(/#1(?=a)/, '✔️$&')
+//.replace(/#2(?=b)/, '✔️$&')
+
+
+
+//.replace(/#\d/g, '✖️$&')
 //↑↑ 
 </script>
 </html>
