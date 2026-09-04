@@ -21,6 +21,10 @@ chapter.innerHTML = chapter.innerHTML
 chapter.innerHTML = chapter.innerHTML
 .replace(/#1(?=<div><div id=\"b\">π√<h4>aaaa<\/h4><\/div><\/div>)/, '✔️$&')
 .replace(/#2(?=<p><\/p>π√<p>)/, '✔️$&')
+
+  
+  
+.replace(/#\d/g, '✖️$&')
 //↑↑ 
 </script>
 </html>
