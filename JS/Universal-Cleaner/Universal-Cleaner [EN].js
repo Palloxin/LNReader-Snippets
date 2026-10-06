@@ -247,7 +247,6 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/♪/, '')
 .replace(/\bLorem ipsum dolor( sit amet consectetuer adipiscing[^]{1,6}?elit)?/g, '🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴')
 //↑ — 0
-
 //%%%%%%%%%—My JS 
 
 //%%%%%%%%%
