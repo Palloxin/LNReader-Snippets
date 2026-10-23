@@ -1,0 +1,31 @@
+<html><head></head><body><div id="LNReader-chapter">
+
+#1€<div><div id="b"><h4>aaaa</h4></div></div>
+#2€<p></p><p>aaaaa</p>
+
+
+
+</div></body>
+  
+<script>
+//↓↓↓↓ Snippet
+chapter = document.querySelector('#LNReader-chapter');
+chapter.innerHTML = chapter.innerHTML
+.replace(/€((?:<p><\/p>|<(?!p>|h[1-4]>)[^>]*>)*[^<]*(?:<input[^>]+>)?(?:\s*<[^>]+>\s*<\/[^>]+>)*)/g, '$1π√')
+
+
+.replace(/€/g, '')
+//↑↑↑↑
+
+//↓↓ Verification Code: wanted output
+chapter.innerHTML = chapter.innerHTML
+.replace(/#1(?=<div><div id=\"b\">π√<h4>aaaa<\/h4><\/div><\/div>)/, '✔️$&')
+.replace(/#2(?=<p><\/p>π√<p>)/, '✔️$&')
+
+  
+  
+.replace(/#\d/g, '✖️$&')
+//↑↑ 
+</script>
+</html>
+
