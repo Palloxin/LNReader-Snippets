@@ -16,12 +16,13 @@ chapter.innerHTML = chapter.innerHTML
 
 //↓↓ Verification Code: wanted output
 chapter.innerHTML = chapter.innerHTML
-//.replace(/#1(?=a)/, '✔️$&')
-//.replace(/#2(?=b)/, '✔️$&')
+//.replace(/#1(?=a)/, '✔️')
+//.replace(/#2(?=b)/, '✔️')
 
 
 
 //.replace(/#\d/g, '✖️$&')
+chapter.innerText = chapter.outerHTML
 //↑↑ 
 </script>
 </html>
