@@ -10,7 +10,7 @@
 #8<p>aa 3–5 a.m. buu</p>
 #9<p>aa 4-5 p.m. buu</p>
 #10<p>aa 12-14 a.m. buu</p>
-#11<p>a</p>
+#11<p>aa (5 a.m.). That buu</p>
 #12<p>a</p>
 #13<p>a</p>
 #14<p>a</p>
@@ -28,7 +28,7 @@ chapter.innerHTML = chapter.innerHTML
 //↓ the . of ``a/pm.`` ends a phrase and continues
 .replace(/••••([\d:]+\s*[ap])\.?m\b/gi, (_, a)=> `••••${a.toLowerCase()}m.`)
 //↓ cases like 3-4 pm
-.replace(/••••((?!12)\d+)[-–](\d+)\s*([ap])\.?m\b/gi, '••••$1 $3m–••••$2 $3m.')
+.replace(/••••((?!12)\d+)[-–](\d+)\s*([ap])\.?m\b/gi, '••••$1 $3m\u200A–\u200A••••$2 $3m.')
 //↓ \d AM/PM indicates a different acronym
 .replace(/••••(?<=\bwith •+)(\d+ [ap])\.?m\b/g, (_, a) => `${a.toUpperCase()}M`)
 //↓ exception
@@ -47,7 +47,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/[\'’]clock(?<=\b(\w+) o[\'’]clock)\b/g, (_, a) => `’clock${{two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11}[a.toLowerCase()]||a}`)
 .replace(/\b(?:[1-9]|1[01]|[A-Za-z]+) o’clock(\w+)( (?:at|in the)\b(?<=\D(?:[7-9]|1[01]) (?:at|in the)) (?:night|evening)| in\b(?<=[1-9] in) the afternoon)?\b/g, (_, a,b) => `${b?+a+12:a} o’clock${b||''}`)
 //↑
-.replace(/(:\d\d|\b[AP]M)\.(?=[\.\,]|\s+[a-z])/g, '$1')
+.replace(/(:\d\d|\b[AP]M)\.(?=[\.\,]|\s+[a-z]|[^.]\.)/g, '$1')
 .replace(/••••(?=\d)/g, '')
 ;
 /////↑↑↑↑↑↑↑↑↑↑ – END
@@ -62,14 +62,14 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/#5(?=<p>aaa 12:00 buu)/, '✔️')
 .replace(/#6(?=<p>aa 5 o’clock buu\b)/, '✔️')
 .replace(/#7(?=<p>aa 8 o’clock buu\b)/, '✔️')
-.replace(/#8(?=<p>aa 3:00–5:00 buu\b)/, '✔️')
-.replace(/#9(?=<p>aa 16:00–17:00 buu)/, '✔️')
+.replace(/#8(?=<p>aa 3:00 – 5:00 buu\b)/, '✔️')
+.replace(/#9(?=<p>aa 16:00 – 17:00 buu)/, '✔️')
 .replace(/#10(?=<p>aa 12-14 a\.m\. buu)/, '✔️')
-.replace(/#11(?=)/, '✔️')
+.replace(/#11(?=<p>aa \(5:00\)\. That buu)/, '✔️')
 .replace(/#12(?=)/, '✔️')
 .replace(/#13(?=)/, '✔️')
 .replace(/#14(?=)/, '✔️')
-.replace(/#11(?=)/, '✔️')
+.replace(/#15(?=)/, '✔️')
 
 
 
