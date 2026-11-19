@@ -7,10 +7,13 @@
 #5<p>aaa 12p.m. buu</p>
 #6<p>aa 5 o’clock buu</p>
 #7<p>aa eight o’clock buu</p>
-#8<p>Input 2</p>
-#9<p>Input 2</p>
-#10<p>Input 2</p>
-#11<p>Input 2</p>
+#8<p>aa 3–5 a.m. buu</p>
+#9<p>aa 4-5 p.m. buu</p>
+#10<p>aa 12-14 a.m. buu</p>
+#11<p>a</p>
+#12<p>a</p>
+#13<p>a</p>
+#14<p>a</p>
 
 
 
@@ -21,11 +24,11 @@
 /////↓↓↓↓↓↓↓↓↓↓ 12h→24h time format
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
-.replace(/\b(?<!:|\d-)(?:[1-9]|1[012]|0\d(?=[:\.]\d))(?:[\.:][0-5]\d)?(?:-| ?[AaPp]\.?[mM](?=\.[^\.]|\b))/g, '••••$&')//♦
+.replace(/\b(?<!:|\d[\-–])(?:[1-9]|1[012]|0\d(?=[:\.]\d))(?:[\.:][0-5]\d)?(?:[\-–]| ?[AaPp]\.?[mM](?=\.[^\.]|\b))/g, '••••$&')//♦
 //↓ the . of ``a/pm.`` ends a phrase and continues
-.replace(/••••([\d:\s]+[ap])\.?m\b/gi, (_, a)=> `••••${a.toLowerCase()}m.`)
+.replace(/••••([\d:]+\s*[ap])\.?m\b/gi, (_, a)=> `••••${a.toLowerCase()}m.`)
 //↓ cases like 3-4 pm
-.replace(/••••((?!12)\d+)-(\d+)\s*([ap]\.?m\b)/gi, '••••$1 $3°°-°°••••$2 $3.')
+.replace(/••••((?!12)\d+)[-–](\d+)\s*([ap])\.?m\b/gi, '••••$1 $3m–••••$2 $3m.')
 //↓ \d AM/PM indicates a different acronym
 .replace(/••••(?<=\bwith •+)(\d+ [ap])\.?m\b/g, (_, a) => `${a.toUpperCase()}M`)
 //↓ exception
@@ -45,7 +48,6 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/\b(?:[1-9]|1[01]|[A-Za-z]+) o’clock(\w+)( (?:at|in the)\b(?<=\D(?:[7-9]|1[01]) (?:at|in the)) (?:night|evening)| in\b(?<=[1-9] in) the afternoon)?\b/g, (_, a,b) => `${b?+a+12:a} o’clock${b||''}`)
 //↑
 .replace(/(:\d\d|\b[AP]M)\.(?=[\.\,]|\s+[a-z])/g, '$1')
-.replace(/°°-°°/g, ' - ')//sixth spaces
 .replace(/••••(?=\d)/g, '')
 ;
 /////↑↑↑↑↑↑↑↑↑↑ – END
@@ -60,9 +62,13 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/#5(?=<p>aaa 12:00 buu)/, '✔️')
 .replace(/#6(?=<p>aa 5 o’clock buu\b)/, '✔️')
 .replace(/#7(?=<p>aa 8 o’clock buu\b)/, '✔️')
-.replace(/#8(?=)/, '✔️')
-.replace(/#9(?=)/, '✔️')
-.replace(/#10(?=)/, '✔️')
+.replace(/#8(?=<p>aa 3:00–5:00 buu\b)/, '✔️')
+.replace(/#9(?=<p>aa 16:00–17:00 buu)/, '✔️')
+.replace(/#10(?=<p>aa 12-14 a\.m\. buu)/, '✔️')
+.replace(/#11(?=)/, '✔️')
+.replace(/#12(?=)/, '✔️')
+.replace(/#13(?=)/, '✔️')
+.replace(/#14(?=)/, '✔️')
 .replace(/#11(?=)/, '✔️')
 
 
@@ -72,3 +78,4 @@ chapter.innerText = chapter.outerHTML
 //↑↑ 
 </script>
 </html>
+
