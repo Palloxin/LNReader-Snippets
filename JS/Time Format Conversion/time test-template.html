@@ -11,7 +11,7 @@
 #9<p>aa 4-5 p.m. buu</p>
 #10<p>aa 12-14 a.m. buu</p>
 #11<p>aa (5 a.m.). That buu</p>
-#12<p>a</p>
+#12<p>aa 11:30 a.m. buu</p>
 #13<p>a</p>
 #14<p>a</p>
 
@@ -66,7 +66,7 @@ chapter.innerHTML = chapter.innerHTML
 .replace(/#9(?=<p>aa 16:00 – 17:00 buu)/, '✔️')
 .replace(/#10(?=<p>aa 12-14 a\.m\. buu)/, '✔️')
 .replace(/#11(?=<p>aa \(5:00\)\. That buu)/, '✔️')
-.replace(/#12(?=)/, '✔️')
+.replace(/#12(?=<p>aa 11:30 buu)/, '✔️')
 .replace(/#13(?=)/, '✔️')
 .replace(/#14(?=)/, '✔️')
 .replace(/#15(?=)/, '✔️')
