@@ -1,3 +1,4 @@
+/////↓↓↓↓↓↓↓↓↓↓ 12h→24h time format
 chapter = document.querySelector('#LNReader-chapter');
 chapter.innerHTML = chapter.innerHTML
 .replace(/\b(?<!:|\d[\-–])(?:[1-9]|1[012]|0\d(?=[:\.]\d))(?:[\.:][0-5]\d)?(?:[\-–]| ?[AaPp]\.?[mM](?=\.[^\.]|\b))/g, '••••$&')//♦
