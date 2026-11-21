@@ -1,31 +1,26 @@
 <html><body><div id="LNReader-chapter">
 
-<p>aa five and a half feet tall aa</p>
-<p>aa height of nearly twelve feet, and aa</p>
-<p>aa 5 feet tall aa</p>
-<p>aa two hundred feet tall aa</p>
-<p>aa thirteen feet tall aa</p>
-<p>bb forty feet tall bb</p>
-<p>aa forty-five feet tall aa</p>
-<p>aa a hundred feet tall aa</p>
-<p>aa one hundred feet tall aa</p>
-<p>aa one feet tall aa</p>
-<p>a width of approximately three hundred feet</p>
- <p> </p>
- <p> </p>
- <p> </p>
- <p> </p>
- <p> </p>
- <p> </p>
- <p> </p>
- <p> </p>
+#1<p>aa five and a half feet tall aa</p>
+#2<p>aa height of nearly eleven feet, and aa</p>
+#3<p>aa 5 feet tall aa</p>
+#4<p>aa two hundred feet tall aa</p>
+#5<p>aa thirteen feet tall aa</p>
+#6<p>bb forty feet tall bb</p>
+#7<p>aa forty-five feet tall aa</p>
+#8<p>aa a hundred feet tall aa</p>
+#9<p>aa one hundred feet tall aa</p>
+#10<p>aa one feet tall aa</p>
+#11<p>a width of approximately three hundred feet</p>
+#12<p></p>
+#13<p></p>
+#14<p></p>
 
 
 
 
-</div></body></html>
+</div></body>
 
-
+<script>
 const tico = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five', 'twenty-six', 'twenty-seven', 'twenty-eight', 'twenty-nine', 'thirty', 'thirty-one', 'thirty-two', 'thirty-three', 'thirty-four', 'thirty-five', 'thirty-six', 'thirty-seven', 'thirty-eight', 'thirty-nine', 'forty', 'forty-one', 'forty-two', 'forty-three', 'forty-four', 'forty-five', 'forty-six', 'forty-seven', 'forty-eight', 'forty-nine', 'fifty', 'fifty-one', 'fifty-two', 'fifty-three', 'fifty-four', 'fifty-five', 'fifty-six', 'fifty-seven', 'fifty-eight', 'fifty-nine', 'sixty', 'sixty-one', 'sixty-two', 'sixty-three', 'sixty-four', 'sixty-five', 'sixty-six', 'sixty-seven', 'sixty-eight', 'sixty-nine', 'seventy', 'seventy-one', 'seventy-two', 'seventy-three', 'seventy-four', 'seventy-five', 'seventy-six', 'seventy-seven', 'seventy-eight', 'seventy-nine', 'eighty', 'eighty-one', 'eighty-two', 'eighty-three', 'eighty-four', 'eighty-five', 'eighty-six', 'eighty-seven', 'eighty-eight', 'eighty-nine', 'ninety', 'ninety-one', 'ninety-two', 'ninety-three', 'ninety-four', 'ninety-five', 'ninety-six', 'ninety-seven', 'ninety-eight', 'ninety-nine', 'a hundred'];
 
 
@@ -60,3 +55,29 @@ chapter.innerHTML = chapter.innerHTML
 //not work strings: ||a long body of over a hundred feet||six to eight feet tall||the horn grows by ten feet||each had 5 feet of canopy
 //jsfidle: https://jsfiddle.net/cvzj97Ln/1
 //////↑↑↑↑↑ — END
+
+//↓↓ Verification Code: wanted output
+chapter.innerHTML = chapter.innerHTML
+.replace(/#1(?=<p>aa five and a half feet tall \(1.68m\) aa)/, '✔️')
+.replace(/#2(?=<p>aa height of nearly eleven feet \(3.35m\), and aa)/, '✔️')
+.replace(/#3(?=<p>aa 5 feet tall \(1.52m\) aa)/, '✔️')
+.replace(/#4(?=<p>aa two hundred feet tall \(61m\) aa)/, '✔️')
+.replace(/#5(?=<p>aa thirteen feet tall \(3.96m\) aa)/, '✔️')
+.replace(/#6(?=<p>bb forty feet tall \(12m\) bb)/, '✔️')
+.replace(/#7(?=<p>aa forty-five feet tall \(14m\) aa)/, '✔️')
+.replace(/#8(?=<p>aa a hundred feet tall \(31m\) aa)/, '✔️')
+.replace(/#9(?=<p>aa one hundred feet tall \(31m\) aa)/, '✔️')
+.replace(/#10(?=<p>aa one feet tall \(0.30m\) aa)/, '✔️')
+.replace(/#11(?=<p>a width of approximately three hundred feet \(92m\))/, '✔️')
+.replace(/#12(?=)/, '✔️')
+.replace(/#13(?=)/, '✔️')
+.replace(/#14(?=)/, '✔️')
+.replace(/#15(?=)/, '✔️')
+
+
+
+.replace(/#\d/g, '✖️$&')
+chapter.innerText = chapter.outerHTML
+//↑↑ 
+</script>
+</html>
