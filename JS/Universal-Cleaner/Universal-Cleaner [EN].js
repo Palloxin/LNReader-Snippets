@@ -170,19 +170,19 @@ imgs.push(Y); return "䷢䷢䷢"+imgs.length;})
 .replace(/(♠+)><(♠+)>(?<!\1>)([^]+?)<\/\2><\/\1>/g, '♠♠>$3</♠♠>')
 .replace(/<(♠+)>(?:[^](?![/<]\1>|<\/?p>))+?<\/\1>(?:(?:<(?!\/?p>|\/\1>)[^>]+>|\s)*<\1>(?:[^](?![/<]\1>|<\/?p>))+?<\/\1>)+/g, _ => `${_.replace(/<\/♠+>([^]*?)<♠+>/g, '$1')}`)//clog
 .replace(/(<\/♠+>\s*(?:<[^>]+>)*)([\!\?]+|[\;\.\:\,])/g, '$2$1')
-.replace(/(♠+(?<=\/♠+)>(?:<[^>]+>)*)\s+(?!<\/p>)/g, '$1  ')//n+h space > normal space
+.replace(/(♠+(?<=\/♠+)>(?:<[^>]+>)*)\s+(?!<\/p>)/g, '$1\u0020\u200a')//n+h space > normal space
 .replace(/([”\"]\.?(?=<)|<♠+>)([“\"]|<\/♠+>)/g, '$2$1')
 .replace(/([“\"])(<♠+>)([^♠\/]+)(<\/♠+>)([”\"])(\s+)?/g, (_, a1,a2,a3,a4,a5,b) => `${a2}${a1}${a3}${a5}${a4}${b?'  ':''}`)
 .replace(/[’‘](<♠+>)(?=[^♠<]+?[”’][^\w<]*<\/♠+>)/g, '$1‘')
 .replace(/“(<♠+>)(?=[^♠<]+?[”’][^\w<]*<\/♠+>)/g, '$1“')
-.replace(/(♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, '$1 ')//hair space
-.replace(/♠+(?<=\/♠+)>(?=[\"”’\'])/g, '$& ')//u200a
+.replace(/(♠+(?<=[\!\?\;\.\,]<\/♠+)>)\s*(?=[”’\]\"])/g, '$1\u200a')
+.replace(/♠+(?<=\/♠+)>(?=[\"”’\'])/g, '$&\u200a')
 .replace(/♠+>/g, m => m == '♠>'?'i>':'em>')
 //↑↑↑↑↑↑
 .replace(/:(?![\s\d\/]|<\/p>)(?<=\w\:)/g, ': ')
 ////↓↓↓↓↓
 //’d => had
-.replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=\W?(?:(?:only|each|n?ever|maybe)\s)?(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|eve[nr]|first|half|just|kinda|just|long|last|never|no[wt]|once|often|still|since|somehow|then|truly|at least|long since|kind of|so easily|more or less)\s)?(?:half-)?(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|chidden|clad|chosen|[cf]lung|crept|[dg]one|dug|disproven|drawn|[dhr]ove|dreamt|dr[au]nk|dealt|durst|dwelt|driven|[fl]ed|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|[gr]iven|grown|had|handwritten|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|lear?nt|laden|spe[ln]t|spoken|taken|taught|understood|written)|mown|overheard|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|[st]hriven|smitten|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|stript|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|withdrawn|wo[kv]en|w?rung|won|written|worn)\b)/g, ' had ')
+.replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)(?=\s+\W?(?:<em>)?(?:(?:only|each|n?ever|maybe)(?:<\/em>)?\s+)?(?:(?:<em>)?(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|eve[nr]|first|half|just|kinda|just|long|last|never|no[wt]|once|often|still|since|somehow|then|truly|at least|long since|kind of|so easily|more or less)(?:<\/?em>)?\s+)?(?:half-)?(?:[a-z]+?ed(?<!(?:e|\b[^])ed)|agreed|awoken|a?risen|abone|b?eaten|[bs]een|begun|[bt]orne?|[bl]ent|[bf]ound|[bl]it|[bhr]idden|bitten|[bf]lown|broken?|br?ought|backslid|built|burnt|[ct]aught|chidden|clad|chosen|[cf]lung|crept|[dg]one|dug|disproven|drawn|[dhr]ove|dreamt|dr[au]nk|dealt|durst|dwelt|driven|[fl]ed|fallen|felt|[fs]ought|for(?:bidden|seen|gotten|given|egone|esawn|eseen|etold|saken)|freed|frozen|got|gotten|[gr]iven|grown|had|handwritten|hewn|heard|held|knelt|[kw]ept|known|inlaid|interwoven|interwound|[lps]aid|left|lost|leapt|lear?nt|made|meant|met|mis(?:dealt|done|heard|laid|lear?nt|laden|spe[ln]t|spoken|taken|taught|understood|written)|mown|overheard|overseen|partaken|proven|s[ae]wn|[st]old|sp?ent|shaken|strode|[st]hriven|smitten|shone|sho[dt]|sh?own|shrunk|s[mp]elt|strewn|s[pt]rung|stricken|stri[dv]+en|snuck|s?lain|shaven|s[hw]orn|slid|slung|spoken|spo?ilt|spun|sp?at|stood|stolen|str?uck|st?un[gk]|shat|stript|slunk|s[lw]ept|swum|swung|taken|trod|thought|thrown|understood|withdrawn|wo[kv]en|w?rung|won|written|worn)\b)/g, ' had')
 .replace(/’d\b(?<=\b[A-Za-z][a-z]*’d)\s(?=\W?(?:(?:[a-z]{3}[a-z]+?ly\b|all|almost|already|also|always|both|eve[nr]|first|half|just|kinda|long|last|never|no[wt]|once|often|still|since|somehow|then|truly|at least|long since|kind of|so easily)\s)?(?:(?:not\s)?had\s))/g, ' had ')
 
 .replace(/’d\s(?=(?:(?:previously|recently)\s|(?<=\b(?:[Ee]ver since|looked like|[Ss]ince then,?|\b[Ii]f) [A-Za-z][a-z]*’d.)|(?=[a-z]+ before[\.,]|[a-z]+ had\b))(?:become|bet|come|cast|cost|cut|hit|hurt|let|put|quit|read|run|set|shut|spread)\b)/g, ' had ')
